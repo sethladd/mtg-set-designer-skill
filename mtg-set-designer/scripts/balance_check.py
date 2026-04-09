@@ -26,17 +26,17 @@ from pathlib import Path
 COLORS = ["W", "U", "B", "R", "G"]
 RARITIES = ["common", "uncommon", "rare", "mythic"]
 
-# Target common count per color (approximate). See references/rarity-structure.md.
-TARGET_COMMONS_PER_COLOR = 19
-TARGET_UNCOMMONS_PER_COLOR = 14
+# Target card counts per color (Play Booster era, 2024+). See references/rarity-structure.md.
+TARGET_COMMONS_PER_COLOR = 14  # 81 total / 5 colors ≈ 14-15 + colorless
+TARGET_UNCOMMONS_PER_COLOR = 17  # 100 total / 5 colors ≈ 16-18 + gold/colorless
 TARGET_RARES_PER_COLOR = 10
 TARGET_MYTHICS_PER_COLOR = 4
 
 # New World Order: max fraction of red-flagged commons.
 NWO_RED_FLAG_MAX = 0.20
 
-# Archetype support: commons that plausibly support each archetype.
-ARCHETYPE_SUPPORT_MIN = 18
+# Archetype support: commons+uncommons that plausibly support each archetype.
+ARCHETYPE_SUPPORT_MIN = 22  # ~14-16 commons + ~8-12 uncommons per archetype
 
 # Removal density heuristic patterns.
 REMOVAL_PATTERNS = [
@@ -256,20 +256,23 @@ def check_set(set_data: dict) -> str:
         out.append("No obvious color pie violations detected.")
     out.append("")
 
-    # --- Archetype support ---
-    out.append("## Archetype support at common")
+    # --- Archetype support (Play Booster era: count commons + uncommons together) ---
+    out.append("## Archetype support at common + uncommon")
     for pair, data in archetypes.items():
-        support = sum(
-            1
-            for c in cards
-            if rarity(c) == "common"
-            and pair in (c.get("archetypes") or [])
+        common_support = sum(
+            1 for c in cards
+            if rarity(c) == "common" and pair in (c.get("archetypes") or [])
         )
-        status = "" if support >= ARCHETYPE_SUPPORT_MIN else f" ⚠️ (target ≥ {ARCHETYPE_SUPPORT_MIN})"
-        out.append(f"- {pair} ({data.get('name', '?')}): {support} commons{status}")
-        if support < ARCHETYPE_SUPPORT_MIN:
+        uncommon_support = sum(
+            1 for c in cards
+            if rarity(c) == "uncommon" and pair in (c.get("archetypes") or [])
+        )
+        total = common_support + uncommon_support
+        status = "" if total >= ARCHETYPE_SUPPORT_MIN else f" ⚠️ (target ≥ {ARCHETYPE_SUPPORT_MIN})"
+        out.append(f"- {pair} ({data.get('name', '?')}): {common_support}C + {uncommon_support}U = {total}{status}")
+        if total < ARCHETYPE_SUPPORT_MIN:
             warnings.append(
-                f"Archetype {pair} has only {support} supporting commons (target ≥ {ARCHETYPE_SUPPORT_MIN})"
+                f"Archetype {pair} has only {total} supporting common+uncommon cards (target ≥ {ARCHETYPE_SUPPORT_MIN})"
             )
     out.append("")
 

@@ -38,6 +38,35 @@ Before writing anything, confirm these with the user (or reason explicitly from 
 
 If the user gave you a one-line prompt ("design a set about octopuses"), *do not* interview them to death. Make reasonable choices, state them explicitly in the design doc under "Assumptions," and proceed. The user can correct you on the output.
 
+### Phase 0.5 — Theme Research
+
+Read `references/theme-research.md` before this phase. It contains the full methodology.
+
+**Do not skip this phase.** Do not rely on your own knowledge of the theme, even if you think you know it well. Every theme gets researched — the depth varies, but the step is never optional.
+
+The goal is to produce a **Theme Brief** section in `design_doc.md` that gives the Vision phase a solid factual and structural foundation to build pillars from.
+
+**The workflow:**
+
+1. **User interview (3–5 questions).** Ask about: which version/era of the IP, faithful vs. reinterpretation, the emotional hook (why this theme?), audience familiarity, and tone boundaries. Keep it focused — you're understanding intent, not extracting a design doc.
+
+2. **Web research.** Search for the theme using the strategy in the reference doc. At minimum: one overview search, one structure/factions search, one iconic-elements search, and one fan-wiki search. For cultural themes, add scholarly and sensitivity searches. **Add every URL you consult to the "Research Sources" section of the Theme Brief in `design_doc.md`** — these are set-specific, not skill-level sources.
+
+3. **Source material decomposition.** From your research, extract:
+   - **Factions / groups / tribes** and a tentative color-pie mapping (based on *values*, not aesthetics)
+   - **Resonance inventory** — characters, locations, objects, moments, and concepts that fans would be disappointed not to see
+   - **Anti-resonance inventory** — elements that won't translate to MTG or should be avoided
+   - **Power structure** — who has power, who doesn't, how is it contested
+   - **Magic system** (if any) — how the source handles the supernatural, which often suggests mechanics
+
+4. **Tone calibration.** Write 3–5 sentences establishing the set's violence level, humor/gravity balance, and nostalgia/novelty positioning.
+
+5. **Existing MTG crossover check.** Search for Universes Beyond, Secret Lair, Un-set, or thematically adjacent MTG products. Note what they did, what worked, and what the community thought.
+
+6. **Cultural sensitivity scan** (for real-world cultural themes). Identify sacred/sensitive elements, stereotyping risks, terminology considerations, and flag anything that needs extra care during Polish.
+
+Write all of this into the **Theme Brief** section of `design_doc.md` using the template in the reference doc. The Theme Brief is a living document — update it as later phases reveal that mappings or resonance points need adjustment.
+
 ### Phase 1 — Vision
 
 Read `references/vision.md` once before writing this phase. It explains the *three pillars* concept in detail.
@@ -123,11 +152,15 @@ If an archetype doesn't fit, fix it — don't print it broken. A half-supported 
 
 ### Phase 5 — Card file
 
-Now write the actual cards into `set.json`. The schema is in `assets/set_template.json`.
+Now write the actual cards into `set.json`. **Start from the design skeleton** in `assets/design_skeleton.json` — it contains every slot code with its target mana value, card type, and role notes, based on Rosewater's Nuts & Bolts #16 (Play Booster update). Read `references/design-skeleton.md` for how the skeleton works and how to map slots to cards.
+
+The skeleton is your checklist: walk through it slot by slot, filling each with a card that fits the slot's structural role while expressing your set's theme and mechanics. When you deviate from the skeleton (swapping a removal slot for a self-mill card, etc.), note the deviation in `design_doc.md` so the balance checker's flags can be read as "intentional" rather than "forgot."
+
+The card schema is in `assets/set_template.json`. Include the skeleton slot code in each card's `id` field (e.g., `CW01`, `UB05`).
 
 Do this in this order, not randomly:
 
-1. **Commons first, all five colors in parallel.** Commons are the foundation of limited — if the theme isn't at common, it isn't your theme. Target roughly **14–15 commons per color** plus ~6–11 colorless/artifact/land commons (totaling 81). In the Play Booster era, commons are fewer but higher-impact — there are no "filler" commons. Per-color breakdown from Rosewater's Nuts & Bolts article:
+1. **Commons first, all five colors in parallel.** Commons are the foundation of limited — if the theme isn't at common, it isn't your theme. Target roughly **14–15 commons per color** plus ~6–11 colorless/artifact/land commons (totaling 81). In the Play Booster era, commons are fewer but higher-impact — there are no "filler" commons. The skeleton provides exact slot counts per color. Per-color breakdown from Rosewater's Nuts & Bolts article:
    - White: ~15 commons (~11 creatures, ~4 noncreatures)
    - Blue: ~15 commons (~8 creatures, ~7 noncreatures)
    - Black: ~14 commons (~9 creatures, ~5 noncreatures)
@@ -213,6 +246,7 @@ Then present the finished files to the user.
 
 Read these when the current phase calls for them. They are larger than SKILL.md on purpose so SKILL.md can stay lean.
 
+- `references/theme-research.md` — the full theme exploration methodology: user interview, web research, source decomposition, resonance inventories, tone calibration, cultural sensitivity
 - `references/vision.md` — the three pillars concept, top-down vs. bottom-up, how to write a vision document
 - `references/color-pie.md` — detailed mechanical color pie, primary/secondary/tertiary, bending vs. breaking
 - `references/mechanics.md` — keyword vs. ability word vs. named, parasitic vs. modular, complexity budget, evergreen list
@@ -221,6 +255,7 @@ Read these when the current phase calls for them. They are larger than SKILL.md 
 - `references/rarity-structure.md` — what each rarity is *for*, rarity counts, the role of mythic
 - `references/cycles.md` — cycle types, when to use them, when they become busywork
 - `references/balance-heuristics.md` — the numerical targets the scripts check against and where they come from
+- `references/design-skeleton.md` — the official WotC design skeleton concept, slot codes, Play Booster slot counts, and how to use it
 - `references/case-studies.md` — Innistrad, Ravnica, Theros, Lorwyn, Kamigawa (cautionary), Zendikar as worked examples
 
 ## Scripts
@@ -231,7 +266,9 @@ Read these when the current phase calls for them. They are larger than SKILL.md 
 
 ## Assets
 
-- `assets/set_template.json` — a minimal skeleton of all the JSON files with one example card/mechanic/archetype filled in. Start from this.
+- `assets/design_skeleton.json` — the official WotC design skeleton adapted for the Play Booster era (81C / 100U / 60R / 20M). Every slot code with mana value, type, and role notes. **This is your starting template for Phase 5.**
+- `assets/design_skeleton_2021.csv` — the community "Bones" spreadsheet (Draft Booster era, historical reference only).
+- `assets/set_template.json` — a minimal skeleton of the JSON *schema* with one example card/mechanic/archetype filled in. Shows the data format.
 
 ## Guiding principles (Rosewater-adjacent)
 

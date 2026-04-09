@@ -22,13 +22,15 @@ Cards *above* the curve must have a real downside. Cards *below* the curve need 
 
 ## Removal density
 
-Per color, in a standard set, expect roughly:
+Per color, in a Play Booster era set, expect roughly:
 
-- **2–4 common creature removal spells** per color (though not all colors get unconditional removal; blue gets bounce, green gets fight, etc.)
-- **1–2 uncommon creature removal spells** per color
+- **2–3 common creature removal spells** per color (fewer commons total means fewer removal slots, but each removal spell is more efficient — Rosewater notes red common burn now reaches 6 damage vs. the old 5-damage ceiling)
+- **2–3 uncommon creature removal spells** per color (uncommons now carry more of the answer load)
 - **1–2 rare/mythic creature removal spells** per color
 
-Total common creature-answering effects across all colors: ~12–18. This is the number that determines format speed — fewer answers, faster format; more answers, slower format.
+Total common+uncommon creature-answering effects across all colors: ~20–30. This is the number that determines format speed — fewer answers, faster format; more answers, slower format.
+
+**Play Booster era shift:** because ~41% of packs contain two or more rares, removal at common and uncommon needs to be *better* than it used to be. If commons can't answer rare threats, the format devolves into rare-matters. Design your common removal to punch slightly above its weight.
 
 Removal is not all created equal. Unconditional removal (black's specialty) is different from conditional removal (white's small-creature exile, red's damage-based). When you tally removal for balance, count conditional removal as half.
 
@@ -77,7 +79,7 @@ Your set's target speed comes from its pillars. "Aggressive burn set" should lan
 
 ## Color balance in limited
 
-Each color should be reasonably equal in common card count (within a couple cards of the others) because color imbalance forces drafters into specific colors regardless of the signals at the table. `balance_check.py` warns if any color is more than 3 commons off from the average.
+Each color should be reasonably equal in common card count (within a couple cards of the others) because color imbalance forces drafters into specific colors regardless of the signals at the table. In the Play Booster era the per-color common count is ~14–15 (vs. ~19–20 before), so the margin is tighter: `balance_check.py` warns if any color is more than 2 commons off from the average.
 
 ## Complexity at common
 

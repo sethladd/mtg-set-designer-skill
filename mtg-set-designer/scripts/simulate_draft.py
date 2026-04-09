@@ -33,15 +33,22 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 
-PACK_COMMONS = 10
+# Play Booster era pack structure (2024+).
+# 14 playable slots: 7 commons (slots 1-7), 3 uncommons, 1 rare/mythic,
+# 1 basic land (ignored for draft sim), 2 wildcard slots (any rarity).
+PACK_COMMONS = 7
 PACK_UNCOMMONS = 3
 PACK_RARES = 1
-PACK_MYTHIC_SLOT_RATE = 1 / 8  # 1-in-8 rares is a mythic
+PACK_WILDCARDS = 2  # each wildcard can be any rarity
+WILDCARD_RARE_RATE = 0.15  # chance each wildcard is rare/mythic
+WILDCARD_UNCOMMON_RATE = 0.35  # chance each wildcard is uncommon
+# remaining ~50% of wildcards are commons
+PACK_MYTHIC_SLOT_RATE = 1 / 7  # roughly 1-in-7 for main rare slot
 DECK_SIZE_NON_LAND = 23
 DECK_SIZE_LAND = 17
 MAX_TURNS = 20
 PLAYERS_PER_POD = 8
-PICKS_PER_PACK = PACK_COMMONS + PACK_UNCOMMONS + PACK_RARES
+PICKS_PER_PACK = PACK_COMMONS + PACK_UNCOMMONS + PACK_RARES + PACK_WILDCARDS  # 13 draftable cards
 PACKS_PER_DRAFTER = 3
 
 
@@ -101,14 +108,28 @@ def card_power(card: dict) -> float:
 
 
 def build_pack(pools_by_rarity: dict[str, list[dict]], rng: random.Random) -> list[dict]:
+    """Build a Play Booster pack: 7C + 3U + 1R/M + 2 wildcard slots."""
     pack: list[dict] = []
     pack.extend(rng.sample(pools_by_rarity["common"], k=min(PACK_COMMONS, len(pools_by_rarity["common"]))))
     pack.extend(rng.sample(pools_by_rarity["uncommon"], k=min(PACK_UNCOMMONS, len(pools_by_rarity["uncommon"]))))
-    # Rare or mythic slot
+    # Main rare/mythic slot
     if pools_by_rarity.get("mythic") and rng.random() < PACK_MYTHIC_SLOT_RATE:
         pack.append(rng.choice(pools_by_rarity["mythic"]))
     else:
         pack.append(rng.choice(pools_by_rarity["rare"]))
+    # Two wildcard slots (any rarity)
+    for _ in range(PACK_WILDCARDS):
+        roll = rng.random()
+        if roll < WILDCARD_RARE_RATE:
+            # Rare or mythic
+            if pools_by_rarity.get("mythic") and rng.random() < PACK_MYTHIC_SLOT_RATE:
+                pack.append(rng.choice(pools_by_rarity["mythic"]))
+            else:
+                pack.append(rng.choice(pools_by_rarity["rare"]))
+        elif roll < WILDCARD_RARE_RATE + WILDCARD_UNCOMMON_RATE:
+            pack.append(rng.choice(pools_by_rarity["uncommon"]))
+        else:
+            pack.append(rng.choice(pools_by_rarity["common"]))
     return pack
 
 

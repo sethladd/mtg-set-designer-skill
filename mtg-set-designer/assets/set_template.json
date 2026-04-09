@@ -1,7 +1,8 @@
 {
   "set_code": "EXM",
   "set_name": "Example Set",
-  "set_size_target": 281,
+  "set_size_target": 261,
+  "booster_format": "play_booster",
   "pillars": [
     "Pillar 1 - specific mechanical commitment",
     "Pillar 2 - another specific commitment",

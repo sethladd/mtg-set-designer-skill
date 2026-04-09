@@ -26,11 +26,15 @@ An archetype is a complete draftable strategy, not just a pair of colors. A comp
 
 **Enemy archetypes.** Which other archetypes prey on this one, and which it preys on. Drafters need *some* rock-paper-scissors in the format to keep it interesting.
 
-## The 20-card rule of thumb
+## The archetype support rule of thumb (Play Booster era)
 
-An archetype needs roughly **20 commons that actively support it** to be draftable at an 8-player pod. That's not 20 commons per color — it's 20 commons across both its colors that either do the archetype's thing or can be slotted into it. The reason is arithmetic: 8 drafters each take ~42-45 cards, and each archetype on average feeds ~1.6 drafters. If your archetype has 10 supporting commons, only one drafter can find it; the second drafter in that pair is left with scraps.
+In the old Draft Booster era, an archetype needed ~20 supporting commons. With Play Boosters, the math changes: there are only 81 commons (down from 101), but 100 uncommons (up from 80). Archetype support is now split across both rarities.
 
-This is why "commons carry the set" isn't a slogan, it's a constraint. If you can't name 20 commons that support an archetype, the archetype isn't real.
+An archetype needs roughly **14–16 commons plus 8–12 uncommons that actively support it** (combined ~22–28 cards at common/uncommon). The uncommon contribution is now essential — signpost uncommons, archetype payoffs, and supporting uncommons do a lot of the work that commons used to.
+
+The Pack math: a Play Booster draft pack has ~7 commons and 3 uncommons (plus wildcards). With 8 drafters each taking 3 packs of ~14 cards, and each archetype feeding ~1.6 drafters, you need enough density that the archetype is discoverable. If your archetype has only 8 combined common+uncommon supporters, only one drafter can find it; the second drafter in that pair is left with scraps.
+
+This means the old slogan "commons carry the set" now becomes "commons and uncommons carry the set together." If you can't name 14 commons and 8 uncommons that support an archetype, the archetype probably isn't draftable.
 
 ## Signpost design
 

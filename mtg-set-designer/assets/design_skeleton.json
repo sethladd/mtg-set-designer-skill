@@ -1,0 +1,364 @@
+{
+  "_meta": {
+    "format": "play_booster",
+    "era": "2024+",
+    "source": "Rosewater Nuts & Bolts #13 (2021) + #16 (2024 Play Booster update)",
+    "total_commons": 81,
+    "total_uncommons": 100,
+    "total_rares": 60,
+    "total_mythics": 20,
+    "notes": "This skeleton is the official WotC starting template for set design. Every slot is a placeholder to be filled with a themed card. Slots with keyword notes indicate the typical keyword distribution — not every keyword must be used, but the totals per color should be roughly respected."
+  },
+
+  "commons": {
+    "W": {
+      "total": 15,
+      "creatures": [
+        {"slot": "CW01", "mv": "1",      "notes": "Aggressive 1-drop"},
+        {"slot": "CW02", "mv": "2",      "notes": ""},
+        {"slot": "CW03", "mv": "2",      "notes": ""},
+        {"slot": "CW04", "mv": "2",      "notes": ""},
+        {"slot": "CW05", "mv": "3",      "notes": ""},
+        {"slot": "CW06", "mv": "3",      "notes": ""},
+        {"slot": "CW07", "mv": "3",      "notes": ""},
+        {"slot": "CW08", "mv": "4",      "notes": ""},
+        {"slot": "CW09", "mv": "4",      "notes": ""},
+        {"slot": "CW10", "mv": "5-6",    "notes": "Top-end finisher"},
+        {"slot": "CW11", "mv": "6-7",    "notes": "Big body or token-maker"}
+      ],
+      "keywords": "first strike (1), flash (0-1), flying (2-3, varied stats), indestructible (0-1 temp only), lifelink (1, power ≤3), vigilance (1)",
+      "noncreatures": [
+        {"slot": "CW12", "type": "removal",      "notes": "Combat-related removal (damage to attacker/blocker or similar)"},
+        {"slot": "CW13", "type": "removal",      "notes": "Banishing Light / exile-based removal"},
+        {"slot": "CW14", "type": "removal",      "notes": "Can't attack or block (often Aura)"},
+        {"slot": "CW15", "type": "trick/utility", "notes": "Combat trick (+2/+2 or smaller) OR go-wide pump OR artifact/enchantment destruction — pick based on set needs"}
+      ]
+    },
+
+    "U": {
+      "total": 15,
+      "creatures": [
+        {"slot": "CU01", "mv": "2",      "notes": ""},
+        {"slot": "CU02", "mv": "2",      "notes": ""},
+        {"slot": "CU03", "mv": "3",      "notes": ""},
+        {"slot": "CU04", "mv": "3",      "notes": ""},
+        {"slot": "CU05", "mv": "3",      "notes": ""},
+        {"slot": "CU06", "mv": "4",      "notes": ""},
+        {"slot": "CU07", "mv": "5-6",    "notes": ""},
+        {"slot": "CU08", "mv": "6+",     "notes": "Often has an attack restriction"}
+      ],
+      "keywords": "flash (1), flying (3, varied stats — mix different powers), ward (0-1)",
+      "noncreatures": [
+        {"slot": "CU09", "type": "creature-ish",  "notes": "0-power creature, defender, or noncreature token-maker"},
+        {"slot": "CU10", "type": "counterspell",   "notes": "Hard counter (no restrictions)"},
+        {"slot": "CU11", "type": "counterspell",   "notes": "Soft counter (conditional or taxing)"},
+        {"slot": "CU12", "type": "removal",        "notes": "Lockdown Aura (tap/can't untap)"},
+        {"slot": "CU13", "type": "card_draw",      "notes": "Draw up to 3 cards"},
+        {"slot": "CU14", "type": "card_selection",  "notes": "Cantrip or card filtering"},
+        {"slot": "CU15", "type": "bounce",          "notes": "Return creature to owner's hand"}
+      ]
+    },
+
+    "B": {
+      "total": 14,
+      "creatures": [
+        {"slot": "CB01", "mv": "1-2",    "notes": ""},
+        {"slot": "CB02", "mv": "2",      "notes": ""},
+        {"slot": "CB03", "mv": "2",      "notes": ""},
+        {"slot": "CB04", "mv": "3",      "notes": ""},
+        {"slot": "CB05", "mv": "3",      "notes": ""},
+        {"slot": "CB06", "mv": "4",      "notes": ""},
+        {"slot": "CB07", "mv": "4-5",    "notes": ""},
+        {"slot": "CB08", "mv": "5-6",    "notes": ""},
+        {"slot": "CB09", "mv": "6+",     "notes": ""}
+      ],
+      "keywords": "deathtouch (1), flash (1, low toughness), flying (1), haste (0-1), indestructible (0-1 temp), lifelink (1, power ≤3), menace (1)",
+      "noncreatures": [
+        {"slot": "CB10", "type": "removal",     "notes": "Kill anything (unconditional destruction)"},
+        {"slot": "CB11", "type": "removal",     "notes": "Kill small things (conditional, cheaper)"},
+        {"slot": "CB12", "type": "removal",     "notes": "Edict or sacrifice-based removal"},
+        {"slot": "CB13", "type": "card_draw",   "notes": "Card draw with life cost or other resource payment"},
+        {"slot": "CB14", "type": "recursion",   "notes": "Return 1-2 creatures from graveyard to hand"}
+      ]
+    },
+
+    "R": {
+      "total": 14,
+      "creatures": [
+        {"slot": "CR01", "mv": "1-2",    "notes": "Aggressive, often 2/1"},
+        {"slot": "CR02", "mv": "2",      "notes": ""},
+        {"slot": "CR03", "mv": "2",      "notes": ""},
+        {"slot": "CR04", "mv": "3",      "notes": ""},
+        {"slot": "CR05", "mv": "3",      "notes": ""},
+        {"slot": "CR06", "mv": "3-4",    "notes": ""},
+        {"slot": "CR07", "mv": "4-5",    "notes": ""},
+        {"slot": "CR08", "mv": "5",      "notes": ""},
+        {"slot": "CR09", "mv": "6+",     "notes": ""}
+      ],
+      "keywords": "first strike (1), haste (1-2), menace (1), reach (0-1), trample (1)",
+      "noncreatures": [
+        {"slot": "CR10", "type": "damage",       "notes": "Efficient direct damage, any target (now up to 6 damage at common in Play Booster era)"},
+        {"slot": "CR11", "type": "damage",       "notes": "Second direct damage spell (less efficient or creature-only)"},
+        {"slot": "CR12", "type": "steal/damage",  "notes": "Temporary steal effect or third damage variant"},
+        {"slot": "CR13", "type": "cantrip",       "notes": "Rummaging (discard then draw) or impulsive draw"},
+        {"slot": "CR14", "type": "trick/utility",  "notes": "Combat trick, can't-block effect, or artifact destruction — pick per set needs"}
+      ]
+    },
+
+    "G": {
+      "total": 14,
+      "creatures": [
+        {"slot": "CG01", "mv": "1-2",    "notes": "Mana dork or aggressive 1-drop"},
+        {"slot": "CG02", "mv": "2",      "notes": ""},
+        {"slot": "CG03", "mv": "2",      "notes": ""},
+        {"slot": "CG04", "mv": "3",      "notes": ""},
+        {"slot": "CG05", "mv": "3",      "notes": ""},
+        {"slot": "CG06", "mv": "3-4",    "notes": ""},
+        {"slot": "CG07", "mv": "4-5",    "notes": ""},
+        {"slot": "CG08", "mv": "5",      "notes": "Biggest common body in the set, often"},
+        {"slot": "CG09", "mv": "6",      "notes": ""},
+        {"slot": "CG10", "mv": "6+",     "notes": "Huge top-end creature"}
+      ],
+      "keywords": "deathtouch (1, small creature), flash (0-1, power ≥3), haste (1), hexproof (0-1, small/medium, no evasion), reach (1), trample (1-2), vigilance (1)",
+      "noncreatures": [
+        {"slot": "CG11", "type": "removal",     "notes": "Fight or bite effect"},
+        {"slot": "CG12", "type": "pump",         "notes": "Power/toughness pump (usually instant)"},
+        {"slot": "CG13", "type": "ramp",         "notes": "Mana acceleration (fetch land, land Aura, or creature-based)"},
+        {"slot": "CG14", "type": "utility",      "notes": "Artifact/enchantment destruction OR anti-flying — pick per set needs"}
+      ]
+    },
+
+    "colorless": {
+      "total": 9,
+      "creatures": [
+        {"slot": "CA01", "mv": "2",   "notes": "Variance buster — colorless body any deck can play"},
+        {"slot": "CA02", "mv": "3",   "notes": "Variance buster"},
+        {"slot": "CA03", "mv": "4",   "notes": "Variance buster"}
+      ],
+      "noncreatures": [
+        {"slot": "CA04", "type": "removal",    "notes": "Inefficient but universal removal (any color can use)"},
+        {"slot": "CA05", "type": "mana",        "notes": "Mana rock (Manalith variant, often with small upside)"},
+        {"slot": "CA06", "type": "fixing",       "notes": "Color fixing (land search, filter, or dual-producer)"},
+        {"slot": "CA07", "type": "equipment",    "notes": "Equipment"},
+        {"slot": "CA08", "type": "utility",      "notes": "Flexible utility artifact"},
+        {"slot": "CA09", "type": "flex",          "notes": "Flex slot — fill per set needs"}
+      ]
+    }
+  },
+
+  "uncommons": {
+    "_notes": "100 total. Play Booster era uncommons are the largest rarity and carry heavy archetype-support weight. Per-color creatures increased vs. 2021; multicolor doubled from 10 to 20.",
+
+    "W": {
+      "total": 18,
+      "creatures": [
+        {"slot": "UW01", "mv": "1",      "notes": ""},
+        {"slot": "UW02", "mv": "2",      "notes": ""},
+        {"slot": "UW03", "mv": "2-3",    "notes": ""},
+        {"slot": "UW04", "mv": "3",      "notes": ""},
+        {"slot": "UW05", "mv": "3-4",    "notes": ""},
+        {"slot": "UW06", "mv": "4",      "notes": ""},
+        {"slot": "UW07", "mv": "5",      "notes": ""},
+        {"slot": "UW08", "mv": "5-6",    "notes": ""},
+        {"slot": "UW09", "mv": "flex",   "notes": "Any MV — fill per archetype needs"},
+        {"slot": "UW10", "mv": "flex",   "notes": "Any MV — fill per archetype needs"}
+      ],
+      "keywords": "double strike (0-1), first strike (0-1), flash (0-1), flying (2, different powers), indestructible (0-1), lifelink (1), vigilance (1)",
+      "noncreatures": [
+        {"slot": "UW11", "type": "removal",  "notes": "Efficient creature removal (exile or destroy)"},
+        {"slot": "UW12", "type": "removal",  "notes": "Second removal or board-affecting spell"},
+        {"slot": "UW13", "type": "token",     "notes": "Token generation or go-wide payoff"},
+        {"slot": "UW14", "type": "utility",   "notes": "Equipment, enchantment, or life-gain payoff"},
+        {"slot": "UW15", "type": "utility",   "notes": "Flex — combat trick, protection, or archetype-specific"},
+        {"slot": "UW16", "type": "utility",   "notes": "Flex — per set needs"},
+        {"slot": "UW17", "type": "utility",   "notes": "Flex — per set needs"},
+        {"slot": "UW18", "type": "utility",   "notes": "Flex — per set needs"}
+      ]
+    },
+
+    "U": {
+      "total": 18,
+      "creatures": [
+        {"slot": "UU01", "mv": "1-2",    "notes": ""},
+        {"slot": "UU02", "mv": "2",      "notes": ""},
+        {"slot": "UU03", "mv": "3",      "notes": ""},
+        {"slot": "UU04", "mv": "3-4",    "notes": ""},
+        {"slot": "UU05", "mv": "4",      "notes": ""},
+        {"slot": "UU06", "mv": "5",      "notes": ""},
+        {"slot": "UU07", "mv": "flex",   "notes": "Any MV"},
+        {"slot": "UU08", "mv": "flex",   "notes": "Any MV"}
+      ],
+      "keywords": "flash (0-1), flying (2-3), hexproof (0-1, sometimes conditional)",
+      "noncreatures": [
+        {"slot": "UU09",  "type": "card_draw",    "notes": "Card draw spell"},
+        {"slot": "UU10",  "type": "counterspell",  "notes": "Counterspell (often with upside)"},
+        {"slot": "UU11",  "type": "removal",       "notes": "Bounce, steal, or transformation-based removal"},
+        {"slot": "UU12",  "type": "utility",        "notes": "Mill, tap-down, or tempo effect"},
+        {"slot": "UU13",  "type": "utility",        "notes": "Flex — Aura, Equipment, or archetype-specific"},
+        {"slot": "UU14",  "type": "utility",        "notes": "Flex"},
+        {"slot": "UU15",  "type": "utility",        "notes": "Flex"},
+        {"slot": "UU16",  "type": "utility",        "notes": "Flex"},
+        {"slot": "UU17",  "type": "utility",        "notes": "Flex"},
+        {"slot": "UU18",  "type": "utility",        "notes": "Flex"}
+      ]
+    },
+
+    "B": {
+      "total": 17,
+      "creatures": [
+        {"slot": "UB01", "mv": "1-2",    "notes": ""},
+        {"slot": "UB02", "mv": "2",      "notes": ""},
+        {"slot": "UB03", "mv": "3",      "notes": ""},
+        {"slot": "UB04", "mv": "4",      "notes": ""},
+        {"slot": "UB05", "mv": "5",      "notes": ""},
+        {"slot": "UB06", "mv": "5-6",    "notes": ""},
+        {"slot": "UB07", "mv": "flex",   "notes": "Any MV"},
+        {"slot": "UB08", "mv": "flex",   "notes": "Any MV"}
+      ],
+      "keywords": "deathtouch (1), flash (0-1), flying (1), indestructible (0-1 temp), lifelink (1), menace (1)",
+      "noncreatures": [
+        {"slot": "UB09",  "type": "removal",     "notes": "Premium removal spell"},
+        {"slot": "UB10",  "type": "reanimation",  "notes": "Return creature from graveyard to battlefield"},
+        {"slot": "UB11",  "type": "sweeper",       "notes": "Small sweeper (-X/-X or destroy small creatures)"},
+        {"slot": "UB12",  "type": "discard",       "notes": "Discard or drain effect"},
+        {"slot": "UB13",  "type": "utility",        "notes": "Tutor, graveyard exile, or counter removal"},
+        {"slot": "UB14",  "type": "utility",        "notes": "Flex"},
+        {"slot": "UB15",  "type": "utility",        "notes": "Flex"},
+        {"slot": "UB16",  "type": "utility",        "notes": "Flex"},
+        {"slot": "UB17",  "type": "utility",        "notes": "Flex"}
+      ]
+    },
+
+    "R": {
+      "total": 17,
+      "creatures": [
+        {"slot": "UR01", "mv": "1-2",    "notes": ""},
+        {"slot": "UR02", "mv": "2",      "notes": ""},
+        {"slot": "UR03", "mv": "3",      "notes": ""},
+        {"slot": "UR04", "mv": "4",      "notes": ""},
+        {"slot": "UR05", "mv": "5+",     "notes": ""},
+        {"slot": "UR06", "mv": "flex",   "notes": "Any MV"},
+        {"slot": "UR07", "mv": "flex",   "notes": "Any MV"},
+        {"slot": "UR08", "mv": "flex",   "notes": "Any MV"}
+      ],
+      "keywords": "double strike (0-1), haste (1), first strike (0-1), menace (1), reach (0-1), trample (1-2)",
+      "noncreatures": [
+        {"slot": "UR09",  "type": "damage",      "notes": "Direct damage (any target, premium)"},
+        {"slot": "UR10",  "type": "sweeper",      "notes": "Small sweeper or multi-target damage"},
+        {"slot": "UR11",  "type": "steal",         "notes": "Temporary steal effect (Act of Treason variant)"},
+        {"slot": "UR12",  "type": "utility",        "notes": "Rummage, impulsive draw, or spell copy"},
+        {"slot": "UR13",  "type": "utility",        "notes": "Team pump, forced combat, or artifact destruction"},
+        {"slot": "UR14",  "type": "utility",        "notes": "Flex"},
+        {"slot": "UR15",  "type": "utility",        "notes": "Flex"},
+        {"slot": "UR16",  "type": "utility",        "notes": "Flex"},
+        {"slot": "UR17",  "type": "utility",        "notes": "Flex"}
+      ]
+    },
+
+    "G": {
+      "total": 17,
+      "creatures": [
+        {"slot": "UG01", "mv": "1-2",    "notes": ""},
+        {"slot": "UG02", "mv": "2",      "notes": ""},
+        {"slot": "UG03", "mv": "3",      "notes": ""},
+        {"slot": "UG04", "mv": "4",      "notes": ""},
+        {"slot": "UG05", "mv": "5",      "notes": ""},
+        {"slot": "UG06", "mv": "6+",     "notes": ""},
+        {"slot": "UG07", "mv": "flex",   "notes": "Any MV"},
+        {"slot": "UG08", "mv": "flex",   "notes": "Any MV"},
+        {"slot": "UG09", "mv": "flex",   "notes": "Any MV"}
+      ],
+      "keywords": "deathtouch (0-1), flash (0-1, power ≥3), haste (1), indestructible (0-1), hexproof (0-1, no evasion), reach (0-1), trample (1), vigilance (1)",
+      "noncreatures": [
+        {"slot": "UG10",  "type": "ramp",        "notes": "Mana ramp (stronger than common version)"},
+        {"slot": "UG11",  "type": "removal",      "notes": "Fight/bite removal or Rabid Bite variant"},
+        {"slot": "UG12",  "type": "recursion",    "notes": "Regrowth effect or token generation"},
+        {"slot": "UG13",  "type": "pump",          "notes": "+1/+1 counters, Overrun variant, or anthem"},
+        {"slot": "UG14",  "type": "utility",        "notes": "Artifact/enchantment destruction or protective effect"},
+        {"slot": "UG15",  "type": "utility",        "notes": "Flex"},
+        {"slot": "UG16",  "type": "utility",        "notes": "Flex"},
+        {"slot": "UG17",  "type": "utility",        "notes": "Flex"}
+      ]
+    },
+
+    "multicolor": {
+      "total": 20,
+      "_notes": "Two signpost uncommons per two-color pair. Doubled from 10 in the Draft Booster era. Each pair gets one enabler and one payoff.",
+      "slots": [
+        {"slot": "UZ01", "pair": "WU", "role": "enabler",  "notes": "Creature — signals the WU archetype"},
+        {"slot": "UZ02", "pair": "WU", "role": "payoff",   "notes": "Creature or noncreature — rewards committing to WU"},
+        {"slot": "UZ03", "pair": "UB", "role": "enabler",  "notes": ""},
+        {"slot": "UZ04", "pair": "UB", "role": "payoff",   "notes": ""},
+        {"slot": "UZ05", "pair": "BR", "role": "enabler",  "notes": ""},
+        {"slot": "UZ06", "pair": "BR", "role": "payoff",   "notes": ""},
+        {"slot": "UZ07", "pair": "RG", "role": "enabler",  "notes": ""},
+        {"slot": "UZ08", "pair": "RG", "role": "payoff",   "notes": ""},
+        {"slot": "UZ09", "pair": "GW", "role": "enabler",  "notes": ""},
+        {"slot": "UZ10", "pair": "GW", "role": "payoff",   "notes": ""},
+        {"slot": "UZ11", "pair": "WB", "role": "enabler",  "notes": ""},
+        {"slot": "UZ12", "pair": "WB", "role": "payoff",   "notes": ""},
+        {"slot": "UZ13", "pair": "UR", "role": "enabler",  "notes": ""},
+        {"slot": "UZ14", "pair": "UR", "role": "payoff",   "notes": ""},
+        {"slot": "UZ15", "pair": "BG", "role": "enabler",  "notes": ""},
+        {"slot": "UZ16", "pair": "BG", "role": "payoff",   "notes": ""},
+        {"slot": "UZ17", "pair": "RW", "role": "enabler",  "notes": ""},
+        {"slot": "UZ18", "pair": "RW", "role": "payoff",   "notes": ""},
+        {"slot": "UZ19", "pair": "GU", "role": "enabler",  "notes": ""},
+        {"slot": "UZ20", "pair": "GU", "role": "payoff",   "notes": ""}
+      ]
+    },
+
+    "colorless": {
+      "total": 13,
+      "creatures": [
+        {"slot": "UA01", "mv": "1-2",  "notes": ""},
+        {"slot": "UA02", "mv": "3-4",  "notes": ""},
+        {"slot": "UA03", "mv": "5-6",  "notes": ""},
+        {"slot": "UA04", "mv": "flex",  "notes": ""}
+      ],
+      "noncreatures": [
+        {"slot": "UA05", "type": "removal",    "notes": "Conditional or inefficient removal artifact"},
+        {"slot": "UA06", "type": "equipment",   "notes": "Equipment (often with repeatable effect)"},
+        {"slot": "UA07", "type": "utility",      "notes": "Card draw, evasion, or pump artifact"},
+        {"slot": "UA08", "type": "utility",      "notes": "Flex"},
+        {"slot": "UA09", "type": "utility",      "notes": "Flex"}
+      ],
+      "lands": [
+        {"slot": "UL01", "notes": "Dual land or utility land"},
+        {"slot": "UL02", "notes": "Dual land or utility land"},
+        {"slot": "UL03", "notes": "Dual land or utility land (sometimes a cycle slot)"},
+        {"slot": "UL04", "notes": "Flex land slot"}
+      ]
+    }
+  },
+
+  "rares": {
+    "_notes": "60 total. Rares and mythics are less structured — the skeleton provides slot counts and color balance but not specific card functions, because rare design is driven by set identity rather than format infrastructure. Fill these after commons and uncommons are solid.",
+    "W":  {"total": 7, "slots": ["RW01","RW02","RW03","RW04","RW05","RW06","RW07"]},
+    "U":  {"total": 7, "slots": ["RU01","RU02","RU03","RU04","RU05","RU06","RU07"]},
+    "B":  {"total": 7, "slots": ["RB01","RB02","RB03","RB04","RB05","RB06","RB07"]},
+    "R":  {"total": 7, "slots": ["RR01","RR02","RR03","RR04","RR05","RR06","RR07"]},
+    "G":  {"total": 7, "slots": ["RG01","RG02","RG03","RG04","RG05","RG06","RG07"]},
+    "multicolor": {
+      "total": 10,
+      "slots": ["RM01-WU","RM02-UB","RM03-BR","RM04-RG","RM05-GW","RM06-WB","RM07-UR","RM08-BG","RM09-RW","RM10-GU"],
+      "_notes": "One rare per color pair. Not all sets use all 10; some prefer fewer gold rares."
+    },
+    "colorless": {"total": 4, "slots": ["RA01","RA02","RA03","RA04"]},
+    "lands": {
+      "total": 5,
+      "slots": ["RL01-W","RL02-U","RL03-B","RL04-R","RL05-G"],
+      "_notes": "Typically a cycle of dual or utility lands"
+    }
+  },
+
+  "mythics": {
+    "_notes": "20 total. 3 per color + 5 multicolor/colorless. Mythics should do something a rare cannot.",
+    "W": {"total": 3, "slots": ["MW01","MW02","MW03"]},
+    "U": {"total": 3, "slots": ["MU01","MU02","MU03"]},
+    "B": {"total": 3, "slots": ["MB01","MB02","MB03"]},
+    "R": {"total": 3, "slots": ["MR01","MR02","MR03"]},
+    "G": {"total": 3, "slots": ["MG01","MG02","MG03"]},
+    "multicolor_and_colorless": {"total": 5, "slots": ["MM01","MM02","MM03","MM04","MM05"]}
+  }
+}
