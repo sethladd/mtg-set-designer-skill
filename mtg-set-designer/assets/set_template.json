@@ -1,0 +1,54 @@
+{
+  "set_code": "EXM",
+  "set_name": "Example Set",
+  "set_size_target": 281,
+  "pillars": [
+    "Pillar 1 - specific mechanical commitment",
+    "Pillar 2 - another specific commitment",
+    "Pillar 3 - the third commitment"
+  ],
+  "mechanics": [
+    {
+      "name": "Kindle",
+      "type": "keyword",
+      "reminder_text": "Whenever this creature deals combat damage to a player, deal 1 damage to any target.",
+      "serves_pillar": "Pillar 1",
+      "colors": {"primary": ["R"], "secondary": ["W"], "tertiary": []},
+      "rarity_spread": {"common": 6, "uncommon": 4, "rare": 2, "mythic": 1},
+      "parasitic_risk": "low",
+      "design_space": "combat-damage triggers that reward aggression"
+    }
+  ],
+  "archetypes": {
+    "WU": {
+      "name": "Skybound Scholars",
+      "strategy": "tempo flyers with card selection",
+      "speed": "medium",
+      "key_mechanics": ["evergreen: flying", "new: Kindle (secondary white)"],
+      "signpost_uncommons": [
+        {"role": "enabler", "sketch": "2W/U 1/3 flyer, ETB scry 1"},
+        {"role": "payoff", "sketch": "2WU whenever you draw your second card each turn, create a 1/1 flyer"}
+      ],
+      "commons_needed": ["cheap evasive bodies", "conditional counterspell", "4-drop finisher flyer", "card selection"]
+    }
+  },
+  "cards": [
+    {
+      "id": "EXM-001",
+      "name": "Ember Stoker",
+      "mana_cost": "1R",
+      "cmc": 2,
+      "color": ["R"],
+      "type": "Creature",
+      "subtypes": ["Human", "Shaman"],
+      "power": 2,
+      "toughness": 1,
+      "rules_text": "Kindle",
+      "flavor_text": "Every spark she strikes finds its purpose.",
+      "rarity": "common",
+      "archetypes": ["RW", "UR", "BR"],
+      "keywords": ["Kindle"],
+      "notes": "vanilla-adjacent; teaches Kindle at lowest cost"
+    }
+  ]
+}
