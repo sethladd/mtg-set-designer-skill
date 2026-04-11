@@ -185,11 +185,13 @@ If an archetype doesn't fit, fix it — don't print it broken. A half-supported 
 
 Now write the actual cards into `set.json`. **Start from the design skeleton** in `assets/design_skeleton.json` — it contains every slot code with its target mana value, card type, and role notes, based on Rosewater's Nuts & Bolts #16 (Play Booster update). Read `references/design-skeleton.md` for how the skeleton works and how to map slots to cards.
 
+**Read `references/card-types.md` now and keep it open as an active reference for this entire phase.** That file is the complete toolbox of every card type, subtype, and creature type available to you. It exists so you don't default to "Creature" and "Instant" for everything. For *every concept you turn into a card*, ask: "What card type best expresses this concept?" before defaulting to the obvious choice. A named weapon is Equipment, not an Instant that gives +X/+0. A pivotal story moment is a Saga, not a Sorcery. A contested location is a Battle, not an Enchantment. A mystery to solve is a Case, not a triggered ability. The card-types reference includes thematic categories for all 328 creature types — use them to find the most flavorful creature type for each being in the set rather than defaulting to Human or Beast.
+
 The skeleton is your checklist: walk through it slot by slot, filling each with a card that fits the slot's structural role while expressing your set's theme and mechanics. When you deviate from the skeleton (swapping a removal slot for a self-mill card, etc.), note the deviation in `design_doc.md` so the balance checker's flags can be read as "intentional" rather than "forgot."
 
 The card schema is in `assets/set_template.json`. Include the skeleton slot code in each card's `id` field (e.g., `CW01`, `UB05`).
 
-**Plan your card types before writing cards.** Read `references/card-types.md` and then write a **card type plan** into `design_doc.md` *before* filling any skeleton slots. This is a concrete decision point, not a vague suggestion to "consider" other types. The plan should:
+**Plan your card types before writing cards.** Using the card-types reference, write a **card type plan** into `design_doc.md` *before* filling any skeleton slots. This is a concrete decision point, not a vague suggestion to "consider" other types. The plan should:
 
 1. **List every non-creature permanent type and decide yes/no for this set.** Walk through each one and write a sentence:
    - **Battle (Siege):** Yes/no? Battles represent conflicts fought over time. If your set involves war, invasion, territorial conquest, siege, missions, or overcoming obstacles, Battles belong. A military IP like G.I. Joe with zero Battles is a design error. Target: 3–5 at uncommon/rare.
@@ -215,6 +217,12 @@ If your card type plan says "no" to Battles, Sagas, Vehicles, Equipment, *and* C
 - **For IP-based sets, this is doubly important.** A creature slot in a well-known IP should almost always be a recognizable character, faction member, or creature from the source material — not a generic concept. If you're filling a white common creature slot in a military IP, it should be "Corporal [Name]" or "[Faction] Heavy Gunner," not "Cover Fire."
 
 **Every card gets an art description.** Read `references/art-direction.md` before writing cards — it covers the WotC art brief format, what makes art read at card size, and how to write descriptions by rarity. Write the art description alongside each card's mechanical design, not as a separate pass. Each art description has five fields: `scene` (1–3 sentences of what's in the image), `focus` (the single primary visual element), `mood` (2–5 words of emotional register), `palette` (dominant colors), and `frame` (camera angle / shot type). The description should work as an image search query or AI image generation prompt with minimal editing.
+
+**Per-card type check.** For every card you write, before committing to a card type, run this quick mental checklist against the card-types reference:
+1. What is this card's concept? (a being, an object, a story beat, a location, a spell, an ongoing effect?)
+2. Is there a card type that *mechanically embodies* this concept better than a vanilla creature or instant? (Saga for stories, Equipment for weapons, Vehicle for mounts/ships, Battle for conflicts, Case for mysteries, Class for roles, Room for locations)
+3. If it's a creature, what's the most specific creature type from the catalog that fits? Don't use "Human Soldier" when "Human Samurai" or "Human Pilot" or "Human Detective" better matches the world. Browse the thematic categories in the reference.
+4. Does the type line match the rules text? (Equipment has Equip, Vehicle has Crew, Aura has Enchant — see "Type-line consistency" rules above.)
 
 Do this in this order, not randomly:
 
@@ -261,6 +269,13 @@ A character-rich IP set should have **20–40 cards that ARE specific named char
 - **Game or visual IPs** (video games, animation, etc.) → write original flavor text using the IP's terminology, tone, and worldview; use game-specific jargon where fans would expect it
 
 In all cases, flavor text should sound like it *comes from* the IP's world, never from generic fantasy. If a piece of flavor text could appear on any Magic card, rewrite it.
+
+**Type-line consistency for subtypes.** A card's `type` field must include the correct subtype whenever its rules text uses subtype-specific mechanics. This is a common error — the designer writes Equip costs and "equipped creature" in the rules but sets the type to plain `"Artifact"` instead of `"Artifact — Equipment"`. The rules:
+- If the card has an **Equip** cost or references "equipped creature" → type must be `"Artifact — Equipment"`. It must also have a valid Equip cost in rules text (e.g., `"Equip {2}"`).
+- If the card has a **Crew** cost → type must be `"Artifact — Vehicle"` and it needs power/toughness.
+- If the card has **"Enchant [something]"** → type must include `"Aura"` (e.g., `"Enchantment — Aura"`).
+- If the card is a **Saga** → type must be `"Enchantment — Saga"`, not plain `"Enchantment"`.
+The balance checker now validates these automatically, but getting them right during card creation saves a correction pass.
 
 While writing cards, obey the **New World Order** complexity budget. Details in `references/new-world-order.md`, but the short version: at most ~20% of commons may be "red-flagged" as complex, and new named mechanics should appear sparingly at common. If you find yourself adding a second ability to a common creature, ask whether it belongs at uncommon instead.
 

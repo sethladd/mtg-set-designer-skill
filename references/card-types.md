@@ -175,3 +175,120 @@ When filling skeleton slots in Phase 5, use this checklist:
    - "This character grows over time" → Class or leveler creature
 
 5. **Note type-specific balance considerations.** Equipment and Vehicles are colorless, so they can go in any deck — be careful about making them too strong. Battles add complexity to the board state, so limit them if the set is already complex. Sagas take multiple turns to resolve, affecting format speed.
+
+---
+
+## Complete Subtype Catalog
+
+This is the authoritative list of every legal subtype in Magic: The Gathering, sourced from the Scryfall API (which mirrors the Comprehensive Rules §205.3). Use this as your toolbox when mapping concepts to cards.
+
+### Creature Types (328 types)
+
+Creature subtypes define the tribal and flavorful identity of the set. A set typically uses 15–25 of these, with 3–5 being mechanically relevant. Prefer existing types over inventing new ones — players connect with familiar types. The one two-word creature type is "Time Lord."
+
+**Organized by thematic category** (a type may appear in multiple categories if it fits multiple themes):
+
+#### Humanoid Races
+Aetherborn, Azra, Centaur, Cephalid (not in Scryfall but historically used), Changeling (use Shapeshifter), Citizen, Cyclops, Dauthi, Demigod, Dwarf, Eladrin (not in current list), Elf, Gith, Gnome, Goblin, Halfling, Homarid, Human, Kithkin, Kobold, Kor, Merfolk, Metathran, Minotaur, Moonfolk, Naga, Nephilim, Noggle, Orc, Ogre, Satyr, Soltari, Surrakar, Thalakos, Tiefling, Vedalken
+
+#### Classes & Occupations
+Advisor, Archer, Artificer, Assassin, Barbarian, Bard, Berserker, Cleric, Clown, Coward, Detective, Druid, Employee, Flagbearer, Gamer, Inquisitor, Knight, Mercenary, Monk, Mystic, Ninja, Noble, Nomad, Peasant, Performer, Pilot, Pirate, Ranger, Rebel, Reveler, Rigger, Rogue, Samurai, Scientist, Scout, Serf, Shaman, Soldier, Sorcerer, Spellshaper, Spy, Survivor, Warlock, Warrior, Wizard
+
+#### Angels, Gods & Celestials
+Angel, Archon, Avatar, Demigod, God, Incarnation, Praetor, Sphinx
+
+#### Demons, Devils & Fiends
+Demon, Devil, Efreet, Imp, Nightmare, Specter
+
+#### Undead & Horror
+Ghost, Ghoul (use Zombie), Horror, Lich (use Zombie or Horror), Mummy (use Zombie), Nightstalker, Phyrexian, Shade, Skeleton, Spirit, Vampire, Werewolf, Wraith, Zombie
+
+#### Dragons & Drakes
+Dragon, Drake
+
+#### Eldritch & Cosmic
+Alien, Eldrazi, Elder, Eye, Processor, Spawn, Tentacle
+
+#### Faeries, Fey & Spirits
+Dryad, Faerie, Glimmer, Nymph, Ouphe, Pixie (use Faerie), Siren, Spirit
+
+#### Giants & Trolls
+Cyclops, Giant, Ogre, Troll
+
+#### Beasts & Megafauna
+Antelope, Ape, Aurochs, Badger, Bear, Beast, Beaver, Bison, Boar, Camel, Capybara, Caribou, Cat, Coyote, Dog, Elephant, Elk, Ferret, Fox, Giraffe, Goat, Gorilla, Hamster, Hare, Hedgehog, Horse, Hyena, Jackal, Kangaroo, Lemur, Mole, Mongoose, Monkey, Moose (use Elk), Mouse, Ox, Pangolin, Porcupine, Possum, Rabbit, Raccoon, Rat, Rhino, Sable, Sheep, Skunk, Sloth, Squirrel, Walrus, Weasel, Wolf, Wolverine, Wombat, Yeti
+
+#### Birds
+Bird, Crane (use Bird), Drake, Eagle (use Bird), Griffin, Hippogriff, Owl (use Bird), Pegasus, Phoenix, Raven (use Bird), Rukh
+
+#### Reptiles & Dinosaurs
+Basilisk, Cockatrice, Crocodile, Dinosaur, Drake, Kobold, Lizard, Salamander, Serpent, Snake, Turtle, Wurm
+
+#### Insects, Arachnids & Vermin
+Ant (use Insect), Insect, Leech, Mite, Pest, Scorpion, Spider, Worm
+
+#### Aquatic & Sea Creatures
+Crab, Fish, Frog, Jellyfish, Kraken, Leviathan, Lobster, Merfolk, Nautilus, Octopus, Oyster, Seal, Shark, Snail, Squid, Starfish, Whale
+
+#### Plants & Fungi
+Fungus, Plant, Saproling, Treefolk
+
+#### Shapeshifters & Oozes
+Illusion, Mutant, Ooze, Shapeshifter
+
+#### Constructs & Artifice
+Assembly-Worker, Automaton, Bringer, Construct, Drone, Dreadnought, Golem, Homunculus, Juggernaut, Myr, Robot, Scarecrow, Servo, Synth, Tetravite, Thopter, Wall
+
+#### Elementals & Natural Forces
+Elemental, Hellion, Incarnation, Kavu, Lhurgoyf, Sliver, Weird
+
+#### Mythological & Exotic
+Basilisk, Chimera, Cockatrice, Gargoyle, Gorgon, Griffin, Hag, Harpy, Hippo, Hydra, Kirin, Lamia, Lammasu, Manticore, Masticore, Pegasus, Phoenix, Unicorn
+
+#### Tokens & Derived Types
+Army, Balloon, Egg, Fractal, Germ, Inkling, Orb, Pentavite, Prism, Reflection, Sand, Sculpture, Splinter, Sponge, Teddy, Toy, Triskelavite, Varmint
+
+#### Sci-Fi & Universes Beyond
+Alien, Astartes, C'tan, Custodes, Cyberman, Dalek, Doctor, Moogle, Necron, Primarch, Robot, Synth, Time Lord, Tyranid, Utrom
+
+#### Silver-Border & Acorn
+Beeble, Brainiac, Chicken, Child, Clown, Drix, Duck, Employee, Gamer, Guest, Head, Phelddagrif, Squirrel (now also black-border), Teddy, Villain
+
+#### Full Alphabetical List (328 types)
+Advisor, Aetherborn, Alien, Ally, Angel, Antelope, Ape, Archer, Archon, Armadillo, Army, Artificer, Assassin, Assembly-Worker, Astartes, Atog, Aurochs, Automaton, Avatar, Azra, Badger, Balloon, Barbarian, Bard, Basilisk, Bat, Bear, Beast, Beaver, Beeble, Beholder, Berserker, Bird, Bison, Blinkmoth, Boar, Brainiac, Bringer, Brushwagg, C'tan, Camarid, Camel, Capybara, Caribou, Carrier, Cat, Centaur, Chicken, Child, Chimera, Citizen, Cleric, Clown, Cockatrice, Construct, Coward, Coyote, Crab, Crocodile, Custodes, Cyberman, Cyclops, Dalek, Dauthi, Demigod, Demon, Deserter, Detective, Devil, Dinosaur, Djinn, Doctor, Dog, Dragon, Drake, Dreadnought, Drix, Drone, Druid, Dryad, Dwarf, Echidna, Efreet, Egg, Elder, Eldrazi, Elemental, Elephant, Elf, Elk, Employee, Eye, Faerie, Ferret, Fish, Flagbearer, Fox, Fractal, Frog, Fungus, Gamer, Gargoyle, Germ, Giant, Giraffe, Gith, Glimmer, Gnoll, Gnome, Goat, Goblin, God, Golem, Gorgon, Graveborn, Gremlin, Griffin, Guest, Hag, Halfling, Hamster, Harpy, Head, Hedgehog, Hellion, Hero, Hippo, Hippogriff, Homarid, Homunculus, Horror, Horse, Human, Hydra, Hyena, Illusion, Imp, Incarnation, Inkling, Inquisitor, Insect, Jackal, Jellyfish, Juggernaut, Kangaroo, Kavu, Kirin, Kithkin, Knight, Kobold, Kor, Kraken, Lamia, Lammasu, Leech, Lemur, Leviathan, Lhurgoyf, Licid, Lizard, Llama, Lobster, Manticore, Masticore, Mercenary, Merfolk, Metathran, Minion, Minotaur, Mite, Mole, Monger, Mongoose, Monk, Monkey, Moogle, Moonfolk, Mount, Mouse, Mutant, Myr, Mystic, Naga, Nautilus, Necron, Nephilim, Nightmare, Nightstalker, Ninja, Noble, Noggle, Nomad, Nymph, Octopus, Ogre, Ooze, Orb, Orc, Orgg, Otter, Ouphe, Ox, Oyster, Pangolin, Peasant, Pegasus, Pentavite, Performer, Pest, Phelddagrif, Phoenix, Phyrexian, Pilot, Pincher, Pirate, Plant, Platypus, Porcupine, Possum, Praetor, Primarch, Prism, Processor, Qu, Rabbit, Raccoon, Ranger, Rat, Rebel, Reflection, Reveler, Rhino, Rigger, Robot, Rogue, Rukh, Sable, Salamander, Samurai, Sand, Saproling, Satyr, Scarecrow, Scientist, Scion, Scorpion, Scout, Sculpture, Seal, Serf, Serpent, Servo, Shade, Shaman, Shapeshifter, Shark, Sheep, Siren, Skeleton, Skrull, Skunk, Slith, Sliver, Sloth, Slug, Snail, Snake, Soldier, Soltari, Sorcerer, Spawn, Specter, Spellshaper, Sphinx, Spider, Spike, Spirit, Splinter, Sponge, Spy, Squid, Squirrel, Starfish, Surrakar, Survivor, Symbiote, Synth, Teddy, Tentacle, Tetravite, Thalakos, Thopter, Thrull, Tiefling, Time Lord, Toy, Treefolk, Trilobite, Triskelavite, Troll, Turtle, Tyranid, Unicorn, Urzan, Utrom, Vampire, Varmint, Vedalken, Villain, Volver, Wall, Walrus, Warlock, Warrior, Weasel, Weird, Werewolf, Whale, Wizard, Wolf, Wolverine, Wombat, Worm, Wraith, Wurm, Yeti, Zombie, Zubera
+
+### Planeswalker Types (91 types)
+
+Each planeswalker card has a subtype matching its character identity. Custom sets introducing new planeswalker characters create new planeswalker subtypes.
+
+Abian, Ajani, Aminatou, Angrath, Arlinn, Ashiok, B.O.B., Bahamut, Basri, Bolas, Calix, Chandra, Comet, Dack, Dakkon, Daretti, Davriel, Deb, Dellian, Dihada, Domri, Dovin, Duck, Dungeon, Ellywick, Elminster, Elspeth, Ersta, Estrid, Freyalise, Garruk, Gideon, Grist, Guff, Huatli, Inzerva, Jace, Jared, Jaya, Jeska, Kaito, Karn, Kasmina, Kaya, Kiora, Koth, Liliana, Lolth, Lukka, Luxior, Master, Minsc, Mordenkainen, Nahiri, Narset, Niko, Nissa, Nixilis, Oko, Quintorius, Ral, Rowan, Saheeli, Samut, Sarkhan, Serra, Sivitri, Sorin, Svega, Szat, Tamiyo, Tasha, Teferi, Teyo, Tezzeret, Tibalt, Tyvar, Ugin, Urza, Venser, Vivien, Vraska, Vronos, Wanderer, Will, Windgrace, Wrenn, Xenagos, Yanggu, Yanling, Zariel
+
+### Land Types (18 types)
+
+**Basic (5):** Plains, Island, Swamp, Mountain, Forest — these grant intrinsic mana abilities and are referenced by many cards.
+
+**Nonbasic (13):** Cave, Cloud, Desert, Gate, Lair, Locus, Mine, Planet, Power-Plant, Sphere, Tower, Town, Urza's — no intrinsic abilities; used for mechanical/flavor grouping. Note: "Wastes" is a basic land card but "Waste" is not a land type.
+
+### Artifact Types (19 types)
+
+Attraction, Blood, Bobblehead, Clue, Contraption, Equipment, Food, Fortification, Gold, Incubator, Infinity, Junk, Map, Powerstone, Spacecraft, Stone, Terminus, Treasure, Vehicle
+
+### Enchantment Types (12 types)
+
+Aura, Background, Cartouche, Case, Class, Curse, Role, Room, Rune, Saga, Shard, Shrine
+
+### Instant/Sorcery Types (6 types)
+
+Adventure, Arcane, Chorus, Lesson, Omen, Trap
+
+### Battle Types (1 type)
+
+Siege
+
+### Supertypes
+
+Basic, Host, Legendary, Ongoing, Snow, World
+
+---
+
+*Data sourced from Scryfall API (mirrors Comprehensive Rules §205.3). Last verified April 2026.*

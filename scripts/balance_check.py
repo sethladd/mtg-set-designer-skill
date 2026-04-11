@@ -328,6 +328,55 @@ def check_set(set_data: dict) -> str:
                 warnings.append(f"Mechanic {name} off target at {r}: {a} vs target {t}")
     out.append("")
 
+    # --- Type-line consistency ---
+    out.append("## Type-line consistency")
+    type_warnings: list[str] = []
+    for c in cards:
+        name = c.get("name", "?")
+        card_type = (c.get("type") or "").lower()
+        rules = (c.get("rules_text") or "").lower()
+
+        # Equipment check: if rules mention "equip" cost or "equipped creature",
+        # the type line must contain "equipment".
+        if ("equip " in rules or "equip—" in rules or "equipped creature" in rules) and "equipment" not in card_type:
+            type_warnings.append(
+                f"{name}: rules text references Equip/equipped creature but type line "
+                f"'{c.get('type')}' is missing 'Equipment' subtype"
+            )
+        # Reverse: type says Equipment but no equip cost in rules.
+        if "equipment" in card_type and "equip" not in rules:
+            type_warnings.append(
+                f"{name}: type line includes 'Equipment' but rules text has no Equip cost"
+            )
+
+        # Vehicle check: if rules mention "crew" the type should contain "vehicle".
+        if re.search(r"\bcrew\b", rules) and "vehicle" not in card_type:
+            type_warnings.append(
+                f"{name}: rules text references Crew but type line "
+                f"'{c.get('type')}' is missing 'Vehicle' subtype"
+            )
+        if "vehicle" in card_type and not re.search(r"\bcrew\b", rules):
+            type_warnings.append(
+                f"{name}: type line includes 'Vehicle' but rules text has no Crew cost"
+            )
+
+        # Aura check: if rules mention "enchant creature/permanent/player" the type
+        # should contain "aura".
+        if re.search(r"\benchant (creature|permanent|player|land|artifact|enchantment)\b", rules) and "aura" not in card_type:
+            type_warnings.append(
+                f"{name}: rules text references 'Enchant ...' but type line "
+                f"'{c.get('type')}' is missing 'Aura' subtype"
+            )
+
+    if type_warnings:
+        out.append(f"**{len(type_warnings)} type-line issues found:**")
+        for tw in type_warnings:
+            out.append(f"- {tw}")
+        warnings.extend(type_warnings)
+    else:
+        out.append("No type-line inconsistencies detected.")
+    out.append("")
+
     # --- Summary ---
     out.append("## Summary")
     if warnings:
