@@ -65,6 +65,7 @@ mtg-set-designer/
 │   ├── cycles.md                 # Cycle types and when to use them
 │   ├── balance-heuristics.md     # Numerical targets the scripts check
 │   ├── design-skeleton.md        # The WotC design skeleton concept and how to use it
+│   ├── universes-beyond-patterns.md # IP adaptation lessons from LotR, Warhammer, Doctor Who, Fallout, Final Fantasy
 │   ├── case-studies.md           # Innistrad, Ravnica, Theros, Lorwyn, Kamigawa, Zendikar
 │   └── sources.md                # Web links used to build this skill (not per-set research)
 ├── scripts/

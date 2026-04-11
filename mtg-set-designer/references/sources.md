@@ -120,6 +120,18 @@ All web references consulted during the creation of the MTG Set Designer skill.
 - [Saga — MTG Wiki](https://mtg.fandom.com/wiki/Saga) — Saga mechanics and chapter rules
 - [Supertype — MTG Wiki](https://mtg.fandom.com/wiki/Supertype) — Basic, Legendary, Snow, World supertypes
 
+## Universes Beyond — IP Adaptation
+
+- [The Lord of the Rings: Tales of Middle-earth — MTG Wiki](https://mtg.fandom.com/wiki/The_Lord_of_the_Rings:_Tales_of_Middle-earth) — Full set overview, card list, and mechanics
+- [Warhammer 40,000 Commander Decks — MTG Wiki](https://mtg.fandom.com/wiki/Warhammer_40,000) — Faction-to-deck mapping, Squad and Ravenous mechanics
+- [Doctor Who Commander Decks — MTG Wiki](https://mtg.fandom.com/wiki/Doctor_Who) — Doctor's Companion mechanic, episode Sagas
+- [Fallout Commander Decks — MTG Wiki](https://mtg.fandom.com/wiki/Fallout) — Rad counters, Junk tokens, VATS translation
+- [Final Fantasy — MTG Wiki](https://mtg.fandom.com/wiki/Final_Fantasy) — Saga Creatures, Job Select, Tiered mechanic
+- [Creating the One Ring — WotC](https://magic.wizards.com/en/news/making-magic/one-ring-to-rule-them-all-2023-06-12) — Design of The Ring Tempts You mechanic
+- [Designing Middle-earth — WotC](https://magic.wizards.com/en/news/feature/designing-the-lord-of-the-rings-tales-of-middle-earth) — LotR set design philosophy, knowledge pyramid, flavor text strategy
+- [Designing Universes Beyond — WotC](https://magic.wizards.com/en/news/making-magic/designing-universes-beyond) — Rosewater on the UB design framework
+- [Universes Beyond — MTG Wiki](https://mtg.fandom.com/wiki/Universes_Beyond) — Overview of all UB products and their mechanical innovations
+
 ## Art Direction & Card Illustration
 
 - [You Make the Card 4: Art Descriptions — WotC](https://magic.wizards.com/en/news/making-magic/you-make-card-4-art-descriptions-2013-06-17) — Official WotC art brief format with examples (Color, Location, Action, Focus, Mood fields)

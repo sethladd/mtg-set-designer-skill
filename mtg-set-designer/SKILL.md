@@ -40,7 +40,7 @@ If the user gave you a one-line prompt ("design a set about octopuses"), *do not
 
 ### Phase 0.5 — Theme Research
 
-Read `references/theme-research.md` before this phase. It contains the full methodology.
+Read `references/theme-research.md` before this phase. It contains the full methodology. **If the set adapts an existing IP**, also read `references/universes-beyond-patterns.md` — it distills lessons from how WotC adapted LotR, Warhammer, Doctor Who, Fallout, and Final Fantasy into Magic cards, covering naming conventions, character density, flavor text strategy, mechanic design, and card type selection.
 
 **Do not skip this phase.** Do not rely on your own knowledge of the theme, even if you think you know it well. Every theme gets researched — the depth varies, but the step is never optional.
 
@@ -117,6 +117,8 @@ The more original the concept, the more this phase matters. A set built on "deep
 Read `references/mechanics.md` before designing mechanics. It covers keyword vs. ability word vs. named mechanic, parasitic vs. modular, complexity budget, and evergreen usage.
 
 Design **2–4 named new mechanics** for the set. Not more. More named mechanics than that is a symptom of not having decided what the set is.
+
+**For IP-based sets:** At least one new mechanic should be a **system translation** — a direct mechanical recreation of something the IP does, not just a thematic reskin. The Ring Tempts You (LotR) mechanically recreates the One Ring's progressive corruption. Rad counters (Fallout) mechanically recreate radiation damage. Saga Creatures (Final Fantasy) mechanically recreate summon sequences. Before designing mechanics, make a two-column list of the IP's distinctive systems (left column) and proposed MTG translations (right column). See `references/universes-beyond-patterns.md`, Lesson 4.
 
 For each mechanic, write (in `mechanics.json` and narratively in the design doc):
 
@@ -215,6 +217,21 @@ Targets for character-rich IPs:
 
 A character-rich IP set should have **20–40 cards that ARE specific named characters** plus another **30–50 cards that reference characters** indirectly. If your set file has fewer than 20 named-character cards for a character-rich IP, something went wrong — go back to the roster and assign more characters to slots. Every rare and mythic creature slot should be checked against the roster: is there a named character from the IP who fits this slot better than a generic creature would?
 
+**IP naming conventions.** For sets based on existing IPs, follow the naming patterns from `references/universes-beyond-patterns.md`:
+
+- **Named characters use "Name, Title/Descriptor" format.** The descriptor captures the character's role or state at a *specific story moment*, not a generic adjective. Multiple versions of the same character coexist by representing different moments in their arc (e.g., "Aragorn, Company Leader" vs. "Aragorn, King of Gondor"). Major characters (tier 1) get 2–3 versions; supporting cast get 1.
+- **Non-character cards use direct IP terminology.** Spells are named after iconic quotes or events ("You Cannot Pass!", "Nuclear Fallout"). Locations, items, and game systems use their IP names directly. Never invent a generic Magic name when an IP-specific name exists — a removal spell in a LotR set is "Isildur's Fateful Strike," not "Heroic Smite."
+- **Zero generic cards.** Even common creatures use IP terminology for names, type lines, and flavor text. A soldier in a Warhammer set is "Ultramarines Honour Guard," not "Elite Soldier." Every card should be identifiable as belonging to this IP. If a card could exist in any generic Magic set, it needs an IP-specific name.
+- **Knowledge pyramid distribution.** Base-tier elements (the most iconic — the Ring, Gandalf, the main villain) go at mythic and rare for maximum visibility. Mid-tier elements (major characters, key locations) fill rare and uncommon. Top-tier deep cuts (minor characters beloved by dedicated fans) go at uncommon or appear in flavor text. This ensures casual fans recognize the splashy cards while dedicated fans find rewarding deep cuts.
+
+**Flavor text strategy.** During Phase 0.5, the Theme Brief should have identified which flavor text approach fits the IP. Apply it consistently across the set:
+
+- **Literary IPs with beloved prose** (Tolkien, etc.) → use direct quotes from the source material heavily; minimize original text
+- **IPs with iconic catchphrases but limited prose** (Warhammer, Star Wars, etc.) → mix direct quotes with original text written in the IP's voice
+- **Game or visual IPs** (video games, animation, etc.) → write original flavor text using the IP's terminology, tone, and worldview; use game-specific jargon where fans would expect it
+
+In all cases, flavor text should sound like it *comes from* the IP's world, never from generic fantasy. If a piece of flavor text could appear on any Magic card, rewrite it.
+
 While writing cards, obey the **New World Order** complexity budget. Details in `references/new-world-order.md`, but the short version: at most ~20% of commons may be "red-flagged" as complex, and new named mechanics should appear sparingly at common. If you find yourself adding a second ability to a common creature, ask whether it belongs at uncommon instead.
 
 Use the color pie in `references/color-pie.md` as a hard check, not a suggestion. *Bending* the pie is fine when it serves a set pillar. *Breaking* it (undoing a color's core weakness) is the single most damaging thing you can do to the long-term game.
@@ -277,6 +294,17 @@ Final pass on the file:
 - **Every card has an art description** with all five fields (scene, focus, mood, palette, frame). Check for: visual redundancy (two cards with near-identical scenes), palette consistency with the set palette from Phase 2, power/toughness plausibility (a 1/1 shouldn't be described as towering), and framing variety (not every card should be a medium shot).
 - The design doc's "open questions" section is either resolved or handed forward as known issues.
 
+**IP-specific polish checks.** For sets based on existing IPs, run these additional verifications before declaring the set done (see `references/universes-beyond-patterns.md` for the full checklist):
+
+- **Zero generic names.** Scan every card name in the set. If any name could appear in a generic Magic set with no connection to this IP, replace it with an IP-specific name. Every card — even common 2/2s — should use IP terminology in its name, creature type, or both.
+- **Character density.** Named characters should represent 20–30% of the set. Count the named-character cards. If the count is below 20% for a character-rich IP, assign more characters from the roster to card slots.
+- **Character versions.** Verify that tier-1 characters (protagonists, main villains) have 2–3 versions showing different story moments, each mechanically distinct (different colors, abilities, or strategies).
+- **Naming format.** All named characters should follow "Name, Title/Descriptor" format where the descriptor reflects a specific story moment, not a generic adjective.
+- **Flavor text strategy consistency.** Verify the set uses the flavor text approach chosen in Phase 0.5 (direct quotes / mixed / original in IP voice) consistently. Check that no flavor text sounds like generic fantasy when it should sound like it comes from the IP.
+- **System translation mechanic.** Verify at least one new mechanic is a genuine *system translation* from the IP — a mechanic that mechanically recreates something the IP does — not just a thematic reskin of an existing Magic mechanic.
+- **Knowledge pyramid.** Verify base-tier IP elements (the most iconic) appear at mythic and rare, mid-tier at rare and uncommon, and deep cuts at uncommon or in flavor text. No deep-cut reference should occupy a mythic slot; no base-tier icon should be buried at common.
+- **Card type matching.** Verify that Sagas retell specific iconic stories/episodes from the IP, Equipment represents iconic items, Vehicles represent iconic transportation, and double-faced cards represent character transformations or reveals.
+
 Then present the finished files to the user.
 
 ## References
@@ -295,6 +323,7 @@ Read these when the current phase calls for them. They are larger than SKILL.md 
 - `references/cycles.md` — cycle types, when to use them, when they become busywork
 - `references/balance-heuristics.md` — the numerical targets the scripts check against and where they come from
 - `references/design-skeleton.md` — the official WotC design skeleton concept, slot codes, Play Booster slot counts, and how to use it
+- `references/universes-beyond-patterns.md` — lessons from how WotC adapted LotR, Warhammer 40K, Doctor Who, Fallout, and Final Fantasy into Magic cards: naming conventions, character density, flavor text strategy, system translation mechanics, knowledge pyramid, zero-generic-card standard
 - `references/case-studies.md` — Innistrad, Ravnica, Theros, Lorwyn, Kamigawa (cautionary), Zendikar as worked examples
 
 ## Scripts
