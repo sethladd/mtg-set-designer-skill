@@ -53,6 +53,7 @@ mtg-set-designer/
 ├── SKILL.md                      # Main skill — the 9-phase process
 ├── CLAUDE.md                     # Project instructions (source tracking rules)
 ├── references/
+│   ├── art-direction.md            # WotC art brief format, card art best practices, set palette
 │   ├── theme-research.md          # Theme exploration methodology and Theme Brief template
 │   ├── vision.md                 # Three pillars, top-down vs. bottom-up
 │   ├── color-pie.md              # Mechanical color pie, bending vs. breaking

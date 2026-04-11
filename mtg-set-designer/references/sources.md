@@ -102,3 +102,17 @@ All web references consulted during the creation of the MTG Set Designer skill.
 - [Card Distribution in Sets — MTG Salvation](https://mtgsalvation.com/forums/magic-fundamentals/magic-general/331163-distributions-of-common-uncommon-rare-mythic-in-a) — Rarity distribution data
 - [Maro-Approved Design Skeleton — Magic Set Editor](https://magicseteditor.boards.net/thread/1557/maro-approved-updated-design-skeleton) — Design skeleton templates for MSE
 - [New Booster Discussion — Riptide Lab](https://riptidelab.com/forum/threads/new-booster.3758/) — Community discussion on Play Booster implications
+
+## Art Direction & Card Illustration
+
+- [You Make the Card 4: Art Descriptions — WotC](https://magic.wizards.com/en/news/making-magic/you-make-card-4-art-descriptions-2013-06-17) — Official WotC art brief format with examples (Color, Location, Action, Focus, Mood fields)
+- [Ultimate Masters Art Descriptions — WotC](https://magic.wizards.com/en/news/feature/ultimate-masters-art-descriptions-2018-12-04) — Additional official art brief examples including Setting, Intent, and Notes fields
+- [Anatomy of an Illustration Prompt: MTG Style — Muddy Colors](https://www.muddycolors.com/2023/05/anatomy-of-an-illustration-prompt-mtg-style/) — Winona Nelson (MTG artist) on writing effective illustration prompts, focal points, and mood
+- [The Magic of Magic: The Gathering (Artist's Perspective) — Muddy Colors](https://www.muddycolors.com/2020/01/the-magic-of-magic-the-gathering-an-artists-perspective/) — Professional MTG artist on the commission process and what makes card art work
+- [List of Card Art Descriptions — MTG Fandom Wiki](https://mtg.fandom.com/wiki/List_of_card_art_descriptions) — Community-collected archive of published WotC art briefs
+- [How to Make Card Art in the Style of MTG — Creative Bloq](https://www.creativebloq.com/art/digital-art/how-an-architect-turned-artist-scored-his-dream-job-on-magic-the-gathering) — Composition and visual clarity at card size
+- [Style Guide — MTG Fandom Wiki](https://mtg.fandom.com/wiki/Style_guide) — Overview of WotC's world-specific style guides
+- [Illustration — MTG Fandom Wiki](https://mtg.fandom.com/wiki/Illustration) — History and standards of MTG card illustration
+- [How MTG Creates Card Art — Out of Games](https://outof.games/news/2403-in-the-frame-how-magic-the-gathering-creates-card-art/) — Overview of the art commissioning pipeline
+- [A Peek Into MTG Card Style Guides — Out of Games](https://outof.games/news/2483-in-the-frame-a-little-peek-into-magic-the-gatherings-card-style-guides/) — Examples from WotC's internal style guides
+- [Creating MTG Card Art — MTG Cardsmith](https://mtgcardsmith.com/blog/creating-mtg-card-art) — Practical guide to card art composition and readability

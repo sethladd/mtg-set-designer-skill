@@ -49,6 +49,13 @@
       "rarity": "common",
       "archetypes": ["RW", "UR", "BR"],
       "keywords": ["Kindle"],
+      "art_description": {
+        "scene": "A young shaman crouches by a smoldering campfire in a rocky canyon, cupping a bright ember between her palms. Tiny sparks arc from her fingers toward dry brush nearby.",
+        "focus": "The glowing ember between her hands",
+        "mood": "Quiet intensity, a spark about to catch",
+        "palette": "Warm oranges and reds against cool gray stone",
+        "frame": "Medium close-up, slightly low angle"
+      },
       "notes": "vanilla-adjacent; teaches Kindle at lowest cost"
     }
   ]

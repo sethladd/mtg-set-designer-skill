@@ -92,6 +92,8 @@ This phase looks very different depending on whether the set adapts an existing 
 - Notes any **MTG-specific worldbuilding** the source doesn't provide — what does mana look like in this world? Are there planeswalkers? How does the source's magic system translate to MTG's spell structure?
 - Flags any **gaps** where the source material is thin and original invention is needed (e.g., the IP doesn't have enough villain factions to fill all 10 archetypes)
 
+Also establish a **set palette** — the dominant colors, light sources, materials, and recurring visual motifs that will give the set visual coherence. See `references/art-direction.md` for what to include. This palette guides every card's art description in Phase 5.
+
 This should be half a page to a page. The Theme Brief did the heavy lifting; this phase just shapes it for MTG.
 
 **If the set invents a new world** (original concept, mechanical premise, mood-first design): Phase 2 is where the actual creative worldbuilding happens, and it needs to be *substantially more detailed*. The Theme Brief's research into analogues and adjacent fiction gave you raw material; now build a world from it.
@@ -105,6 +107,8 @@ Write 1–3 pages in `design_doc.md` covering:
 - **The magic system** — how does magic work here? This often suggests mechanics directly. A world where magic comes from singing produces different mechanics than a world where magic comes from consuming memories.
 - **Creature ecology** — what lives here? Name the creature types that will populate the set's commons. These need to span all five colors and feel native to the world, not imported from generic fantasy.
 - **Locations** — name 5–10 places that could become named lands, anchor cycles, or appear in flavor text. Good locations tell you something about the world's conflict.
+
+Finally, establish a **set palette** — the dominant colors, light sources, materials, and recurring visual motifs that will give the set visual coherence. See `references/art-direction.md` for what to include. This palette guides every card's art description in Phase 5.
 
 The more original the concept, the more this phase matters. A set built on "deep-sea horror" needs the designer to invent the specific horrors, the specific depths, and the specific reasons anyone would go down there. Don't leave this vague — vague worldbuilding produces generic cards.
 
@@ -175,6 +179,8 @@ Now write the actual cards into `set.json`. **Start from the design skeleton** i
 The skeleton is your checklist: walk through it slot by slot, filling each with a card that fits the slot's structural role while expressing your set's theme and mechanics. When you deviate from the skeleton (swapping a removal slot for a self-mill card, etc.), note the deviation in `design_doc.md` so the balance checker's flags can be read as "intentional" rather than "forgot."
 
 The card schema is in `assets/set_template.json`. Include the skeleton slot code in each card's `id` field (e.g., `CW01`, `UB05`).
+
+**Every card gets an art description.** Read `references/art-direction.md` before writing cards — it covers the WotC art brief format, what makes art read at card size, and how to write descriptions by rarity. Write the art description alongside each card's mechanical design, not as a separate pass. Each art description has five fields: `scene` (1–3 sentences of what's in the image), `focus` (the single primary visual element), `mood` (2–5 words of emotional register), `palette` (dominant colors), and `frame` (camera angle / shot type). The description should work as an image search query or AI image generation prompt with minimal editing.
 
 Do this in this order, not randomly:
 
@@ -256,6 +262,7 @@ Final pass on the file:
 - Reminder text is present where New World Order requires it (new mechanics, unfamiliar effects).
 - Cycles are visually complete (no off-by-one).
 - Archetype signposts read clearly.
+- **Every card has an art description** with all five fields (scene, focus, mood, palette, frame). Check for: visual redundancy (two cards with near-identical scenes), palette consistency with the set palette from Phase 2, power/toughness plausibility (a 1/1 shouldn't be described as towering), and framing variety (not every card should be a medium shot).
 - The design doc's "open questions" section is either resolved or handed forward as known issues.
 
 Then present the finished files to the user.
@@ -264,6 +271,7 @@ Then present the finished files to the user.
 
 Read these when the current phase calls for them. They are larger than SKILL.md on purpose so SKILL.md can stay lean.
 
+- `references/art-direction.md` — the WotC art brief format, what makes MTG art work at card size, how to write art descriptions by rarity, set palette guidance
 - `references/theme-research.md` — the full theme exploration methodology: user interview, web research, source decomposition, resonance inventories, tone calibration, cultural sensitivity
 - `references/vision.md` — the three pillars concept, top-down vs. bottom-up, how to write a vision document
 - `references/color-pie.md` — detailed mechanical color pie, primary/secondary/tertiary, bending vs. breaking
