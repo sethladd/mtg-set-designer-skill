@@ -80,15 +80,33 @@ Produce the opening of `design_doc.md` containing:
 
 The three pillars are the most important artifact in the whole process. Every later decision gets tested against them. If a mechanic doesn't serve a pillar, cut it or change the pillar.
 
-### Phase 2 — Worldbuilding (only as deep as mechanics require)
+### Phase 2 — Worldbuilding
 
-A full design doc for an actual block has dozens of pages of worldbuilding. You don't need that. You need enough world to:
+This phase looks very different depending on whether the set adapts an existing world or invents a new one. Check the Theme Brief from Phase 0.5 — it tells you which case you're in.
 
-- Justify the creature types that will carry the set
-- Give cards evocative names and flavor text
-- Decide which factions/locations anchor cycles
+**If the set adapts an existing world or IP** (My Little Pony, Lord of the Rings, Greek mythology, feudal Japan, etc.): the Theme Brief already contains the world — its factions, locations, characters, conflicts, tone, and power structure. Phase 2 becomes a short *synthesis* step, not a creative step. Write a brief section in `design_doc.md` that:
 
-Write half a page to a page in `design_doc.md`. Name the world, name its factions or regions (these often become your color pairs or tribes), and name its central conflict. That's enough.
+- Confirms which elements from the Theme Brief will carry into the set (not everything needs to be represented — a set can't hold an entire IP)
+- Decides the **creature types** that will define the set's tribes and carry its mechanical identity, mapped from the source material's factions
+- Identifies the **central conflict** the set will dramatize (an IP may have many conflicts; pick the one that produces the best gameplay)
+- Notes any **MTG-specific worldbuilding** the source doesn't provide — what does mana look like in this world? Are there planeswalkers? How does the source's magic system translate to MTG's spell structure?
+- Flags any **gaps** where the source material is thin and original invention is needed (e.g., the IP doesn't have enough villain factions to fill all 10 archetypes)
+
+This should be half a page to a page. The Theme Brief did the heavy lifting; this phase just shapes it for MTG.
+
+**If the set invents a new world** (original concept, mechanical premise, mood-first design): Phase 2 is where the actual creative worldbuilding happens, and it needs to be *substantially more detailed*. The Theme Brief's research into analogues and adjacent fiction gave you raw material; now build a world from it.
+
+Write 1–3 pages in `design_doc.md` covering:
+
+- **The world** — name it, describe its physical nature, explain what makes it distinctive. "A plane where..." is your opening.
+- **Factions or regions** (typically 3–5) — these are the groups that will become your color pairs or tribes. Each faction needs: a name, a philosophy (mapped to the color pie), a home territory, a signature creature type, and a relationship to the other factions. Factions that don't create *conflict* with each other won't produce interesting gameplay.
+- **Central conflict** — what is the world's core tension? The best set conflicts are ones where both sides have a point (Mirrodin vs. Phyrexia, civilization vs. wilderness, tradition vs. progress). One-sided conflicts ("good guys vs. evil") tend to produce flat archetypes.
+- **History and lore** — just enough to justify the current conflict and give cards evocative names. You don't need a creation myth; you need to know why these factions are fighting *now*.
+- **The magic system** — how does magic work here? This often suggests mechanics directly. A world where magic comes from singing produces different mechanics than a world where magic comes from consuming memories.
+- **Creature ecology** — what lives here? Name the creature types that will populate the set's commons. These need to span all five colors and feel native to the world, not imported from generic fantasy.
+- **Locations** — name 5–10 places that could become named lands, anchor cycles, or appear in flavor text. Good locations tell you something about the world's conflict.
+
+The more original the concept, the more this phase matters. A set built on "deep-sea horror" needs the designer to invent the specific horrors, the specific depths, and the specific reasons anyone would go down there. Don't leave this vague — vague worldbuilding produces generic cards.
 
 ### Phase 3 — Mechanics
 
