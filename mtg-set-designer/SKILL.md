@@ -182,7 +182,22 @@ The skeleton is your checklist: walk through it slot by slot, filling each with 
 
 The card schema is in `assets/set_template.json`. Include the skeleton slot code in each card's `id` field (e.g., `CW01`, `UB05`).
 
-**Consult the card type catalog.** Read `references/card-types.md` before writing cards — it contains every card type and mechanically significant subtype in the game, with guidance on when to use each one. Do not default to creatures for every permanent slot. Before filling each skeleton slot, ask whether a Saga, Battle, Vehicle, Equipment, Class, Case, Room, or other type would better express the card's theme and role. If your set has zero Battles, zero Sagas, zero Equipment, and zero Vehicles, verify that's a deliberate choice, not an oversight.
+**Plan your card types before writing cards.** Read `references/card-types.md` and then write a **card type plan** into `design_doc.md` *before* filling any skeleton slots. This is a concrete decision point, not a vague suggestion to "consider" other types. The plan should:
+
+1. **List every non-creature permanent type and decide yes/no for this set.** Walk through each one and write a sentence:
+   - **Battle (Siege):** Yes/no? Battles represent conflicts fought over time. If your set involves war, invasion, territorial conquest, siege, missions, or overcoming obstacles, Battles belong. A military IP like G.I. Joe with zero Battles is a design error. Target: 3–5 at uncommon/rare.
+   - **Saga:** Yes/no? Sagas retell stories over 2–4 chapters. If the IP has iconic story beats, episodes, or historical events, Sagas are the right card type. Target: 3–8 across uncommon/rare.
+   - **Vehicle:** Yes/no? Vehicles represent machines, ships, mounts. If the IP features iconic vehicles, mecha, ships, or transportation, Vehicles belong. Target: 3–6 across rarities.
+   - **Equipment:** Yes/no? Equipment represents weapons, armor, tools. If the IP features iconic gear, weapons, or artifacts, Equipment belongs. Target: 3–8 across rarities.
+   - **Class:** Yes/no? Classes represent roles, jobs, or training paths. Good for RPG-adjacent IPs or settings with distinct character roles.
+   - **Room:** Yes/no? Rooms represent explorable locations. Good for dungeon, building, or exploration themes.
+   - **Case:** Yes/no? Cases represent mysteries to solve. Good for detective or investigation themes.
+
+2. **Assign specific IP elements to non-creature types.** Don't just say "yes, we'll have Vehicles" — name them. "The H.I.S.S. Tank is a Vehicle. The Skystriker is a Vehicle. The U.S.S. Flagg is a mythic Vehicle." This turns abstract type decisions into concrete card assignments that won't get lost when filling 261 slots.
+
+3. **Reserve skeleton slots.** Identify which skeleton slots will be non-creature permanents. The skeleton marks most permanent slots as "creature" by default, but 10–15% of those slots (roughly 8–15 cards) should be converted to other permanent types. Mark them now so you don't fill every slot with a creature and have nowhere to put your Battles and Vehicles later.
+
+If your card type plan says "no" to Battles, Sagas, Vehicles, Equipment, *and* Classes for a set based on a well-known IP, explain why in the design doc. A set about military conflict with zero Battles, a story-rich IP with zero Sagas, or a gear-heavy IP with zero Equipment is almost certainly an oversight, not a deliberate choice.
 
 **Name-to-type coherence.** A card's name must match its card type. This sounds obvious but is a common failure mode — the designer thinks of a cool concept ("Cover Fire," "Tidal Surge," "Ambush") and slots it as a creature because the skeleton says "creature slot," even though the name describes an action, event, or phenomenon, not a being. The rule:
 
@@ -309,6 +324,7 @@ Final pass on the file:
 - Cycles are visually complete (no off-by-one).
 - Archetype signposts read clearly.
 - **Every card has an art description** with all five fields (scene, focus, mood, palette, frame). Check for: visual redundancy (two cards with near-identical scenes), palette consistency with the set palette from Phase 2, power/toughness plausibility (a 1/1 shouldn't be described as towering), and framing variety (not every card should be a medium shot).
+- **Card type plan compliance.** Compare the finished set against the card type plan from early in Phase 5. If the plan said "yes" to Battles, verify Battles exist in the set file. If it said "yes" to Vehicles, verify Vehicles exist. A card type plan that promised Battles for a military set but produced zero Battles means something went wrong during card creation — go back and convert appropriate slots. This is the second most common "feels off" problem after name-to-type coherence.
 - The design doc's "open questions" section is either resolved or handed forward as known issues.
 
 **IP-specific polish checks.** For sets based on existing IPs, run these additional verifications before declaring the set done (see `references/universes-beyond-patterns.md` for the full checklist):
