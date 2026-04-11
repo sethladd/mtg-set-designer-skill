@@ -258,34 +258,66 @@ def check_set(set_data: dict) -> str:
 
     # --- Archetype support (Play Booster era: count commons + uncommons together) ---
     out.append("## Archetype support at common + uncommon")
+
+    def card_supports_archetype(card: dict, pair: str) -> bool:
+        """Check if a card supports an archetype. A card supports a pair if:
+        1. The pair is explicitly listed in the card's 'archetypes' array, OR
+        2. The card is mono-colored in one of the pair's colors (these are
+           playable in the archetype's deck and are implicitly supportive).
+        Gold cards that don't list the pair are excluded since they belong to
+        a specific archetype by design."""
+        # Explicit tag always counts.
+        if pair in (card.get("archetypes") or []):
+            return True
+        # Mono-colored cards in one of the pair's colors implicitly support the pair.
+        card_colors = card.get("color", [])
+        if len(card_colors) == 1 and card_colors[0] in pair:
+            return True
+        # Colorless cards are draftable by any archetype — count them.
+        if not card_colors:
+            return True
+        return False
+
     for pair, data in archetypes.items():
-        common_support = sum(
-            1 for c in cards
-            if rarity(c) == "common" and pair in (c.get("archetypes") or [])
-        )
-        uncommon_support = sum(
-            1 for c in cards
-            if rarity(c) == "uncommon" and pair in (c.get("archetypes") or [])
-        )
-        total = common_support + uncommon_support
-        status = "" if total >= ARCHETYPE_SUPPORT_MIN else f" ⚠️ (target ≥ {ARCHETYPE_SUPPORT_MIN})"
-        out.append(f"- {pair} ({data.get('name', '?')}): {common_support}C + {uncommon_support}U = {total}{status}")
-        if total < ARCHETYPE_SUPPORT_MIN:
-            warnings.append(
-                f"Archetype {pair} has only {total} supporting common+uncommon cards (target ≥ {ARCHETYPE_SUPPORT_MIN})"
+        tagged_c = sum(1 for c in cards if rarity(c) == "common" and pair in (c.get("archetypes") or []))
+        tagged_u = sum(1 for c in cards if rarity(c) == "uncommon" and pair in (c.get("archetypes") or []))
+        implicit_c = sum(1 for c in cards if rarity(c) == "common" and card_supports_archetype(c, pair)) - tagged_c
+        implicit_u = sum(1 for c in cards if rarity(c) == "uncommon" and card_supports_archetype(c, pair)) - tagged_u
+        total_tagged = tagged_c + tagged_u
+        total_with_implicit = total_tagged + implicit_c + implicit_u
+
+        if total_tagged >= ARCHETYPE_SUPPORT_MIN:
+            out.append(f"- {pair} ({data.get('name', '?')}): {tagged_c}C + {tagged_u}U = {total_tagged} (tagged)")
+        else:
+            status = "" if total_with_implicit >= ARCHETYPE_SUPPORT_MIN else f" ⚠️ (target ≥ {ARCHETYPE_SUPPORT_MIN})"
+            out.append(
+                f"- {pair} ({data.get('name', '?')}): {tagged_c}C + {tagged_u}U = {total_tagged} tagged"
+                f" (+{implicit_c + implicit_u} mono/colorless in-color = {total_with_implicit}){status}"
             )
+            if total_with_implicit < ARCHETYPE_SUPPORT_MIN:
+                warnings.append(
+                    f"Archetype {pair} has only {total_with_implicit} supporting common+uncommon cards "
+                    f"({total_tagged} tagged + {implicit_c + implicit_u} implicit; target ≥ {ARCHETYPE_SUPPORT_MIN})"
+                )
     out.append("")
 
     # --- Mechanic spread ---
     out.append("## Mechanic spread vs. target")
+    # Build a case-insensitive lookup: lowercase keyword -> {rarity: count}
     mechanic_counts: dict[str, dict[str, int]] = defaultdict(lambda: defaultdict(int))
     for c in cards:
         for kw in c.get("keywords", []) or []:
-            mechanic_counts[kw][rarity(c)] += 1
+            mechanic_counts[kw.lower()][rarity(c)] += 1
+        # Also scan rules_text for mechanic names that may not be in keywords array
+        rules = (c.get("rules_text") or "").lower()
+        for m in mechanics:
+            mname_lower = m.get("name", "").lower()
+            if mname_lower and mname_lower in rules and mname_lower not in [k.lower() for k in (c.get("keywords") or [])]:
+                mechanic_counts[mname_lower][rarity(c)] += 1
     for m in mechanics:
-        name = m.get("name")
+        name = m.get("name", "")
         target = m.get("rarity_spread", {})
-        actual = mechanic_counts.get(name, {})
+        actual = mechanic_counts.get(name.lower(), {})
         out.append(f"### {name}")
         for r in RARITIES:
             t = target.get(r, 0)

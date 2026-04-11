@@ -234,6 +234,12 @@ In all cases, flavor text should sound like it *comes from* the IP's world, neve
 
 While writing cards, obey the **New World Order** complexity budget. Details in `references/new-world-order.md`, but the short version: at most ~20% of commons may be "red-flagged" as complex, and new named mechanics should appear sparingly at common. If you find yourself adding a second ability to a common creature, ask whether it belongs at uncommon instead.
 
+**Tagging for balance checks.** The balance checker (`scripts/balance_check.py`) reads three fields on each card to verify mechanic spread and archetype support. Getting these right during card creation avoids a frustrating debugging pass later:
+
+- **`keywords`** — an array of keyword strings. Use the *exact same casing* as the mechanic's `name` field in `mechanics.json` (e.g., if the mechanic is `"Squad"`, write `"Squad"` in keywords, not `"squad"`). Include both set-specific mechanics and evergreen keywords the card has (Flying, Deathtouch, etc.). The checker is case-tolerant, but consistent casing helps readability.
+- **`archetypes`** — an array of two-letter color pair codes (e.g., `["WU", "UR"]`) listing which draft archetypes this card is designed to support. Tag gold cards and signpost uncommons with their archetype pair. For mono-colored cards, tag them with any archetype pair whose strategy they specifically enable — a white lifegain payoff that fuels the WB lifegain archetype should be tagged `["WB"]` even though it's mono-white. You don't need to tag every mono-colored card (the checker counts mono-colored cards as implicit support for their color's archetypes), but tagging cards that are *specifically designed for* an archetype helps the checker distinguish intentional support from incidental overlap.
+- **`rules_text`** — write mechanic names in rules text the same way they appear in `mechanics.json`. The checker also scans rules text as a fallback for mechanic detection, so consistent naming matters.
+
 Use the color pie in `references/color-pie.md` as a hard check, not a suggestion. *Bending* the pie is fine when it serves a set pillar. *Breaking* it (undoing a color's core weakness) is the single most damaging thing you can do to the long-term game.
 
 ### Phase 6 — Balance: heuristic pass
