@@ -280,21 +280,23 @@ Now run the simulated draft:
 python scripts/simulate_draft.py set.json --pods 200
 ```
 
-This runs thousands of simulated 8-player drafts, builds decks for each drafter according to the archetype definitions, and plays games. It reports:
+This runs simulated 8-player drafts, builds decks for each drafter according to the archetype definitions, and plays games using a lane-based combat model with evasion, removal, card draw, and keyword interactions. It reports:
 
 - Win rate by archetype
-- Average deck composition
 - Cards that appear in almost every deck (may be overpowered)
-- Cards that appear in almost no deck (may be unplayable)
-- Mana curve and removal-to-threat ratios per archetype
-- Format speed (average turn the game ends)
+- Cards that appear in almost no deck (may be unplayable), broken down by rarity
+- Format speed (average and median turn the game ends)
 
 Healthy bands:
 - No archetype win rate below 42% or above 58%.
-- No common goes below ~8% play rate or above ~95%.
-- Format speed between turn 7 and turn 11 average for most sets.
+- No common goes below ~5% play rate or above ~85%.
+- Format speed between turn 7 and turn 12 average for most sets.
 
-Anything outside these bands is a call to revise. When you revise, revise *the card* not the simulator. And re-run. Iterate until the bands are met or you've documented why a given deviation is intentional.
+**What the simulator can and cannot do.** The simulator models creature combat with evasion lanes (flying creatures vs. ground creatures), first strike, deathtouch, lifelink, removal, card draw, token generation, and ETB effects. This is enough to catch gross imbalances: archetypes that always win or always lose, commons that are auto-includes or unplayable, and format speed problems.
+
+The simulator **cannot** model set-specific mechanic synergies, conditional triggers, complex board states, or anything that requires understanding the actual rules text beyond basic pattern matching. If the simulator flags a card or archetype, check whether the flag is about something the simulator can actually see (raw stats, evasion, removal count) before spending time adjusting. If the flag is about a mechanic-driven synergy the simulator can't model, document the justification in `balance_report.md` and move on.
+
+**Do not iterate more than twice on simulator results alone.** The simulator is a rough sanity check, not a precision instrument. If the first run flags 3–5 issues, fix the obvious ones (stat imbalances, missing removal, color pair with zero evasion) and re-run once. After that second run, document any remaining flags with your reasoning and proceed to Polish. Spending more cycles chasing simulator numbers that won't converge is not productive — the remaining balance questions need human playtesting, not more simulation.
 
 ### Phase 8 — Polish
 
