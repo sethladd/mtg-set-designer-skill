@@ -87,16 +87,51 @@ Example for My Little Pony (Friendship is Magic):
 
 This mapping is tentative. It will shift during Phase 4 (Archetype Grid) when you need exactly 10 two-color pairs. But having it here gives the Vision phase something to work with.
 
+### Character roster (for character-rich IPs)
+
+If the source material has a substantial cast of named characters, build a **character roster** before anything else in the resonance inventory. Character-rich IPs (My Little Pony, Lord of the Rings, Marvel, Star Wars, Avatar: The Last Airbender, etc.) succeed or fail based on whether fans see their favorite characters on cards. A set based on Friendship is Magic that doesn't have Twilight Sparkle, Rainbow Dash, and Fluttershy as individual cards has failed before it starts.
+
+**Assess character density.** Ask: does this IP have 10+ named characters that fans would expect to see? If yes, the set is "character-rich" and the roster drives card design. If the IP has only a handful of characters (or is a genre/concept rather than a specific story), skip the roster and rely on the standard resonance inventory below.
+
+**Build the roster as a table:**
+
+| Character | Colors | Rarity | Card Type | Role in Set |
+|-----------|--------|--------|-----------|-------------|
+| Twilight Sparkle | U/W | Mythic | Legendary Creature or Planeswalker | Main protagonist, card draw / knowledge theme |
+| Rainbow Dash | U/R | Rare | Legendary Creature | Speed, flying, loyalty |
+| Fluttershy | G/W | Rare | Legendary Creature | Creature buffing, pacifism |
+| Discord | 5-color or R/B | Mythic | Legendary Creature | Chaos, randomness, transformation |
+| Chrysalis | B/U | Rare | Legendary Creature | Shapeshifting, deception |
+| ... | ... | ... | ... | ... |
+
+For each character, note:
+
+- **Color identity** — based on the character's *values and methods*, not their visual appearance. Use the color pie mapping from the faction analysis.
+- **Rarity** — protagonists and main villains → mythic or rare. Major supporting cast → rare or uncommon. Minor but recognizable characters → uncommon. Background characters with fan followings → common (as non-legendary versions or referenced in flavor text).
+- **Card type** — most characters become Legendary Creatures. The 1–3 most central characters might be Planeswalkers. Some characters are better expressed as other types: a character known for a single dramatic act might be a Saga; a character who IS a location might be a Legendary Land; a character's signature item might be a Legendary Artifact (Equipment).
+- **Mechanical hook** — what makes this character feel *right* mechanically? Twilight Sparkle should interact with knowledge/spells/drawing. Rainbow Dash should be fast and evasive. Discord should be unpredictable. A character whose card doesn't feel like them is worse than no card at all.
+
+**Character-to-slot targets for character-rich IPs:**
+
+- **Mythic (20 slots):** 4–8 should be named characters (protagonists, main villains, iconic figures)
+- **Rare (60 slots):** 10–20 should be named characters (major supporting cast, secondary villains, fan favorites)
+- **Uncommon (100 slots):** 5–15 should be named characters (minor but recognizable cast members, especially as signpost uncommons when a character naturally fits an archetype)
+- **Common (81 slots):** Named characters generally don't appear at common (commons represent the *masses* of the world, not individuals). However, common cards should reference named characters in flavor text, card names ("Twilight's Study," "Fluttershy's Songbird"), and art descriptions. This makes the characters feel present throughout the set even at common.
+
+In total, a character-rich IP set should have **20–40 cards that are specific named characters**, plus another 30–50 cards that reference characters indirectly through names, flavor text, and art.
+
+**Characters the set CAN'T fit:** If the IP has more named characters than the set can hold (Marvel, Star Wars, large anime casts), explicitly list the characters you're cutting and why. Prioritize: (1) characters central to the story/era being adapted, (2) characters fans most closely identify with the IP, (3) characters with distinct mechanical identities. Characters who are narratively important but mechanically redundant with another character should be cut or combined.
+
 ### Resonance inventory
 
 List the elements that players who know the source material would be **disappointed not to see**. These are non-negotiable design targets — you don't have to make each one a card, but you have to acknowledge each one somewhere in the set.
 
 Organize by type:
 
-- **Must-have characters** — the protagonists, the main villain(s), the fan favorites
+- **Must-have characters** — covered by the character roster above for character-rich IPs. For other sets, list the protagonists, main villain(s), and fan favorites here.
 - **Must-have locations** — the iconic settings
 - **Must-have objects** — the signature items
-- **Must-have moments** — the scenes that define the IP
+- **Must-have moments** — the scenes that define the IP (often become Sagas)
 - **Must-have concepts** — the themes or mechanics unique to this world (cutie marks, the Elements of Harmony, friendship lessons)
 
 ### Anti-resonance inventory
@@ -160,11 +195,15 @@ The Theme Brief is a section in `design_doc.md` that appears after Intake and be
 ### Faction Mapping (tentative)
 [Table mapping source factions to MTG colors with reasoning]
 
+### Character Roster (if character-rich IP)
+[Table: Character | Colors | Rarity | Card Type | Mechanical Hook]
+[List characters cut and why, if the IP has more characters than the set can hold]
+
 ### Resonance Inventory
-- **Characters:** [list]
+- **Characters:** [covered by roster above, or list here for non-character-rich sets]
 - **Locations:** [list]
 - **Objects:** [list]
-- **Moments:** [list]
+- **Moments:** [list — note which would make good Sagas]
 - **Concepts:** [list]
 
 ### Anti-Resonance Notes

@@ -205,6 +205,16 @@ Do this in this order, not randomly:
 
 6. **Basic lands.** 20 slots, 4 per basic. Usually just art variants unless your set has a reason to reimagine them.
 
+**Character-rich IP sets: use the character roster.** If the Theme Brief contains a character roster (Phase 0.5), use it as a binding assignment list during card creation, not a nice-to-have reference. Work through the roster and assign each character to a specific card slot *before* filling the remaining slots with original designs. Characters should be the *first* thing placed into the set, not an afterthought sprinkled on top of generic creatures.
+
+Targets for character-rich IPs:
+- Mythics: at least 4–8 named characters (protagonists, main villains)
+- Rares: at least 10–20 named characters (supporting cast, secondary villains, fan favorites)
+- Uncommons: at least 5–15 named characters, especially as signpost uncommons when a character fits an archetype naturally
+- Commons: generally not individual named characters, but reference characters heavily in card names (e.g., "Twilight's Study," "Fluttershy's Songbird"), flavor text, and art descriptions
+
+A character-rich IP set should have **20–40 cards that ARE specific named characters** plus another **30–50 cards that reference characters** indirectly. If your set file has fewer than 20 named-character cards for a character-rich IP, something went wrong — go back to the roster and assign more characters to slots. Every rare and mythic creature slot should be checked against the roster: is there a named character from the IP who fits this slot better than a generic creature would?
+
 While writing cards, obey the **New World Order** complexity budget. Details in `references/new-world-order.md`, but the short version: at most ~20% of commons may be "red-flagged" as complex, and new named mechanics should appear sparingly at common. If you find yourself adding a second ability to a common creature, ask whether it belongs at uncommon instead.
 
 Use the color pie in `references/color-pie.md` as a hard check, not a suggestion. *Bending* the pie is fine when it serves a set pillar. *Breaking* it (undoing a color's core weakness) is the single most damaging thing you can do to the long-term game.
