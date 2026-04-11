@@ -103,6 +103,23 @@ All web references consulted during the creation of the MTG Set Designer skill.
 - [Maro-Approved Design Skeleton — Magic Set Editor](https://magicseteditor.boards.net/thread/1557/maro-approved-updated-design-skeleton) — Design skeleton templates for MSE
 - [New Booster Discussion — Riptide Lab](https://riptidelab.com/forum/threads/new-booster.3758/) — Community discussion on Play Booster implications
 
+## Card Types & Subtypes
+
+- [Card Type — MTG Wiki](https://mtg.fandom.com/wiki/Card_type) — Complete list of all card types in the game
+- [Subtype — MTG Wiki](https://mtg.fandom.com/wiki/Subtype) — Complete list of all subtypes by card type
+- [MTG Card Types Explained (2025) — Red Sun Collectables](https://redsuncollectables.com/blogs/news/mtg-card-types-explained-2025-edition) — Overview of all eight evergreen card types with current rules
+- [MTG Card Types Explained — Draftsim](https://draftsim.com/mtg-card-types/) — Comprehensive card type guide with supertypes and subtypes
+- [Battle — MTG Wiki](https://mtg.fandom.com/wiki/Battle) — Battle type mechanics and rules
+- [A Battle for the Ages: Leading March of the Machine Set Design — WotC](https://magic.wizards.com/en/news/card-preview/a-battle-for-the-ages-leading-march-of-the-machine-set-design) — Design rationale behind the Battle card type
+- [March of the Machine Mechanics — WotC](https://magic.wizards.com/en/news/feature/march-of-the-machine-mechanics) — Official Battle/Siege rules explanation
+- [Enchantment Type — MTG Wiki](https://mtg.fandom.com/wiki/Enchantment_type) — Complete list of enchantment subtypes (Aura, Saga, Class, Case, Room, Role, Curse, Shrine, etc.)
+- [Every Enchantment Subtype Explained — Draftsim](https://draftsim.com/mtg-enchantment-types/) — Guide to all enchantment subtypes with examples
+- [Artifact Type — MTG Wiki](https://mtg.fandom.com/wiki/Artifact_type) — Complete list of artifact subtypes (Equipment, Vehicle, Treasure, Food, Clue, Blood, Map, etc.)
+- [Every Artifact Subtype Explained — Draftsim](https://draftsim.com/mtg-artifact-types/) — Guide to all artifact subtypes with examples
+- [Vehicle — MTG Wiki](https://mtg.fandom.com/wiki/Vehicle) — Vehicle mechanics and crew rules
+- [Saga — MTG Wiki](https://mtg.fandom.com/wiki/Saga) — Saga mechanics and chapter rules
+- [Supertype — MTG Wiki](https://mtg.fandom.com/wiki/Supertype) — Basic, Legendary, Snow, World supertypes
+
 ## Art Direction & Card Illustration
 
 - [You Make the Card 4: Art Descriptions — WotC](https://magic.wizards.com/en/news/making-magic/you-make-card-4-art-descriptions-2013-06-17) — Official WotC art brief format with examples (Color, Location, Action, Focus, Mood fields)

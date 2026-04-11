@@ -180,6 +180,8 @@ The skeleton is your checklist: walk through it slot by slot, filling each with 
 
 The card schema is in `assets/set_template.json`. Include the skeleton slot code in each card's `id` field (e.g., `CW01`, `UB05`).
 
+**Consult the card type catalog.** Read `references/card-types.md` before writing cards — it contains every card type and mechanically significant subtype in the game, with guidance on when to use each one. Do not default to creatures for every permanent slot. Before filling each skeleton slot, ask whether a Saga, Battle, Vehicle, Equipment, Class, Case, Room, or other type would better express the card's theme and role. If your set has zero Battles, zero Sagas, zero Equipment, and zero Vehicles, verify that's a deliberate choice, not an oversight.
+
 **Every card gets an art description.** Read `references/art-direction.md` before writing cards — it covers the WotC art brief format, what makes art read at card size, and how to write descriptions by rarity. Write the art description alongside each card's mechanical design, not as a separate pass. Each art description has five fields: `scene` (1–3 sentences of what's in the image), `focus` (the single primary visual element), `mood` (2–5 words of emotional register), `palette` (dominant colors), and `frame` (camera angle / shot type). The description should work as an image search query or AI image generation prompt with minimal editing.
 
 Do this in this order, not randomly:
@@ -271,6 +273,7 @@ Then present the finished files to the user.
 
 Read these when the current phase calls for them. They are larger than SKILL.md on purpose so SKILL.md can stay lean.
 
+- `references/card-types.md` — comprehensive catalog of every card type and subtype (Battle, Saga, Vehicle, Equipment, Class, Case, Room, etc.) with thematic and mechanical guidance on when to use each
 - `references/art-direction.md` — the WotC art brief format, what makes MTG art work at card size, how to write art descriptions by rarity, set palette guidance
 - `references/theme-research.md` — the full theme exploration methodology: user interview, web research, source decomposition, resonance inventories, tone calibration, cultural sensitivity
 - `references/vision.md` — the three pillars concept, top-down vs. bottom-up, how to write a vision document
