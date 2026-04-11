@@ -184,6 +184,14 @@ The card schema is in `assets/set_template.json`. Include the skeleton slot code
 
 **Consult the card type catalog.** Read `references/card-types.md` before writing cards — it contains every card type and mechanically significant subtype in the game, with guidance on when to use each one. Do not default to creatures for every permanent slot. Before filling each skeleton slot, ask whether a Saga, Battle, Vehicle, Equipment, Class, Case, Room, or other type would better express the card's theme and role. If your set has zero Battles, zero Sagas, zero Equipment, and zero Vehicles, verify that's a deliberate choice, not an oversight.
 
+**Name-to-type coherence.** A card's name must match its card type. This sounds obvious but is a common failure mode — the designer thinks of a cool concept ("Cover Fire," "Tidal Surge," "Ambush") and slots it as a creature because the skeleton says "creature slot," even though the name describes an action, event, or phenomenon, not a being. The rule:
+
+- **Creatures are beings.** A creature's name should identify *who or what* it is — a person, animal, monster, construct, or entity. Names like "Goblin Sharpshooter," "Elven Mystic," or "Serra Angel" are creature names. Names like "Cover Fire," "Flanking Maneuver," or "Artillery Barrage" are not — those are instants, sorceries, or enchantments that *describe what creatures do*, not creatures themselves.
+- **If the name is a verb, action, or event → instant or sorcery.** "Cover Fire" is suppressive fire — that's an instant. "Ambush" is a surprise attack — that's an instant. "Tidal Surge" is a wave — that's a sorcery.
+- **If the name is an ongoing condition or strategy → enchantment.** "Suppressive Fire" as a persistent battlefield effect could be an enchantment. "Fortified Position" is an enchantment, not a creature.
+- **If a skeleton slot says "creature" but the concept you have is an action or event, change the concept, not the type.** Find a being that *performs* that action. "Cover Fire" as a creature becomes "Suppression Gunner" or, in an IP set, a named character who provides covering fire. The creature *does* the thing; it isn't *named after* the thing.
+- **For IP-based sets, this is doubly important.** A creature slot in a well-known IP should almost always be a recognizable character, faction member, or creature from the source material — not a generic concept. If you're filling a white common creature slot in a military IP, it should be "Corporal [Name]" or "[Faction] Heavy Gunner," not "Cover Fire."
+
 **Every card gets an art description.** Read `references/art-direction.md` before writing cards — it covers the WotC art brief format, what makes art read at card size, and how to write descriptions by rarity. Write the art description alongside each card's mechanical design, not as a separate pass. Each art description has five fields: `scene` (1–3 sentences of what's in the image), `focus` (the single primary visual element), `mood` (2–5 words of emotional register), `palette` (dominant colors), and `frame` (camera angle / shot type). The description should work as an image search query or AI image generation prompt with minimal editing.
 
 Do this in this order, not randomly:
@@ -292,6 +300,7 @@ Anything outside these bands is a call to revise. When you revise, revise *the c
 
 Final pass on the file:
 
+- **Name-to-type coherence.** Scan every creature card: does the name describe a being (person, animal, monster, construct), or does it describe an action, event, or concept? Creatures named after actions ("Cover Fire," "Flanking Maneuver," "Tidal Surge") are a design error — either rename the creature to identify the being, or change the card type to instant/sorcery/enchantment and adjust accordingly. This is the single most common "feels off" problem in generated sets.
 - Every card has flavorful, lore-consistent naming.
 - Every card has flavor text at rare and mythic, and at least 30% of commons/uncommons.
 - Reminder text is present where New World Order requires it (new mechanics, unfamiliar effects).
