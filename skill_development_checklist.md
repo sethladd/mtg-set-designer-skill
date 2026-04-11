@@ -126,9 +126,9 @@ For each skill:
 
 ---
 
-### SKILL 3: `mtg-worldbuilder`
+### SKILL 3A: `mtg-worldbuilder` (for original Magic worlds)
 
-**Why build third:** The worldbuilding track runs in parallel with Vision Design, but we need it before we build the Vision Designer skill because Vision Design references Creative's work constantly.
+**Why build third:** The worldbuilding track runs in parallel with Vision Design, but we need it before we build the Vision Designer skill because Vision Design references Creative's work constantly. **This skill is for original Magic worlds only.** For existing IPs (Universes Beyond), use Skill 3B (`mtg-ip-researcher`) instead — one or the other runs per set.
 
 **Research targets:**
 
@@ -169,6 +169,74 @@ For each skill:
 - Character density
 
 **Deliverable:** A skill that takes mechanical themes and a concept and produces a world guide with factions, races, geography, key characters, creature type matrix, visual identity notes, and tone guide — all explicitly mapped to mechanical archetypes. The skill must encode the wisdom of *why* certain worlds succeeded and others didn't, using that wisdom as guardrails during generation.
+
+---
+
+### SKILL 3B: `mtg-ip-researcher` (for Universes Beyond)
+
+**Why build third (parallel track):** About half of modern Magic sets are Universes Beyond adaptations (Lord of the Rings, Final Fantasy, Doctor Who, Fallout, Warhammer 40,000, etc.). These sets don't need worldbuilding — the world already exists. They need *exhaustive IP research and cataloging*, which is a fundamentally different skill. Without this, our pipeline can only produce in-universe Magic sets, which misses half the real-world output.
+
+**This skill is mutually exclusive with Skill 3A.** For any given set, either `mtg-worldbuilder` runs (if the user wants an original world) or `mtg-ip-researcher` runs (if the user names an existing IP). Both produce downstream artifacts that feed the same Vision Design skill — but with different constraints.
+
+**Research targets:**
+
+| Source | What to extract |
+|--------|----------------|
+| "Designing for Universes Beyond" (Rosewater, 2022) | **THE foundational article.** Rosewater lays out the advantages (resonance, new vantage points) and challenges (color pie mismatch, reprint constraints, earlier art commitment, locked flavor) of UB design. Every challenge is a constraint the IP researcher must surface. |
+| "Magic's Voyages to Universes Beyond" (WotC, 2021) | The original announcement — understand the stated intent and how it has evolved |
+| Lord of the Rings: Tales of Middle-earth design articles | **THE most detailed case study**: how did the design team identify which characters, factions, and moments to prioritize? What did they cut and why? |
+| Final Fantasy set design articles (2024-2025) | The first Standard-legal UB set, spanning 16 games — **a huge cataloging challenge.** How did they handle that breadth? How did they decide which games got more representation? |
+| Warhammer 40,000 Commander deck design articles (Ethan Fleischer-led) | **The color pie imbalance problem in action.** Warhammer 40K has more natural black and less natural green than Magic expects. How did the team handle this? |
+| Doctor Who Commander deck design articles | The time-travel theming challenge — **how does a catalog handle an IP where chronology is non-linear?** |
+| Fallout Commander deck design articles | A post-apocalyptic IP — **how does the team pick from a fragmented, franchise-wide catalog rather than a single tight story?** |
+| Assassin's Creed design articles | A game franchise with many historical settings — **how do you catalog an IP that spans many time periods?** |
+| Transformers insert cards in Brothers' War | The first "skinned inside a regular set" approach — **what didn't work about this, and why did WotC move to separated UB products afterward?** |
+| "Universes Within" re-skins | **How WotC handles the inverse problem** — translating an IP-specific card into an in-universe Magic equivalent. Reveals what they consider "essentially the same" vs. "unique to the IP." |
+| Commander precon lists for every UB product | **What made it into each product?** The final selection is the distilled output of the research/cataloging process. Compare against the source IP to see what got included vs. cut. |
+| Interviews with Ethan Fleischer, Annie Sardelis, and other UB design leads | Design leads often discuss their process on podcasts and in interviews — **the actual workflow, not just the output** |
+| Fan critiques of UB sets | **Where did the cataloging fail?** Which beloved characters got omitted? Which flavor decisions angered fans? Which color assignments were contested? Every fan complaint is a signal about what the research missed. |
+| The existing `universes-beyond-patterns.md` in `mtg-set-designer` | The current skill's UB reference material — what's already been captured, what needs more depth |
+
+**Wisdom to discover (research must find answers to all of these):**
+
+- **Failure stories — UB sets that missed the mark**: Spider-Man was considered a "dud" by many fans. Transformers inside Brothers' War was criticized enough that WotC changed its insert approach. Ninja Turtles had mixed reception. For each underperforming UB set, find the root cause: Was the IP a bad fit for Magic? Was the research incomplete? Were the color assignments contested? Were the iconic moments missed? Build the taxonomy of UB failure modes.
+- **The "must-include" problem — identifying sacred cows**: Every IP has characters, moments, items, and locations that the fanbase *demands* be included. Miss one and you get a riot. But you can only fit so many cards. How do experienced UB designers identify the must-includes vs. the nice-to-haves? Find the methodology — it's not just "most popular." There are story-critical characters, fan-favorite minor characters, iconic objects, and "the obvious ones everyone expects."
+- **Color pie mismatches — the hard cases**: Rosewater explicitly called out that Warhammer 40K skewed black and away from green. LotR has more whites and greens than blues and reds. Final Fantasy has wildly uneven color distribution across its 16 games. For each published UB set, find the color imbalance and how the team compensated (did they stretch characters into unusual colors? Did they accept uneven distribution? Did they invent new characters to fill gaps?).
+- **The iconic ability problem**: Gandalf must feel like Gandalf. Cloud must feel like Cloud. But iconic abilities can conflict with game balance. How do UB designers navigate "this character is known for X, but X would be broken/weak as a Magic ability"? Find the specific examples and the decision framework.
+- **Character density vs. variety**: Many IPs have a tight central cast and a loose extended universe. How many characters should come from the core cast vs. the extended universe? Spider-Man got criticized for having "five versions of Peter Parker" — what's the framework for avoiding that?
+- **Reprint-as-adaptation**: Some existing Magic cards get reprinted in UB sets with the names/art changed to fit the IP. This only works if the mechanical effect makes sense in the IP context. What makes a good reprint candidate? What's the failure mode (reprints that feel forced)? Find examples of successful and failed reprints.
+- **Naming convention extraction**: Each IP has its own naming patterns — Tolkien's languages, Final Fantasy's naming quirks, Warhammer's gothic Latin. The catalog must capture these so the downstream `mtg-creative-writer` can follow them. How do experienced UB teams codify an IP's naming conventions?
+- **The "adaptation bandwidth" problem**: A full UB set has ~261 cards. How many of those should be character cards vs. spells/locations/events? Different IPs have different natural balances. Find the distribution choices and their justifications.
+- **Scope decisions — which games/books/seasons to include**: Final Fantasy spans 16 mainline games plus spinoffs. Doctor Who spans 60+ years and many doctors. Fallout spans multiple games. How does the research team decide what's in scope? Find the criteria — it's not just "all of it."
+- **What the fanbase will tolerate being changed**: Every adaptation requires some changes. Some are accepted (power level tweaks, minor visual changes). Others cause backlash (changing a character's color alignment, omitting a beloved figure, changing a signature ability). Find the line between acceptable and unacceptable change.
+- **Earlier art commitment**: Rosewater noted that UB sets commit to art earlier because characters must be shown correctly. This locks in flavor before mechanics are finalized, which constrains Set Design. The IP Researcher must produce a catalog *decisive* enough to support early art commissioning. How is that decisiveness achieved?
+
+**Pre-known principles to verify and deepen:**
+- IP research, not invention: the job is to catalog what exists, not create
+- Color pie mismatch is almost guaranteed — surface it early
+- "Must-include" characters/items/locations drive the catalog priority
+- Naming conventions and IP-specific terminology must be extracted
+- Iconic abilities drive flavor more than they drive mechanics
+- Earlier art commitment means the catalog must be decisive
+- Candidate reprints should be identified during research, not during Set Design
+- Locked flavor reduces Set Design's flexibility — surface the locked elements explicitly
+
+**Process this skill must follow:**
+
+1. **Scope definition**: Ask the user which parts of the IP to include (e.g., "Final Fantasy VII only" vs. "all 16 mainline games"; "original LotR trilogy" vs. "including The Hobbit and Silmarillion"). Establish the corpus.
+2. **Deep research via web search**: Canonical sources (official wikis, author/creator statements, publisher guides), reputable fan references (large fan wikis, established encyclopedias), fan consensus discussions (for "must-include" identification). Use at least 10-15 searches to build adequate coverage.
+3. **Character catalog**: Major characters, minor but iconic characters, antagonists, supporting cast. For each: name, role in IP, proposed MTG color(s) with reasoning, iconic abilities, visual description, story importance.
+4. **Faction catalog**: Organizations, races, species, political groups. For each: description, color alignment, key members, mechanical archetype potential.
+5. **Location catalog**: Iconic places that could become lands or appear in art. For each: description, associated characters, visual identity, land-type suggestion.
+6. **Item catalog**: Weapons, artifacts, technology, magical objects that could become equipment, artifacts, or enchantments. For each: description, owner/origin, mechanical effect suggestion.
+7. **Story beats catalog**: Iconic moments that could become sorceries, instants, or define the set's narrative arc. For each: description, participants, emotional weight.
+8. **Color pie analysis**: Map every catalog entry to the WUBRG pie. Compute the distribution. **Flag imbalances prominently** so Vision Design can plan compensation.
+9. **Must-include list**: From the catalog, identify the 30-50 sacred cows that MUST appear in the final set. Mark these prominently.
+10. **Naming and terminology extraction**: Document the IP's naming conventions, signature terminology, and language/linguistic patterns for downstream use by Creative Writer and Art Director.
+11. **Candidate reprint list**: Identify existing Magic cards whose names and effects would translate meaningfully into the IP context.
+12. **Constraint document**: Produce a companion `ip_constraints.md` that explicitly tells Vision Design: here's what you CAN'T do (due to locked flavor), here's what you MUST include (sacred cows), here's where the color pie is lopsided (and by how much).
+
+**Deliverable:** A skill that takes the name of an existing IP and produces `ip_catalog.md` (functionally equivalent to `world_guide.md` but research-derived) and `ip_constraints.md` (the hard limits imposed by the IP on downstream design). The skill must encode the hard-won wisdom of Universes Beyond design: which adaptation approaches work, which fail, and how to navigate the constraints that original Magic sets don't face.
 
 ---
 
@@ -213,7 +281,9 @@ For each skill:
 - New World Order
 - Overdelivery
 
-**Deliverable:** A skill that takes exploration results and a world guide and produces a vision design handoff document + draftable card file with all commons/uncommons and enough rares/mythics to draft. The skill must contain the distilled wisdom of every "Lessons Learned" column — functioning as a vision designer who has internalized 20 years of post-mortems.
+**Deliverable:** A skill that takes exploration results plus **either** a `world_guide.md` (original Magic worlds) **or** an `ip_catalog.md + ip_constraints.md` pair (Universes Beyond sets) and produces a vision design handoff document + draftable card file with all commons/uncommons and enough rares/mythics to draft. The skill must contain the distilled wisdom of every "Lessons Learned" column — functioning as a vision designer who has internalized 20 years of post-mortems.
+
+**Special handling for Universes Beyond input:** When consuming `ip_catalog.md + ip_constraints.md`, the Vision Designer must treat the constraints as non-negotiable (must-include characters are fixed, color pie imbalances must be compensated for rather than "fixed," locked flavor elements cannot be redesigned). Research the specific ways WotC's Vision Design adapted to UB constraints for LotR, Final Fantasy, and Warhammer 40K — the wisdom here is distinct from original-set vision design.
 
 ---
 
@@ -260,7 +330,9 @@ For each skill:
 - Build-arounds at uncommon
 - Format speed levers
 
-**Deliverable:** A refactored skill that takes a vision handoff + card file and produces a complete, balanced set through iterative card design, skeleton filling, curve management, and mechanical tuning. The skill must contain the embedded wisdom of every broken Limited format — effectively checking its own work against a catalog of "here's how past set designers got this wrong."
+**Deliverable:** A refactored skill that takes a vision handoff + card file (plus the creative reference — either `world_guide.md` or `ip_catalog.md + ip_constraints.md`) and produces a complete, balanced set through iterative card design, skeleton filling, curve management, and mechanical tuning. The skill must contain the embedded wisdom of every broken Limited format — effectively checking its own work against a catalog of "here's how past set designers got this wrong."
+
+**Special handling for Universes Beyond input:** Set Design for UB sets has additional constraints: the must-include character list from `ip_constraints.md` is non-negotiable (those cards must exist in the final set regardless of format considerations), and power-level decisions for iconic characters may be driven by fan expectation rather than pure balance. Research how real UB set designers (particularly for LotR and Final Fantasy) navigated the tension between "this card must feel like X" and "this card must work in Limited."
 
 ---
 
@@ -400,7 +472,9 @@ For each skill:
 - Keyword naming principles
 - Legendary naming formula
 
-**Deliverable:** A skill that takes a card file + world guide and names every card and writes flavor text, following MTG naming conventions and building the world's story across the set. The skill must embody the compression craft of great flavor text writers and the naming instincts of experienced creative leads — not just following formulas, but understanding *why* certain names and flavor text resonate.
+**Deliverable:** A skill that takes a card file plus **either** a `world_guide.md` **or** an `ip_catalog.md` and names every card and writes flavor text, following MTG naming conventions and building the world's story across the set. The skill must embody the compression craft of great flavor text writers and the naming instincts of experienced creative leads — not just following formulas, but understanding *why* certain names and flavor text resonate.
+
+**Special handling for Universes Beyond input:** When working from an IP catalog, the skill must strictly follow the IP's established naming conventions (character names cannot be invented, locations have canonical names, terminology must match the source). Flavor text should quote or reference canonical material when possible. The skill must also research each IP's voice and tone — LotR's archaic register is different from Final Fantasy's melodrama, which is different from Warhammer 40K's grimdark Latin. Encode the wisdom of what makes IP adaptation voice feel authentic vs. tourist.
 
 ---
 
@@ -445,7 +519,9 @@ For each skill:
 - Flying creatures must look like they fly
 - Scale communication
 
-**Deliverable:** A skill that takes named/flavored cards + world guide and produces card concepts and structured art descriptions for every card, ready for AI image generation or human commission. The skill must encode the art direction wisdom that prevents the common failures: art-mechanics mismatches, unclear composition at card scale, and visual incoherence across the set.
+**Deliverable:** A skill that takes named/flavored cards plus **either** a `world_guide.md` **or** an `ip_catalog.md` and produces card concepts and structured art descriptions for every card, ready for AI image generation or human commission. The skill must encode the art direction wisdom that prevents the common failures: art-mechanics mismatches, unclear composition at card scale, and visual incoherence across the set.
+
+**Special handling for Universes Beyond input:** When working from an IP catalog, the skill must reference the IP's established visual identity (character designs, costumes, locations, signature visuals) rather than inventing appearances. Art descriptions for IP characters should specify "as depicted in [canonical source]" to anchor the artist/image generator to the correct visual reference. Research how MTG's real UB art direction handled iconic visual moments — the specific lessons learned from LotR (interpretive fidelity), Final Fantasy (cross-game stylistic unification), and Warhammer 40K (gritty realism vs. MTG's typical high-fantasy polish).
 
 ---
 
@@ -522,6 +598,8 @@ For each skill:
 
 **Deliverable:** A master orchestrator skill that chains all other skills, manages handoffs, handles feedback loops, and produces the complete set. The skill must encode the pipeline wisdom — particularly the hard-won lessons about handoff timing, feedback routing, and communication between phases.
 
+**Track selection logic:** At pipeline start, after intake but before Exploratory Design, the orchestrator asks the user: "Is this set based on an existing IP (book, game, film, TV show) or an original Magic world?" Based on the answer, the orchestrator branches: original sets run Skill 3A (`mtg-worldbuilder`) in parallel with Vision Design; IP sets run Skill 3B (`mtg-ip-researcher`) first (since IP constraints must be known before Vision Design can proceed meaningfully). The orchestrator must pass the correct creative artifact type downstream and instruct later skills (Vision Designer, Set Designer, Creative Writer, Art Director) to apply their UB-specific handling when the track is UB.
+
 ---
 
 ## Data Contracts Between Skills
@@ -531,7 +609,9 @@ To make skills composable, they need agreed-upon input/output formats:
 | Artifact | Produced by | Consumed by | Format |
 |----------|------------|-------------|--------|
 | `exploration_doc.md` | Exploratory Designer | Vision Designer | Markdown |
-| `world_guide.md` | Worldbuilder | Vision Designer, Set Designer, Creative Writer, Art Director | Markdown |
+| `world_guide.md` | Worldbuilder (Skill 3A, original worlds only) | Vision Designer, Set Designer, Creative Writer, Art Director | Markdown |
+| `ip_catalog.md` | IP Researcher (Skill 3B, UB sets only) | Vision Designer, Set Designer, Creative Writer, Art Director | Markdown |
+| `ip_constraints.md` | IP Researcher (Skill 3B, UB sets only) | Vision Designer (primarily) | Markdown |
 | `vision_handoff.md` | Vision Designer | Set Designer | Markdown |
 | `vision_cardfile.json` | Vision Designer | Set Designer | JSON (card array) |
 | `set.json` | Set Designer | All downstream skills | JSON (card array) — THE canonical format |
@@ -541,6 +621,8 @@ To make skills composable, they need agreed-upon input/output formats:
 | `naming_guide.md` | Creative Writer | — (reference) | Markdown |
 | `art_descriptions.json` | Art Director | Card Renderer | JSON |
 | `card_images/*.png` | Card Renderer | — (terminal) | PNG files |
+
+**Track selection:** At pipeline start, the user chooses one of two creative tracks. `mtg-worldbuilder` (Skill 3A) runs for original Magic sets; `mtg-ip-researcher` (Skill 3B) runs for Universes Beyond sets. The two skills produce different artifacts but serve the same downstream purpose: giving Vision Design the creative context it needs. Vision Design and later skills must be able to consume either `world_guide.md` OR `ip_catalog.md + ip_constraints.md` as their creative input.
 
 The `set.json` card format should be standardized early and used by all skills. Proposed schema (extending the existing mtg-set-designer format):
 
@@ -574,7 +656,8 @@ The `set.json` card format should be standardized early and used by all skills. 
 |-------|----------|-------|------|-------|
 | Color Pie Reviewer | 1 session | 1 session | 1 session | 3 sessions |
 | Exploratory Designer | 1 session | 1 session | 1 session | 3 sessions |
-| Worldbuilder | 1 session | 1 session | 1 session | 3 sessions |
+| Worldbuilder (3A) | 1 session | 1 session | 1 session | 3 sessions |
+| IP Researcher (3B) | 1.5 sessions | 1.5 sessions | 1 session | 4 sessions |
 | Vision Designer | 2 sessions | 2 sessions | 1 session | 5 sessions |
 | Set Designer (refactor) | 1 session | 2 sessions | 2 sessions | 5 sessions |
 | Play Designer | 1 session | 2 sessions | 1 session | 4 sessions |
@@ -583,12 +666,16 @@ The `set.json` card format should be standardized early and used by all skills. 
 | Art Director | 1 session | 1 session | 1 session | 3 sessions |
 | Product Architect | 1 session | 1 session | 0.5 session | 2.5 sessions |
 | Pipeline Orchestrator | 0.5 session | 2 sessions | 2 sessions | 4.5 sessions |
-| **Total** | | | | **~39 sessions** |
+| **Total** | | | | **~43 sessions** |
 
-A "session" = one focused conversation with Claude. Some research sessions may require multiple search passes.
+A "session" = one focused conversation with Claude. Some research sessions may require multiple search passes. IP Researcher gets slightly more time because it needs extra testing across multiple different IP types (a fantasy novel series, a video game franchise, a TV show) to verify the skill generalizes.
 
 ---
 
 ## Next Step
+
+The pipeline now has **12 skills to build** (Color Pie Reviewer, Exploratory Designer, Worldbuilder 3A, **IP Researcher 3B**, Vision Designer, Set Designer refactor, Play Designer, Editor, Creative Writer, Art Director, Product Architect, Pipeline Orchestrator) plus the existing Card Renderer.
+
+The two creative-track skills (3A and 3B) are mutually exclusive per set but both must exist so the pipeline can handle both original Magic worlds and Universes Beyond adaptations.
 
 Say **"Build Skill 1"** and I'll begin the deep research phase for `mtg-color-pie-reviewer`, pulling real lessons from the Council of Colors, the Mechanical Color Pie article, and Rosewater's 20+ years of color pie philosophy — then build the skill with those lessons encoded.
