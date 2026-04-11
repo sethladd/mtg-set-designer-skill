@@ -27,6 +27,13 @@ Set design is a pipeline with explicit phases. Do them in order. Do not skip pha
 
 The phases mirror the real WotC split into Vision Design → Set Design → Play Design, compressed into a workflow one designer (you) can actually execute.
 
+**Inter-phase checkpoints.** Between every phase, pause and do three things before moving on:
+1. **Summarize** — give the user a clear, concise recap of what you learned or produced in the phase you just finished.
+2. **Ask** — surface any open questions, ambiguities, or judgment calls that came up. If the phase forced you to make assumptions, state them and ask if they feel right.
+3. **Confirm** — explicitly ask the user for permission to proceed to the next phase. Do not advance until they confirm.
+
+This keeps the user in the loop and avoids compounding early mistakes across later phases.
+
 ### Phase 0 — Intake
 
 Before writing anything, confirm these with the user (or reason explicitly from what they gave you):
