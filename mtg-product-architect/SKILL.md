@@ -197,6 +197,10 @@ The primary output is `product_brief.md` containing the complete product archite
 
 - `scripts/product_audit.py` — validates product suite coherence (7 automated checks)
 
+## Scope note: release calendar coordination
+
+WotC's real Product Architect role includes "coordinate timing with other releases in the calendar year." This pipeline intentionally omits that responsibility. This skill set designs ONE set at a time — it is not a multi-year release planning tool. Calendar coordination (avoiding product fatigue across a yearly slate, spacing UB vs. original sets, managing reprint equity across releases) is an organizational concern that sits above the individual set pipeline. The product fatigue wisdom in the wisdom catalog informs WHAT to include in a single set's product suite, but scheduling WHEN products ship relative to other sets is out of scope.
+
 ## Guiding principles
 
 1. **Every product needs a customer** — If you can't name who buys a product and why, it shouldn't exist. The Aftermath lesson: products nobody asked for burn goodwill faster than they generate revenue.
