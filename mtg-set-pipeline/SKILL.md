@@ -138,6 +138,7 @@ Invoke `mtg-color-pie-reviewer`.
 2. Maximum 2 iterations
 3. If issues persist after 2 passes: present remaining flags to user for decision
 4. **Convergence check:** If pass 2 has MORE flags than pass 1, escalate to user — the problem is systemic
+5. **Art invalidation warning:** If Stage 10 (Art Direction) has already run, warn the user that looping back to Set Design will invalidate art descriptions on any revised cards. Art Direction will need to re-run on those cards after revisions are complete.
 
 ### Stage 7: Play Design (Feedback Loop)
 
@@ -153,6 +154,7 @@ Invoke `mtg-play-designer`.
    - **High risk** (format-warping): Escalate to user
 2. Maximum 2 iterations
 3. **Convergence check:** Same as Color Pie Review
+4. **Art invalidation warning:** Same as Color Pie Review — if Art Direction has already run, warn the user that revised cards will need art descriptions re-written.
 
 **CHECKPOINT 5:** Present the play design report — power outliers, combo warnings, archetype win rate estimates, format health predictions. Ask:
 - "Do you accept these risk flags?"

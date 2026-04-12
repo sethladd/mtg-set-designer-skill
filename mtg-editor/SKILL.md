@@ -39,6 +39,8 @@ Establish:
 - Which ability words does the set use?
 - Are there any non-standard templating needs (new card types, novel mechanics)?
 
+**Rules verification for new mechanics:** If the set introduces novel mechanics, verify they work within the comprehensive rules before templating. Consult `references/comprehensive-rules.txt` (the official MTG Comprehensive Rules) to check that the mechanic's templating is consistent with existing rules infrastructure — timing, layers, state-based actions, and interaction with replacement effects. If a mechanic's rules interaction is ambiguous, flag it for user review rather than guessing at templating. In the real WotC pipeline this is a Rules Manager consultation; in our pipeline, the comprehensive rules document serves as the reference.
+
 ### Step 2: Run the automated audit
 
 ```bash
@@ -178,6 +180,7 @@ Markdown document listing every change made and every flag raised.
 - `references/color-pie.md` — Color pie for flagging mechanical issues.
 - `references/rarity-structure.md` — Rarity guidelines for reminder text decisions.
 - `references/new-world-order.md` — Complexity at common for accessibility.
+- `references/comprehensive-rules.txt` — The official MTG Comprehensive Rules (effective Feb 27, 2026). Consult when verifying that new mechanics work within the rules infrastructure.
 
 ## Scripts
 

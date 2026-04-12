@@ -245,6 +245,15 @@ A markdown document containing all audit results, competitive analysis, combo sc
 ### `set.json` (updated)
 The card file with finalized numbers. Same schema as input, with modifications documented in the report.
 
+### Risk register format
+The risk register section of `play_design_report.md` documents cards that passed all checks but carry known risks worth monitoring. Format each entry as:
+
+| Card Name | Risk Category | Severity | Justification |
+|-----------|--------------|----------|---------------|
+| Example Card | Combo potential with future printings | Watch | Two-card combo with any future 0-cost artifact; no current enabler exists but design space is narrow |
+
+**Severity levels:** `Accept` (risk is understood and acceptable), `Monitor` (revisit if the metagame shifts or future sets print enablers), `Watch` (actively concerning but not actionable without more data).
+
 ## Reference files
 
 - `references/play-design-framework.md` — Rate baselines, combo detection, Commander scaling, format health metrics, play-pattern evaluation, push framework, number finalization. **Read before evaluating any card.**

@@ -64,6 +64,16 @@ Gold cards (requiring multiple colors) can do things neither color does alone �
 - **Gold doesn't bypass weaknesses**: A UG card still can't get unconditional creature destruction — neither blue nor green has it.
 - **The overlap test**: The best gold cards live in the philosophical overlap between their colors. A UB card should feel like it could only exist where blue's knowledge meets black's ambition.
 
+### Evaluating multicolor cards in practice
+
+- **Color-weight assessment**: A card costing {U}{B} (tight mana, both colors required early) should use BOTH colors' effects meaningfully. A card costing {3}{U}{B} (looser, more generic mana) can lean slightly more toward one color's effect, since the generic mana dilutes the color commitment. The tighter the color requirements, the more both colors must contribute.
+- **Three-color cards**: Must satisfy ALL three colors' philosophies. A Mardu (RWB) card should feel red AND white AND black — not just "red card with white and black in the cost." If you can remove one color from the cost and the card still makes sense, that color isn't contributing.
+- **Common multicolor mistakes to flag**:
+  - Gold card that only uses one color's effects (e.g., a UG card that's just a green creature with no blue identity — should be mono-green)
+  - Hybrid card that only one color could do (e.g., a R/W hybrid that destroys enchantments — red can't do this, so it fails the "either color" test)
+  - Gold card that uses an effect NEITHER color has (e.g., a UW card with direct damage — adding colors doesn't grant access to effects outside both colors' pie)
+  - "Splash tax" card — an effect that's squarely mono-color but has an off-color pip added to make it harder to cast, not because the second color contributes anything mechanically
+
 ## Rarity and the color pie
 
 Rarity provides latitude, not immunity:

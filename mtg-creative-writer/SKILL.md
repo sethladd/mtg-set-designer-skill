@@ -118,6 +118,8 @@ If the set's keywords still have working names, finalize them:
 4. **Verb-based for actions, adjective-based for states**
 5. **Test against reminder text** — if reminder text is clear but keyword adds confusion, the name is wrong
 
+**Reminder text coordination:** When naming new set-specific keywords, also draft candidate reminder text for each. The final reminder text is the Editor's responsibility (`mtg-editor`), but the Creative Writer should propose initial wording that captures the mechanic clearly in one sentence. Include the draft reminder text in the `naming_guide.md` output so the Editor has a starting point.
+
 ### Step 9: Run the naming audit
 
 ```bash
