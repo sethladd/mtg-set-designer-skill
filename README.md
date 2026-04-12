@@ -1,112 +1,141 @@
-# MTG Set Designer
+# MTG Set Design Pipeline
 
-A skill for designing complete, balanced, draftable Magic: The Gathering sets from a theme or idea. Designed for the **Play Booster era** (2024+).
+A 12-skill pipeline for designing complete, balanced, draftable Magic: The Gathering sets. Each skill mirrors a real role in Wizards of the Coast's production pipeline — from exploratory design through card rendering — compressed into an AI-driven workflow.
 
-Give it a theme — "deep-sea horror," "a world where spells leave behind echoes," "nomadic desert tribes fighting over water" — and it walks through the full design pipeline: vision, worldbuilding, mechanics, ten two-color draft archetypes, ~261 cards across four rarities, and automated balance testing. The output is structured files (JSON + markdown) ready for playtesting, not a loose pile of card ideas.
+Give it a theme ("deep-sea horror," "a world where spells leave behind echoes") or an existing IP ("Final Fantasy," "Dune") and the pipeline walks through the full design process: exploration, worldbuilding, vision, set design, balance testing, editing, naming, art direction, and product architecture. The output is structured files (JSON + markdown) ready for playtesting or image rendering.
+
+## The pipeline
+
+```
+USER INPUT: Theme/Concept OR IP Name
+         |
+         v
+  1. Exploratory Designer -----> exploration_doc.md
+         |
+    [Branch: Original World OR Existing IP]
+         |                          |
+  2. Worldbuilder            3. IP Researcher
+     world_guide.md             ip_catalog.md
+         |__________________________|
+         |
+  4. Vision Designer -----------> vision_handoff.md + vision_cardfile.json
+         |
+  5. Set Designer ---------------> set.json (~261 cards)
+         |
+  6. Color Pie Reviewer ---------> color_pie_review.md  [feedback loop -> 5]
+         |
+  7. Play Designer --------------> play_design_report.md + set.json (final numbers) [feedback loop -> 5]
+         |
+  8. Editor ---------------------> set.json (templated) + editing_report.md
+         |
+  9. Creative Writer ------------> set.json (named, flavored) + naming_guide.md
+         |
+ 10. Art Director ---------------> set.json (with art descriptions) + card_concepts.json
+         |
+ 11. Card Renderer --------------> card_images/*.png
+         |
+ 12. Product Architect ----------> product_brief.md + commander_precon_briefs.json
+```
+
+## The skills
+
+| # | Skill | WotC Equivalent | What It Does |
+|---|-------|----------------|--------------|
+| 1 | `mtg-exploratory-designer` | Exploratory Design team | Surveys mechanical design space, ranks 8-15 candidate mechanics, recommends 3-5 directions |
+| 2 | `mtg-worldbuilder` | Creative/Worldbuilding lead | Invents an original Magic plane with factions, creatures, geography, tone, and visual identity |
+| 3 | `mtg-ip-researcher` | UB Creative / IP adaptation | Researches and catalogs an existing IP for Universes Beyond adaptation |
+| 4 | `mtg-vision-designer` | Vision Design lead | Defines three pillars, selects mechanics, designs 10 two-color archetypes, produces handoff document |
+| 5 | `mtg-set-designer` | Set Design lead | Builds the complete ~261-card file with balanced Limited format |
+| 6 | `mtg-color-pie-reviewer` | Council of Colors | Reviews every card for color pie breaks and bends on a 1-4 scale |
+| 7 | `mtg-play-designer` | Play Design team | Tests balance, finds combos, finalizes numbers, produces risk assessment |
+| 8 | `mtg-editor` | Editing / Delta team | Templates rules text, assigns collector numbers, verifies name uniqueness |
+| 9 | `mtg-creative-writer` | Names & Flavor Text writers | Names every card, writes flavor text, establishes naming culture |
+| 10 | `mtg-art-director` | Art Director / Card Concepter | Concepts each card, writes structured art descriptions for every card |
+| 11 | `mtg-card-renderer` | (rendering) | Renders card data as PNG images |
+| 12 | `mtg-set-pipeline` | The pipeline itself | Orchestrates all skills in sequence with checkpoints and feedback loops |
+
+Skills 2 and 3 are mutually exclusive — one runs per set depending on whether the user wants an original world or a Universes Beyond adaptation.
+
+## Skill architecture
+
+Every skill follows the same structure:
+
+```
+mtg-{skill-name}/
+├── SKILL.md                    # Process steps, inputs, outputs, guiding principles
+├── CLAUDE.md                   # Sources policy
+├── references/
+│   ├── wisdom-catalog.md       # Failure stories, counterintuitive insights, named heuristics
+│   ├── {domain}-framework.md   # Operational handbook with decision trees and checklists
+│   ├── sources.md              # All URLs researched during skill creation
+│   └── {copied references}     # Self-contained copies of shared reference files
+└── scripts/
+    └── {audit}.py              # Automated validation checks
+```
+
+Each skill is self-contained — it carries copies of all reference files it needs, so it can run independently without depending on shared files.
 
 ## What it's based on
 
-The design process and heuristics are drawn from published sources by Wizards of the Coast designers, primarily Mark Rosewater's *Making Magic* column and *Drive to Work* podcast, plus design handoff documents and interviews with Erik Lauer, Aaron Forsythe, Ethan Fleischer, Melissa DeTora, and Doug Beyer. Key frameworks include the three-pillar vision model, New World Order complexity management, the ten two-color archetype grid (originating from Ravnica), the mechanical color pie, and the parasitic-vs-modular mechanic spectrum.
+The design process and wisdom are drawn from published sources by Wizards of the Coast designers, primarily Mark Rosewater's Making Magic column and Drive to Work podcast, plus design handoff documents and interviews with Erik Lauer, Aaron Forsythe, Ethan Fleischer, Gavin Verhey, Melissa DeTora, Cynthia Sheppard, and Doug Beyer. Each skill's `references/sources.md` contains the full list of URLs consulted during its creation (400+ total across all skills).
 
-## How it works
+Key frameworks encoded across the pipeline include: the three-pillar vision model, New World Order complexity management, the ten two-color archetype grid, the mechanical color pie, the parasitic-vs-modular spectrum, the WotC art description format (Setting/Color/Action/Focus/Mood), the Commander precon paradox, and the feedback loop protocol between Set Design and Play Design.
 
-The skill guides Claude through nine phases that mirror the real WotC pipeline (Vision Design → Set Design → Play Design), compressed into a single-designer workflow:
+## Pipeline features
 
-1. **Intake** — confirm theme, top-down vs. bottom-up, set size, constraints
-2. **Theme Research** — web research, source material decomposition, faction-to-color mapping, resonance/anti-resonance inventories, tone calibration, cultural sensitivity scan. Produces a Theme Brief in the design doc.
-3. **Vision** — elevator pitch, three pillars, tone and play feel
-4. **Worldbuilding** — just enough world to justify creature types, factions, and card names
-5. **Mechanics** — 2–4 named new mechanics, each assessed for parasitic risk
-6. **Archetype grid** — 10 two-color archetypes with signpost uncommons and required commons
-7. **Card file** — ~261 cards written commons-first using the design skeleton, then uncommons, rares, mythics
-8. **Balance: heuristic pass** — automated checks on color distribution, creature curves, removal density, NWO complexity, archetype support, color pie violations
-9. **Balance: simulated draft** — stochastic 8-player draft simulation reporting archetype win rates, card play rates, and format speed
-
-## Output files
-
-A finished set produces:
-
-| File | Purpose |
-|---|---|
-| `design_doc.md` | Narrative design document — theme brief (with research sources), vision, pillars, worldbuilding, mechanics, archetypes |
-| `set.json` | Every card with name, mana cost, type, rules text, P/T, rarity, color, flavor, archetype tags |
-| `mechanics.json` | Each named mechanic with reminder text, color distribution, rarity spread, parasitic risk |
-| `archetypes.json` | The 10 two-color archetypes with strategy, signpost uncommons, support requirements |
-| `balance_report.md` | Heuristic check results and any documented intentional deviations |
-| `sim_report.md` | Simulated draft results — archetype win rates, card play rates, format speed |
+- **Two tracks**: Original Magic worlds (worldbuilder) or Universes Beyond IP adaptation (IP researcher) — downstream skills handle both
+- **Bounded feedback loops**: Color Pie Review and Play Design can send cards back to Set Design, with a 2-iteration maximum and convergence checks
+- **7 user checkpoints**: The orchestrator pauses for user review at key decision points (after exploration, worldbuilding, vision, set design, play design, naming, and final delivery)
+- **Artifact-based state**: All pipeline state lives in files on disk, making the pipeline resumable across sessions
+- **Automated audits**: Every skill has a Python audit script that validates its output (9 scripts total)
 
 ## Play Booster era targets
 
-The skill designs for the current product format (Play Boosters replaced Draft Boosters in February 2024):
+The pipeline designs for the current product format (Play Boosters replaced Draft Boosters in February 2024):
 
-- **81 commons** (~14–15 per color) — fewer but higher-impact; no filler
-- **100 uncommons** (~16–18 per color + ~20 gold signposts) — the largest rarity, carrying significant archetype support
+- **81 commons** (~14-15 per color)
+- **100 uncommons** (~16-18 per color + ~20 gold signposts)
 - **60 rares, 20 mythics**
 - **~261 unique cards total**
 
-Pack structure: 14 playable cards (7C, 3U, 1R/M, 1 land, 2 wildcards). ~41% of packs contain 2+ rares, so common/uncommon removal is designed to answer rare-level threats.
+## Running the pipeline
 
-## Directory structure
-
-```
-mtg-set-designer/
-├── SKILL.md                      # Main skill — the 9-phase process
-├── CLAUDE.md                     # Project instructions (source tracking rules)
-├── references/
-│   ├── card-types.md               # Complete catalog of card types and subtypes with design guidance
-│   ├── art-direction.md            # WotC art brief format, card art best practices, set palette
-│   ├── theme-research.md          # Theme exploration methodology and Theme Brief template
-│   ├── vision.md                 # Three pillars, top-down vs. bottom-up
-│   ├── color-pie.md              # Mechanical color pie, bending vs. breaking
-│   ├── mechanics.md              # Keyword vs. ability word, parasitic vs. modular
-│   ├── archetypes.md             # The 10 two-color archetype grid
-│   ├── new-world-order.md        # Complexity at common, red-flag rules
-│   ├── rarity-structure.md       # Play Booster rarity counts and jobs
-│   ├── cycles.md                 # Cycle types and when to use them
-│   ├── balance-heuristics.md     # Numerical targets the scripts check
-│   ├── design-skeleton.md        # The WotC design skeleton concept and how to use it
-│   ├── universes-beyond-patterns.md # IP adaptation lessons from LotR, Warhammer, Doctor Who, Fallout, Final Fantasy
-│   ├── case-studies.md           # Innistrad, Ravnica, Theros, Lorwyn, Kamigawa, Zendikar
-│   └── sources.md                # Web links used to build this skill (not per-set research)
-├── scripts/
-│   ├── balance_check.py          # Heuristic balance checker
-│   ├── simulate_draft.py         # Stochastic draft-and-play simulator
-│   └── set_schema.py             # JSON schema validator
-├── assets/
-│   ├── design_skeleton.json      # Official WotC design skeleton (Play Booster era)
-│   ├── design_skeleton_2021.csv  # Community "Bones" spreadsheet (Draft Booster, historical)
-│   └── set_template.json         # JSON schema example for set.json
-└── evals/
-    └── evals.json                # Test prompts used during skill development
-```
-
-## Scripts
-
-**`balance_check.py`** — fast heuristic pass over a `set.json`. Reports per-color card counts, creature mana curves, removal density, New World Order red-flag ratio, color pie violation warnings, archetype support density, and mechanic spread vs. targets.
+Start with the orchestrator:
 
 ```
-python scripts/balance_check.py set.json --out balance_report.md
+Use the mtg-set-pipeline skill to design a complete Magic set based on [your theme or IP].
 ```
 
-**`simulate_draft.py`** — runs N simulated 8-player Play Booster drafts. Bots pick cards using color affinity and power heuristics, build 40-card decks, and play rough games. Reports archetype win rates (healthy band: 42–58%), card play rates, and average game length.
+Or run individual skills standalone:
 
 ```
-python scripts/simulate_draft.py set.json --pods 200 --out sim_report.md
+Use the mtg-exploratory-designer skill to explore mechanics for [your theme].
+Use the mtg-vision-designer skill with this exploration document to create a vision.
+Use the mtg-set-designer skill with this vision handoff to build the card file.
 ```
 
-**`set_schema.py`** — validates that `set.json` has required fields and consistent data. Accepts mechanics and archetypes either inlined in `set.json` or as sibling files.
+Each skill's SKILL.md documents its inputs, outputs, and process steps.
+
+## Directory overview
 
 ```
-python scripts/set_schema.py set.json
+mtg_set_skill/
+├── mtg-exploratory-designer/       # Skill 1: Mechanical exploration
+├── mtg-worldbuilder/               # Skill 2: Original world creation
+├── mtg-ip-researcher/              # Skill 3: IP cataloging for Universes Beyond
+├── mtg-vision-designer/            # Skill 4: Set identity and blueprint
+├── mtg-set-designer/               # Skill 5: Complete card file construction
+├── mtg-color-pie-reviewer/         # Skill 6: Color pie compliance review
+├── mtg-play-designer/              # Skill 7: Balance testing and number finalization
+├── mtg-editor/                     # Skill 8: Rules text templating and editing
+├── mtg-creative-writer/            # Skill 9: Card naming and flavor text
+├── mtg-art-director/               # Skill 10: Card concepts and art descriptions
+├── mtg_card_maker/                 # Skill 11: Card image rendering
+├── mtg-product-architect/          # Skill 12: Product suite definition
+├── mtg-set-pipeline/               # Orchestrator: Runs the full pipeline
+├── assets/                         # Shared templates (set_template.json, design skeletons)
+├── old-references/                 # Legacy reference files (skills copy what they need)
+├── scripts/                        # Shared utility scripts
+├── mtg_set_design_pipeline_roles.md  # Pipeline specification document
+└── skill_development_checklist.md    # Research targets and requirements per skill
 ```
-
-## Key design principles
-
-These come from the reference material and inform every phase:
-
-- **The set is more important than any one card.** A cool card that hurts the format gets cut.
-- **Commons carry the set** (now alongside uncommons). If your theme only shows up at rare, you don't have a theme.
-- **Parasitism is the default failure mode.** Every mechanic should work even if it's the only card with that mechanic in a draft deck.
-- **Bleed to serve the set, never to fix a color's weakness.** The weaknesses are the point.
-- **Complexity is finite.** Spend it where it matters.
-- **Design, then test, then design again.** The balance scripts exist so you can be wrong quickly and cheaply.
