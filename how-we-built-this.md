@@ -1,22 +1,18 @@
-# How We Built This: A Guide to Creating Orchestrated Multi-Skill Pipelines
+# How to Build Orchestrated Multi-Skill Pipelines
 
-This document describes the end-to-end process used to build a 12-skill MTG set design pipeline. If you want to create your own multi-step, orchestrated set of skills for any domain, follow this workflow.
+This document describes the end-to-end process for building a pipeline of specialized, chainable AI skills that mirror a real-world production workflow. Each skill encodes the expertise of a distinct role, carries its own research-backed wisdom, and can run standalone or as part of an orchestrated sequence.
 
-## What we built
-
-A pipeline of 12 specialized skills that chain together to produce a complete Magic: The Gathering set — from a theme concept through rendered card images. Each skill mirrors a real role in a production pipeline, has its own wisdom and reference material, and can run standalone or as part of the orchestrated whole.
-
-The same approach works for any complex, multi-step creative or technical process that you want to decompose into specialized, chainable skills.
+This approach works for any complex, multi-step creative or technical process: game design, film production, software architecture, editorial pipelines, research workflows, manufacturing processes — anything where multiple specialists hand off work to each other.
 
 ---
 
 ## Phase 1: Map the real-world process
 
-Before writing a single skill, we mapped the real-world process we were trying to replicate.
+Before writing a single skill, map the real-world process you're trying to replicate.
 
 ### Step 1: Research the domain's actual workflow
 
-We started by studying how Wizards of the Coast actually designs Magic sets. This wasn't about inventing a process — it was about understanding the real one and then encoding it.
+Start by studying how professionals in the domain actually work. Don't invent a process — understand the real one and encode it.
 
 **What to do:**
 - Research how professionals in your domain actually work (articles, interviews, conference talks, behind-the-scenes documentation)
@@ -27,7 +23,7 @@ We started by studying how Wizards of the Coast actually designs Magic sets. Thi
 
 ### Step 2: Write the pipeline specification document
 
-We produced `mtg_set_design_pipeline_roles.md` — a comprehensive document that defines every role in the pipeline, what it does, what it takes as input, and what it produces.
+Produce a comprehensive document that defines every role in the pipeline, what it does, what it takes as input, and what it produces.
 
 **What this document must contain for each role:**
 - Real-world equivalent (who does this job in the actual industry?)
@@ -40,13 +36,13 @@ We produced `mtg_set_design_pipeline_roles.md` — a comprehensive document that
 - A flow diagram showing how skills chain together
 - Data flow contracts (which artifact flows from skill A to skill B)
 - Where feedback loops exist and what triggers them
-- Where branch decisions happen (e.g., original world vs. IP adaptation)
+- Where branch decisions happen (e.g., two mutually exclusive tracks based on user input)
 
 This document is your source of truth for the entire build. Every skill will be audited against it.
 
 ### Step 3: Write the skill development checklist
 
-We produced `skill_development_checklist.md` — a per-skill checklist specifying what research to do, what wisdom to discover, and what the deliverable must contain.
+Produce a per-skill checklist specifying what research to do, what wisdom to discover, and what the deliverable must contain.
 
 **For each skill, the checklist defines:**
 - **Why build it in this order** (dependency reasoning)
@@ -54,7 +50,7 @@ We produced `skill_development_checklist.md` — a per-skill checklist specifyin
 - **Wisdom to discover** (specific questions the research must answer — failure stories, counterintuitive insights, evolved thinking)
 - **Pre-known lessons to verify and deepen** (things you already suspect are true, but need evidence for)
 - **Deliverable** (one-paragraph description of what the finished skill must do)
-- **Special handling** (any domain-specific concerns, like how IP adaptation differs from original creation)
+- **Special handling** (any domain-specific concerns unique to this role)
 
 **The checklist is NOT a template.** It's a research agenda. It tells you what questions each skill must answer, not what the answers look like.
 
@@ -62,12 +58,12 @@ We produced `skill_development_checklist.md` — a per-skill checklist specifyin
 
 ## Phase 2: Establish the skill architecture pattern
 
-Before building the first skill, we established a consistent architecture that every skill follows.
+Before building the first skill, establish a consistent architecture that every skill follows.
 
 ### The standard skill structure
 
 ```
-mtg-{skill-name}/
+{skill-name}/
 ├── SKILL.md                    # YAML frontmatter + process steps
 ├── CLAUDE.md                   # Sources policy (identical across skills)
 ├── references/
@@ -93,7 +89,7 @@ mtg-{skill-name}/
 
 ## Phase 3: Build skills sequentially
 
-We built skills one at a time, in strict dependency order (the order specified in the checklist). Each skill followed the same build process:
+Build skills one at a time, in strict dependency order (the order specified in the checklist). Each skill follows the same build process:
 
 ### Step 1: Research (launch a background agent)
 
@@ -112,16 +108,16 @@ Before writing any content, launch a research agent to search the web for the sp
 While research runs in the background, create:
 - The skill's directory structure
 - `CLAUDE.md` (identical sources policy)
-- Copy any shared reference files from `old-references/` into the skill's `references/` directory
+- Copy any shared reference files into the skill's `references/` directory
 
 ### Step 3: Write the wisdom catalog
 
 Using the research findings, write `references/wisdom-catalog.md`:
 
 **Structure:**
-- **Failure stories** (5-10): Real examples of when this domain went wrong. Each story has: what happened, what went wrong, why it went wrong, and the extracted lesson. Use specific names — "Energy in Kaladesh" not "a resource mechanic in a set." Failure stories are the most valuable content in the catalog.
-- **Counterintuitive insights** (3-5): Things that are true but surprising. "The best exploration rejects the obvious theme." "Parasitic mechanics are sometimes worth it." These challenge assumptions.
-- **Named heuristics** (5-10): Quick tests or rules of thumb. "The Squint Test," "The Counterplay Surface Test," "The Two-Pass Limit." Naming them makes them memorable and referenceable.
+- **Failure stories** (5-10): Real examples of when this domain went wrong. Each story has: what happened, what went wrong, why it went wrong, and the extracted lesson. Use specific names — name the project, the product, the person, the year. Failure stories are the most valuable content in the catalog.
+- **Counterintuitive insights** (3-5): Things that are true but surprising. These challenge assumptions that practitioners commonly hold.
+- **Named heuristics** (5-10): Quick tests or rules of thumb with memorable names. Naming them makes them referenceable in the SKILL.md process steps ("Apply the [Name] Test").
 
 **The philosophy:** You're encoding an expert, not writing a manual. The wisdom catalog should read like a conversation with someone who's been doing this job for 20 years and has strong opinions backed by hard experience.
 
@@ -143,7 +139,7 @@ Write the main skill file:
 
 **Structure:**
 1. YAML frontmatter (`name`, `description` with trigger phrases)
-2. Role statement ("You are the [role] on a Magic set...")
+2. Role statement ("You are the [role]...")
 3. Excellence vs. failure framing ("The best [role] produces... The worst produces...")
 4. "Why this phase exists" section
 5. "Before you begin" section (list reference files to read)
@@ -168,7 +164,7 @@ Write `scripts/{audit}.py` following a consistent pattern:
 - An `audit_*` orchestrator function that runs all checks and produces a markdown report
 - Statistics section and summary with categorized flag counts
 
-**Always run `python3 -c "import py_compile; py_compile.compile('script.py', doraise=True)"` to verify syntax.**
+**Always verify syntax: `python3 -c "import py_compile; py_compile.compile('script.py', doraise=True)"`**
 
 ### Step 7: Write the sources file
 
@@ -188,11 +184,11 @@ Before committing:
 5. Confirm copied references match originals (diff check)
 6. Count source URLs — ensure the research was thorough
 
-Commit with a clear message: `Add Skill N: mtg-{name} ({what it does})`
+Commit with a clear message: `Add Skill N: {name} ({what it does})`
 
 ### Step 9: Ask "what's the next skill?" and repeat
 
-After committing, explicitly ask or verify what the next skill in the dependency order is, then repeat from Step 1.
+After committing, explicitly verify what the next skill in the dependency order is, then repeat from Step 1.
 
 ---
 
@@ -204,7 +200,7 @@ Context windows have limits. When a session runs out of context mid-build:
 
 - **Artifact-based state**: Because all work is committed to disk (git commits), a new session can pick up where the old one left off by reading the files
 - **Summary-based continuity**: When a session is continued, a summary of prior work is provided. This summary should include: what skills are built, what's next, key decisions made, and any pending work
-- **The checklist is the roadmap**: A new session can read `skill_development_checklist.md` to understand what's been built and what's next
+- **The checklist is the roadmap**: A new session can read the skill development checklist to understand what's been built and what's next
 
 ### What to tell the new session
 
@@ -215,7 +211,7 @@ Context windows have limits. When a session runs out of context mid-build:
 
 ### The key insight
 
-Session breaks are not a problem if your state lives in files, not in conversation. Every piece of knowledge we produced — research findings, wisdom catalogs, framework docs, audit scripts — is committed to disk. A new session reads those files and continues. Nothing lives only in the conversation.
+Session breaks are not a problem if your state lives in files, not in conversation. Every piece of knowledge produced — research findings, wisdom catalogs, framework docs, audit scripts — is committed to disk. A new session reads those files and continues. Nothing lives only in the conversation.
 
 ---
 
@@ -237,7 +233,7 @@ After all skills are built, run a comprehensive audit. This is not optional — 
 3. **Verify pipeline-level data flow:**
    - Does every output artifact get consumed by at least one downstream skill?
    - Do feedback loops work in both directions (the sending skill, the receiving skill, and the orchestrator)?
-   - Do all downstream skills handle both pipeline branches (if applicable)?
+   - Do all downstream skills handle every pipeline branch (if applicable)?
    - Are there dangling outputs nobody consumes or missing inputs nobody produces?
 4. **Quality gap analysis:**
    - What could still go wrong even if every skill executes perfectly?
@@ -262,11 +258,11 @@ Address findings in priority order. Each fix gets its own commit with a clear me
 After the audit is clean, update the project documentation:
 
 - **README.md**: Pipeline overview, skill table, architecture pattern, how to run
-- **This document** (how-we-built-this.md): The process guide for replication
+- **Process guide**: This document — so others can replicate the approach
 
 ---
 
-## Principles that guided the build
+## Principles
 
 ### 1. Research first, write second
 Never write wisdom from memory alone. Launch a research agent, find real sources, extract specific named examples, and record every URL. Memory-based content is plausible but unverifiable. Research-based content is specific, correctable, and traceable.
@@ -291,29 +287,20 @@ Every URL that informed a skill's content goes in `sources.md`. This is not book
 
 ---
 
-## Timeline
+## Quick reference: The build loop
 
-This pipeline was built across multiple Claude sessions:
+For each skill, in dependency order:
 
-- **Session 1**: Built Skills 1-4 (exploratory designer, worldbuilder, IP researcher, vision designer)
-- **Session 2**: Built Skills 5-8 (set designer, play designer, editor, creative writer)
-- **Session 3**: Built Skills 9-12 (art director, product architect, card renderer already existed, orchestrator)
-- **Session 3 continued**: Full pipeline audit, P0/P1/P2 fixes, README rewrite
+```
+1. Research    → Launch agent, collect URLs and findings
+2. Structure   → Create directories, copy shared references, write CLAUDE.md
+3. Wisdom      → Write wisdom-catalog.md from research (failure stories, insights, heuristics)
+4. Framework   → Write {domain}-framework.md (decision trees, checklists, tables)
+5. Skill       → Write SKILL.md (frontmatter, role statement, process steps, outputs, principles)
+6. Audit       → Write {audit}.py (automated validation checks)
+7. Sources     → Write sources.md (every URL, organized by category)
+8. Verify      → Check files exist, syntax passes, references match, URLs counted
+9. Commit      → Clear commit message, then move to next skill
+```
 
-Each session picked up from the previous one's commits. The checklist and pipeline roles document served as the persistent roadmap across sessions.
-
----
-
-## Adapting this for your domain
-
-This process works for any multi-step expert workflow:
-
-1. **Map the real process** — study how professionals actually do it
-2. **Identify the roles** — each role becomes a skill
-3. **Write the spec** — inputs, outputs, responsibilities for each role
-4. **Write the checklist** — what research each skill needs, what wisdom to find
-5. **Build sequentially** — respect dependencies, research before writing
-6. **Audit against the spec** — don't trust that it's right, verify it
-7. **Fix what you find** — audit without action is theater
-
-The domain doesn't matter. The process does.
+After all skills: audit the full pipeline against the spec, fix findings by priority, write documentation.
