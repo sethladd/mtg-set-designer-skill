@@ -139,6 +139,18 @@ For every card, populate the 5-field art description format:
 }
 ```
 
+**Why this format differs from WotC's official format:** WotC's published art briefs use Setting, Color, Location, Action, Focus, Mood (as documented by Winona Nelson and seen in Ultimate Masters art descriptions). Our pipeline uses a deliberately adapted format optimized for two things: (1) AI image generation, where explicit palette and composition framing produce better results than abstract "Color" and "Setting" fields, and (2) automated validation, where concrete fields like "palette" and "frame" can be checked programmatically. The mapping is:
+
+| WotC Field | Our Field | Why |
+|------------|-----------|-----|
+| Setting + Location + Action | **scene** | Fused into a single narrative prompt — AI generators work better with one cohesive scene description than three separate fields |
+| Color | **palette** | WotC "Color" means card color identity + mood. We separate this into explicit color names for the art, which are more actionable for both artists and AI tools |
+| Focus | **focus** | Identical purpose — the single primary visual element |
+| Mood | **mood** | Identical purpose — the emotional register |
+| *(not in WotC format)* | **frame** | Added because WotC art directors communicate framing verbally or through reference images. Since our pipeline has no verbal back-channel, composition must be specified explicitly |
+
+This adaptation preserves the intent of WotC's format while making each field independently validatable and AI-generation-ready.
+
 **Field guidelines:**
 - **scene**: 15-50 words. A specific moment, referencing world-specific elements. Include subject, environment, and action
 - **focus**: 3-8 words. ONE noun phrase. Never use "and"
