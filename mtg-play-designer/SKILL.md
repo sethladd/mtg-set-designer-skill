@@ -209,10 +209,38 @@ Generate these files:
 
 **CRITICAL PROCESS CHECK:** After this skill runs, ANY subsequent modification to cards — even "small" stat changes, even "obvious" fixes — must be flagged for re-evaluation. The most spectacular Play Design failures in history (Oko, Nadu, Skullclamp) were all caused by post-testing changes. If the card file is modified after this skill completes, re-run at minimum the Rate Card Test and Combo Scan on the modified cards.
 
+## Feedback loop protocol
+
+This skill participates in a feedback loop with `mtg-set-designer`. When running inside the pipeline orchestrator (`mtg-set-pipeline`), the loop is managed automatically. When running standalone, follow this protocol:
+
+### Severity routing
+
+Every flagged card in the play design report should be classified into one of three risk levels:
+
+| Risk Level | Criteria | Action |
+|------------|----------|--------|
+| **Low** | Stat adjustments only (P/T off by 1, mana cost needs +1) | Play Designer adjusts numbers directly in `set.json`. No loop back to Set Designer. |
+| **Medium** | Card needs mechanical redesign (ability is problematic, play pattern is unfun, archetype is unbalanced) | Send `play_design_report.md` back to `mtg-set-designer` with flagged cards and recommended changes. Set Designer revises, then Play Design re-runs on the updated `set.json`. |
+| **High** | Format-warping card, degenerate combo with existing format staples, or mechanic that fundamentally breaks a format | **Escalate to user.** This level of problem may require re-running Vision Design or accepting a known risk. Play Design does not fix this alone. |
+
+### Iteration limits
+
+- **Maximum 2 review passes** for medium-risk loops. If medium-risk flags remain after two passes, escalate to user.
+- **Convergence check:** If pass 2 produces MORE flags than pass 1, halt immediately and escalate — the revisions are introducing new problems.
+- Low-risk adjustments are NOT loops — they're direct fixes within this skill's authority.
+
+### Classifying risk level
+
+A flag is **low** if: the fix is purely numerical (change a number on the card without changing what the card does).
+
+A flag is **medium** if: the card needs a different ability, a different role in the set, or a structural change to how it plays. The card's IDENTITY changes, not just its numbers.
+
+A flag is **high** if: the problem affects the FORMAT, not just the card. A two-card infinite combo with a Modern staple, a mechanic that eliminates interaction, or a card that would require banning — these are format-level problems that no amount of number-tweaking fixes.
+
 ## Output format
 
 ### `play_design_report.md`
-A markdown document containing all audit results, competitive analysis, combo scan, Commander evaluation, play-pattern assessment, number changes, and risk register.
+A markdown document containing all audit results, competitive analysis, combo scan, Commander evaluation, play-pattern assessment, number changes, and risk register. **Each flagged card must include its risk level classification (low/medium/high) to enable proper feedback routing.**
 
 ### `set.json` (updated)
 The card file with finalized numbers. Same schema as input, with modifications documented in the report.

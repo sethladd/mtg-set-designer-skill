@@ -160,6 +160,32 @@ Reviewed [N] cards. Found [X] breaks, [Y] significant bends, [Z] noted bends.
 **Colors with most flags:** [list]
 ```
 
+## Feedback loop protocol
+
+This skill participates in a feedback loop with `mtg-set-designer`. When running inside the pipeline orchestrator (`mtg-set-pipeline`), the loop is managed automatically. When running standalone, follow this protocol:
+
+### When to trigger the loop
+
+If the review produces ANY cards rated **3 (significant bend)** or **4 (break)**, the review should be sent back to the Set Designer for revisions:
+
+1. Deliver `color_pie_review.md` to `mtg-set-designer` with the flagged cards and specific fix recommendations
+2. Set Designer revises the flagged cards (not the entire set — only cards rated 3+)
+3. Re-run this Color Pie Review on the updated `set.json`
+
+### Iteration limits
+
+- **Maximum 2 review passes.** If cards rated 3+ remain after two passes, escalate to the user for a decision (accept the bends or redesign more aggressively)
+- **Convergence check:** If pass 2 produces MORE flags than pass 1, halt immediately and escalate — the revisions are introducing new problems, indicating a systemic issue that card-by-card fixes won't solve
+
+### Severity routing
+
+| Rating | Action |
+|--------|--------|
+| 1 (Fine) | No action needed |
+| 2 (Noted bend) | Document but proceed — acceptable with justification |
+| 3 (Significant bend) | **Send back to Set Designer** with specific fix recommendation |
+| 4 (Break) | **Send back to Set Designer** — this card MUST change before proceeding |
+
 ## Reference files
 
 - `references/mechanical-color-pie.md` — The canonical primary/secondary/tertiary assignments for every major effect. **Read this before every review.** It's organized by effect category (removal, card draw, counterspells, etc.) with the color assignments and the reasoning behind each.

@@ -249,6 +249,37 @@ Address any remaining errors. The set is done when:
 3. Design doc covers all decisions and assumptions
 4. A Set Designer reading the outputs cold would understand what was built and why
 
+## Receiving feedback
+
+After producing `set.json`, the set passes through two quality gate reviews: Color Pie Review and Play Design. Either or both may send cards back for revision.
+
+### From Color Pie Review
+
+If `color_pie_review.md` flags cards rated 3 (significant bend) or 4 (break):
+
+1. Read the review's specific fix recommendations for each flagged card
+2. Revise ONLY the flagged cards — do not rebuild the entire set
+3. For each revision, re-apply the relevant steps from the design process (Steps 2-10) to ensure the fix doesn't break archetype support, mana curves, or as-fan
+4. Resubmit the updated `set.json` for another Color Pie Review pass
+
+### From Play Design
+
+If `play_design_report.md` flags cards at **medium risk** (card needs redesign):
+
+1. Read the report's analysis of WHY each card was flagged and the recommended change direction
+2. Revise the flagged cards — redesign abilities, shift roles, or restructure the card's place in the set
+3. Re-run balance checks (Step 9) on the revised cards to ensure changes don't cascade into new balance problems
+4. Resubmit the updated `set.json` for another Play Design pass
+
+**Low-risk flags** (stat adjustments) are handled by Play Design directly — they don't come back to Set Design.
+
+**High-risk flags** (format-warping) are escalated to the user, who may request a more fundamental revision.
+
+### Iteration limits
+
+- Maximum **2 revision passes** per reviewer. If issues persist after two passes, the problem is escalated to the user — not looped again.
+- If a revision pass introduces MORE issues than it fixes, stop and escalate. The problem is systemic and card-by-card fixes won't solve it.
+
 ## Output format
 
 ### `set.json`
