@@ -25,10 +25,24 @@ All web references consulted during the creation of the MTG Set Designer skill.
 
 ### Color Pie & Mechanics
 
-- [Mechanical Color Pie 2021](https://magic.wizards.com/en/news/making-magic/mechanical-color-pie-2021) — Comprehensive color pie breakdown by mechanic
+- [Mechanical Color Pie 2021](https://magic.wizards.com/en/news/making-magic/mechanical-color-pie-2021) — Comprehensive color pie breakdown by mechanic (canonical list of every ability with primary/secondary/tertiary designations per color)
+- [Mechanical Color Pie 2021 Changes](https://magic.wizards.com/en/news/making-magic/mechanical-color-pie-2021-changes) — Detailed explanations of every change from 2017 version and design philosophy behind each shift
+- [Let's Talk Color Pie](https://magic.wizards.com/en/news/making-magic/lets-talk-color-pie) — Foundational color pie principles, core values of each color, design relationships and evolution
+- [The Council of Colors, Revisited](https://magic.wizards.com/en/news/making-magic/the-council-of-colors-revisited) — How colors are evaluated, Council structure, design challenges by color, four-tier judgment framework (Fine, Second Look, Strongly Reconsider, Must Change)
+- [The Council of Colors](https://magic.wizards.com/en/news/making-magic/council-colors-2016-08-22) — Original Council of Colors article explaining the evaluation system
+- [Mechanical Color Pie 2017](https://magic.wizards.com/en/news/making-magic/mechanical-color-pie-2017-2017-06-05) — Previous comprehensive color pie breakdown for historical reference
 - [Bleeding Cool](https://magic.wizards.com/en/news/making-magic/bleeding-cool-2015-04-06) — Color pie bending vs. breaking, secondary color allocation
 - [Ability Word to Your Mother](https://magic.wizards.com/en/news/making-magic/ability-word-your-mother-2008-07-28) — Keyword vs. ability word vs. named mechanic distinctions
 - [Typal Through the Years, Part 3](https://magic.wizards.com/en/news/making-magic/typal-through-the-years-part-3) — Creature type synergies across sets
+- [Deciduous](https://magic.wizards.com/en/news/making-magic/deciduous-2022-03-28) — Evergreen vs. deciduous keyword distinction and availability strategy
+- [Keyword Play](https://magic.wizards.com/en/news/making-magic/keyword-play-2007-06-18) — Overview of keyword design strategy across colors
+
+### Multicolor & Hybrid Design Philosophy
+
+- [As Good as Gold](https://magic.wizards.com/en/news/making-magic/good-gold-2018-09-04) — Gold/multicolor card design principles: synergy, parallelism, mirroring, common targets; examples like Sphinx's Revelation and Recoil
+- [Goldfingers](https://magic.wizards.com/en/news/making-magic/goldfingers-2009-04-17) — Multicolor design challenges, subtlety, holistic design, finding overlap for basic effects
+- [The History of Hybrid, Part 1](https://magic.wizards.com/en/news/making-magic/the-history-of-hybrid-part-1) — Hybrid mana "or" philosophy vs. gold "and" philosophy; hybrid enables monocolor splash
+- [The History of Hybrid, Part 2](https://magic.wizards.com/en/news/making-magic/the-history-of-hybrid-part-2) — Hybrid design constraints, multiple hybrid symbols, balance between two-color pairs, complexity management
 
 ### Complexity & New World Order
 
@@ -56,6 +70,17 @@ All web references consulted during the creation of the MTG Set Designer skill.
 - [A Lorwyn Lorwyn Situation](https://magic.wizards.com/en/news/making-magic/a-lorwyn-lorwyn-situation-2007-09-10) — Lorwyn tribal design case study
 - [Kamigawa Mechanics](https://magic.wizards.com/en/news/making-magic/mechanics-2013-09-02) — Kamigawa's parasitic mechanics cautionary tale
 - [Drive to Work Podcast Archive](https://magic.wizards.com/en/news/making-magic/drive-work-podcast-archive-2013-08-09-0) — Rosewater's design podcast
+
+### Vision Design Handoffs & Failure Stories
+
+- [Bloomburrow Vision Design Handoff, Parts 1-3](https://magic.wizards.com/en/news/making-magic/bloomburrow-vision-design-handoff-part-1) — Four pillars, Fellowship mechanic (cut by Set Design), Offspring, archetype web
+- [Kamigawa: Neon Dynasty Vision Design Handoff, Parts 1-2](https://magic.wizards.com/en/news/making-magic/kamigawa-neon-dynasty-vision-design-handoff-part-1-2022-02-07) — Tradition vs. modernity, enchantments vs. artifacts, Modified bridge
+- [Aetherdrift Vision Design Handoff, Part 1](https://magic.wizards.com/en/news/making-magic/aetherdrift-vision-design-handoff-part-1) — Recent handoff structure
+- [Wilds of Eldraine Vision Design Handoff, Part 1](https://magic.wizards.com/en/news/making-magic/wilds-of-eldraine-vision-design-handoff-document-part-1) — Fairy tale re-exploration
+- [Lessons Learned, Part 4 (Rosewater)](https://magic.wizards.com/en/news/making-magic/lessons-learned-part-4) — BFZ split identity failure, "wrong set" diagnosis
+- [State of Design 2014 (Rosewater)](https://magic.wizards.com/en/news/making-magic/state-design-2014) — Born of the Gods invisible set, Inspired failure
+- [State of Design 2016 (Rosewater)](https://magic.wizards.com/en/articles/archive/making-magic/state-design-2016-2016-08-29) — BFZ complexity, Converge issues
+- [The Making of a Dynasty, Part 1 (Rosewater)](https://magic.wizards.com/en/news/making-magic/making-dynasty-part-1-2022-01-27) — NEO vs original Kamigawa, vision clarity comparison
 
 ## Official Wizards of the Coast — Feature Articles
 
@@ -131,6 +156,44 @@ All web references consulted during the creation of the MTG Set Designer skill.
 - [Designing Middle-earth — WotC](https://magic.wizards.com/en/news/feature/designing-the-lord-of-the-rings-tales-of-middle-earth) — LotR set design philosophy, knowledge pyramid, flavor text strategy
 - [Designing Universes Beyond — WotC](https://magic.wizards.com/en/news/making-magic/designing-universes-beyond) — Rosewater on the UB design framework
 - [Universes Beyond — MTG Wiki](https://mtg.fandom.com/wiki/Universes_Beyond) — Overview of all UB products and their mechanical innovations
+- [The Challenges of Making Universes Beyond (Rosewater)](https://magic.wizards.com/en/news/making-magic/the-challenges-of-making-universes-beyond) — Eight design challenges: color imbalance, creature grid gaps, missing mechanics, early lockdown
+- [Designing for the Uninformed (Rosewater)](https://magic.wizards.com/en/news/making-magic/designing-for-the-uninformed) — Knowledge pyramid concept, lenticular design for IP/non-IP players
+- [Final Fantasy Vision Design, Part 1 (WotC)](https://magic.wizards.com/en/news/feature/final-fantasy-vision-design-part-1) — 5-tier rating system, 600+ concept spreadsheet methodology
+- [Final Fantasy: A Plethora of Choices (WotC)](https://magic.wizards.com/en/news/feature/final-fantasy-a-plethora-of-choices) — Scope management across 16 games, franchise-wide elements
+- [Designing Warhammer 40K Commander Decks (WotC)](https://magic.wizards.com/en/news/feature/designing-warhammer-40000-commander-decks-2022-09-19) — Color imbalance solutions, faction-to-color mapping
+- [Designing Doctor Who (WotC)](https://magic.wizards.com/en/news/feature/designing-magic-the-gathering-doctor-who) — Audience-era division, time counter complexity lessons
+- [Stepping Into the Ring, Part 3 (Rosewater)](https://magic.wizards.com/en/news/making-magic/stepping-into-the-ring-part-3) — LotR character prioritization, 75 legendary creatures
+- [Universes Within — MTG Wiki](https://mtg.fandom.com/wiki/Universes_Within) — Mechanical identity preserved, name/art change only
+- [TMNT Reception (Magic Untapped)](https://magicuntapped.com/index.php/news/local-game-stores-comment-on-mtgs-tmnt-reception) — Failed audience conversion, negative store reception
+- [Spider-Man UB Problems (MTGStocks)](https://www.mtgstocks.com/news/20993-the-growing-problem-with-universes-beyond) — Tone mismatch, product fragmentation
+- [Assassin's Creed - Who Is It For? (Wargamer)](https://www.wargamer.com/magic-the-gathering/mtg-assassins-creed-who-is-it-for) — Product-audience mismatch, shallow IP mining
+- [Green Balance in UB (Screen Rant)](https://screenrant.com/magic-the-gathering-universes-beyond-colors-green-balance/) — Green consistently hardest color to fill
+
+## Worldbuilding & Creative Design
+
+- [State of Design 2018](https://magic.wizards.com/en/news/making-magic/state-design-2018-2018-08-20) — Rosewater's retrospective including Ixalan tribal failures, lack of cross-faction synergy
+- [State of Design 2021](https://magic.wizards.com/en/news/making-magic/state-design-2021-08-16) — Kaldheim scope critique ("too much in it"), Strixhaven borrowed-resonance concerns
+- [More Than Meets the Ikoria](https://magic.wizards.com/en/news/making-magic/more-meets-ikoria-2020-04-06) — Ikoria mutate design: creative-mechanical divergence, companion overload
+- [Lessons Learned, Part 6](https://magic.wizards.com/en/news/making-magic/lessons-learned-part-6) — Rosewater's post-mortem lessons including "one high-maintenance mechanic per set"
+- [The Rabiah Scale, Part 3](https://magic.wizards.com/en/news/making-magic/the-rabiah-scale-part-3) — Criteria for revisitable worlds: popularity, mechanical identity, creative identity, expansion room
+- [Rabiah Scale — MTG Wiki](https://mtg.fandom.com/wiki/Rabiah_Scale) — Full scale of plane revisitability with ratings and reasoning
+- [Faction Packed](https://magic.wizards.com/en/news/making-magic/faction-packed-2018-10-15) — Rosewater's four requirements for factions: mechanical identity, creative identity, relational definition, emotional resonance
+- [Making of Kaladesh](https://magic.wizards.com/en/news/magic-story/making-kaladesh-2016-11-09) — Full concept push walkthrough, filigree origin, cultural consultation process
+- [Kaladesh Ingredients, Part 1](https://magic.wizards.com/en/news/making-magic/kaladesh-ingredients-part-1-2016-09-05) — Kaladesh design origins and world-mechanic co-evolution
+- [Kaladesh Ingredients, Part 2](https://magic.wizards.com/en/news/making-magic/kaladesh-ingredients-part-2-2016-09-19) — Kaladesh design continued
+- [Bloomburrow Vision Design Handoff, Part 1](https://magic.wizards.com/en/news/making-magic/bloomburrow-vision-design-handoff-part-1) — 10 animals to 10 color pairs creature-type mapping
+- [Bloomburrow Vision Design Handoff, Part 2](https://magic.wizards.com/en/news/making-magic/bloomburrow-vision-design-handoff-part-2) — Creature type selection criteria, stat constraints
+- [Bloomburrow Vision Design Handoff, Part 3](https://magic.wizards.com/en/news/making-magic/bloomburrow-vision-design-handoff-part-3) — Three-color synergy work, cross-archetype balance
+- [The Bloom of the Burrow, Part 1](https://magic.wizards.com/en/news/making-magic/the-bloom-of-the-burrow-part-1) — Bloomburrow design decisions, animal-to-color assignment
+- [The Bloom of the Burrow, Part 2](https://magic.wizards.com/en/news/making-magic/the-bloom-of-the-burrow-part-2) — Bloomburrow design continued
+- [Schools in Session, Part 1](https://magic.wizards.com/en/news/making-magic/schools-in-session-part-1) — Strixhaven design, bottom-up from instants/sorceries
+- [Doug Beyer — MTG Wiki](https://mtg.fandom.com/wiki/Doug_Beyer) — Creative lead profile, worldbuilding philosophy
+- [Savor the Flavor column archive — MTG Wiki](https://mtg.fandom.com/wiki/Savor_the_Flavor) — Doug Beyer's creative philosophy columns
+- [Achieving Two Worlds Every Year (GDC 2017, Jeremy Jarvis)](https://gdcvault.com/play/1024044/Achieving-Two-Worlds-Every-Year) — Worldbuilding pipeline: prewriting, concept push, world guide, art descriptions
+- [Stages of Design (Rosewater)](https://magic.wizards.com/en/news/making-magic/stages-of-design) — How design and creative teams interact at each pipeline stage
+- [There's Way Too Many Legendary Creatures (EDHREC)](https://edhrec.com/articles/theres-way-too-many-legendary-creatures-in-recent-magic-sets) — Legendary density inflation analysis, modern targets
+- [MaRo Confirms Fewer Legendaries (Draftsim)](https://draftsim.com/mtg-fewer-legendary-creatures/) — WotC intentionally reducing legendary counts in in-universe sets
+- [Legendary — MTG Wiki](https://mtg.fandom.com/wiki/Legendary) — Historical legendary creature density data
 
 ## Art Direction & Card Illustration
 
