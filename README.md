@@ -98,6 +98,55 @@ The pipeline designs for the current product format (Play Boosters replaced Draf
 - **60 rares, 20 mythics**
 - **~261 unique cards total**
 
+## Installation
+
+Clone the repo, then add it to Claude Code's project skill path. Each skill directory contains a `SKILL.md` that Claude will automatically discover.
+
+### Option 1: Use the repo directly as your working directory
+
+```bash
+git clone https://github.com/sethladd/mtg_set_skill.git
+cd mtg_set_skill
+claude
+```
+
+Claude Code automatically loads skills from the current project. All 12 skills will be available immediately.
+
+### Option 2: Install skills into an existing project
+
+If you want to use these skills from a different project directory, add this repo's path to your Claude Code settings. Create or edit `~/.claude/settings.json`:
+
+```json
+{
+  "skills": [
+    "/path/to/mtg_set_skill/mtg-set-pipeline",
+    "/path/to/mtg_set_skill/mtg-exploratory-designer",
+    "/path/to/mtg_set_skill/mtg-worldbuilder",
+    "/path/to/mtg_set_skill/mtg-ip-researcher",
+    "/path/to/mtg_set_skill/mtg-vision-designer",
+    "/path/to/mtg_set_skill/mtg-set-designer",
+    "/path/to/mtg_set_skill/mtg-color-pie-reviewer",
+    "/path/to/mtg_set_skill/mtg-play-designer",
+    "/path/to/mtg_set_skill/mtg-editor",
+    "/path/to/mtg_set_skill/mtg-creative-writer",
+    "/path/to/mtg_set_skill/mtg-art-director",
+    "/path/to/mtg_set_skill/mtg-product-architect"
+  ]
+}
+```
+
+Replace `/path/to/` with the actual path where you cloned the repo.
+
+### Verify installation
+
+Start Claude Code and ask:
+
+```
+What skills do you have available for MTG set design?
+```
+
+Claude should list the pipeline skills. You can also invoke any skill directly by name (e.g., "use the mtg-exploratory-designer skill").
+
 ## Running the pipeline
 
 Start with the orchestrator:
