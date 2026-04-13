@@ -41,7 +41,28 @@ Establish:
 
 **Rules verification for new mechanics:** If the set introduces novel mechanics, verify they work within the comprehensive rules before templating. Consult `references/comprehensive-rules.txt` (the official MTG Comprehensive Rules) to check that the mechanic's templating is consistent with existing rules infrastructure — timing, layers, state-based actions, and interaction with replacement effects. If a mechanic's rules interaction is ambiguous, flag it for user review rather than guessing at templating. In the real WotC pipeline this is a Rules Manager consultation; in our pipeline, the comprehensive rules document serves as the reference.
 
-### Step 2: Run the automated audit
+### Step 2: Research latest templating conventions
+
+Before editing, check for any templating changes that may have occurred since the skill's reference files were written.
+
+**What to research:**
+- Recent Oracle templating updates — any new standard phrasings introduced in the last 2-3 sets
+- Recent comprehensive rules changes — new rules infrastructure that affects templating
+- Any new evergreen or deciduous keywords added recently
+
+**Before fetching anything, check existing knowledge:**
+1. Read `references/sources.md` for URLs already cataloged
+2. Check the `sources/` directory for cached content — use cached files less than 7 days old
+3. Only fetch from the web for gaps
+
+**Cache every fetched page locally:**
+- Convert HTML to markdown and save in `sources/` with YAML frontmatter (`url`, `fetched`)
+- Slugified filenames (e.g., `oracle-changes-2026.md`)
+- PDFs: save as-is with sidecar `.meta.yml`
+
+Record all URLs in `references/sources.md`.
+
+### Step 3: Run the automated audit
 
 ```bash
 python scripts/templating_audit.py set.json --out editing_report.md
@@ -57,7 +78,7 @@ This runs 8 automated checks:
 7. **Text Box Budget** — line count vs. rarity limits
 8. **Redundant/Outdated Text** — "discard from hand," "put into graveyard from battlefield"
 
-### Step 3: Manual templating pass
+### Step 4: Manual templating pass
 
 For EVERY card in the file, run the 18-point checklist from `references/templating-framework.md`:
 
@@ -80,7 +101,7 @@ For EVERY card in the file, run the 18-point checklist from `references/templati
 17. **Duration specified** — temporary effects include "until end of turn"?
 18. **Conditional shuffle** — "may" searches have conditional shuffle?
 
-### Step 4: Apply modern self-reference templates
+### Step 5: Apply modern self-reference templates
 
 For every card, apply the self-reference decision tree:
 
@@ -89,7 +110,7 @@ For every card, apply the self-reference decision tree:
 - **Cards in other zones:** Use "this card" for graveyard, hand, library, and exile abilities
 - **Exceptions:** Legendary permanents may use their character name. Granted abilities (via Auras/Equipment) use the card name. Transform DFCs use face names.
 
-### Step 5: Standardize trigger wording
+### Step 6: Standardize trigger wording
 
 - **"When"** for one-time events: ETB, dies, single occurrence
 - **"Whenever"** for repeatable events: attacks, casts a spell, gains life
@@ -97,7 +118,7 @@ For every card, apply the self-reference decision tree:
 
 Verify every trigger word matches the expected frequency. A death trigger should use "when this creature dies" (one-time), not "whenever" (which implies it can die multiple times without leaving).
 
-### Step 6: Apply keyword and reminder text
+### Step 7: Apply keyword and reminder text
 
 **Keywords:** List on first line, comma-separated, lowercase: "flying, vigilance"
 
@@ -109,7 +130,7 @@ Verify every trigger word matches the expected frequency. A death trigger should
 
 **Set-specific keywords:** Each new mechanic needs consistent reminder text. Verify the reminder text appears on every card at common/uncommon that uses the mechanic.
 
-### Step 7: Verify text box fitting
+### Step 8: Verify text box fitting
 
 For each card, estimate the text box usage:
 
@@ -129,7 +150,7 @@ If a card exceeds its budget:
 3. Note that the card would need reduced font (rare/mythic only)
 4. If still over, flag for mechanic simplification
 
-### Step 8: Assign collector numbers
+### Step 9: Assign collector numbers
 
 Run collector number assignment:
 
@@ -139,7 +160,7 @@ python scripts/templating_audit.py set.json --assign-numbers --out editing_repor
 
 Order: White → Blue → Black → Red → Green → Multicolor → Artifacts → Lands. Within each section, alphabetical by card name.
 
-### Step 9: Check name uniqueness
+### Step 10: Check name uniqueness
 
 For every card name, verify it doesn't conflict with an existing Magic card. Flag:
 - Exact duplicates (same name as an existing card)
@@ -147,7 +168,7 @@ For every card name, verify it doesn't conflict with an existing Magic card. Fla
 
 Note: In a real pipeline, this would query Scryfall's API. In this skill, flag any names that the editor recognizes as existing Magic cards and recommend checking the remainder against Scryfall.
 
-### Step 10: Produce final outputs
+### Step 11: Produce final outputs
 
 **`set.json` (templated)** — The card file with:
 - All rules text corrected to modern conventions

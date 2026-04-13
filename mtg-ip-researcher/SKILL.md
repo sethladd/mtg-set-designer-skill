@@ -63,6 +63,19 @@ Conduct at least 10-15 searches to build adequate coverage. Target these source 
 
 The goal is not encyclopedic completeness — it is **decisive prioritization**. You need to know which 50 elements are sacred cows, not catalog every minor character who ever appeared.
 
+**Before fetching anything, check existing knowledge:**
+1. Read `references/sources.md` for URLs already cataloged
+2. Check the `sources/` directory for cached content from prior runs — if a cached file exists and is less than 7 days old, use it
+3. Only fetch from the web if no relevant cached or built-in content exists
+
+**Cache every fetched page locally:**
+- Convert HTML to markdown and save in a `sources/` directory
+- Add YAML frontmatter: `url` (original URL) and `fetched` (ISO date)
+- Use a slugified filename (e.g., `lotr-wiki-gandalf.md`)
+- For PDFs: save as-is with a sidecar `.meta.yml`
+
+Record all URLs in `references/sources.md`.
+
 ### Step 4: Build the catalogs
 
 Produce five catalogs following the templates in `references/ip-research-framework.md`:

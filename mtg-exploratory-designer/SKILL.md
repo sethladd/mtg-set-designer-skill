@@ -42,11 +42,26 @@ Before generating any mechanics, research the user's concept deeply. This is not
 - Search for "[your theme] tropes and conventions" — what do audiences expect from this theme? (These expectations are your resonance opportunities)
 - If this is a Universes Beyond IP, search for "[IP name] game adaptations" and "[IP name] key mechanics abilities powers"
 
+**Before fetching anything, check existing knowledge:**
+1. Read `references/sources.md` — URLs already cataloged from skill-building research may be directly relevant
+2. Check the `sources/` directory for cached content from prior runs. If a cached file exists and is less than 7 days old, read it from disk instead of re-fetching
+3. Only fetch from the web if no relevant cached or built-in content exists
+
 **For each useful source found:**
 - Extract specific ideas, failure stories, design principles, or concept details
-- Record the full URL in a working list — these will go into `sources.md` when the exploration is complete
+- Record the full URL in `references/sources.md`
 
-**Produce `sources.md`** alongside the exploration document, recording every URL that informed your research. Format: `- [Title](URL) — what was extracted or learned`.
+**Cache every fetched page locally:**
+- Convert HTML to markdown and save in a `sources/` directory
+- Add YAML frontmatter with the original URL and fetch date:
+  ```yaml
+  ---
+  url: https://example.com/article
+  fetched: 2026-04-12
+  ---
+  ```
+- Use a slugified filename based on the page title or URL path (e.g., `rosewater-lessons-learned-kaladesh.md`)
+- For PDFs: save as-is without conversion, with a sidecar `{filename}.meta.yml` containing `url` and `fetched`
 
 This research step prevents three common failures: (1) designing mechanics for a concept you only superficially understand, (2) reinventing mechanics that have already been tried and failed, and (3) missing obvious mechanical territory that domain experts have already identified.
 

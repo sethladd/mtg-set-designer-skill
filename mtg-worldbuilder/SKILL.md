@@ -28,7 +28,30 @@ Before inventing anything, establish:
 - **What's the emotional promise?** Every set promises a feeling. "You're surviving a haunted world" (Innistrad). "You're navigating guild politics" (Ravnica). "You're exploring dangerous terrain" (Zendikar). Name the feeling.
 - **What existing Magic territory overlaps?** Check `references/case-studies.md`. If the concept resembles an existing plane, you must differentiate aggressively — don't build "Innistrad but with different monsters."
 
-### Step 2: Establish the world's argument
+### Step 2: Research the theme's real-world foundations
+
+Before inventing anything, research the real-world cultures, mythology, and natural phenomena that inspire the world concept. This grounds the worldbuilding in specific, authentic detail rather than generic fantasy.
+
+**What to research:**
+- Cultural and historical references for the world's theme (if "Slavic folklore," research actual Slavic mythology, naming conventions, creature types; if "bioluminescent deep sea," research real deep-ocean ecosystems, pressure, chemosynthesis)
+- Architectural and environmental references (what do buildings, landscapes, and materials look like in this cultural context?)
+- Creature mythology from the relevant traditions (what monsters, spirits, and beasts exist in this folklore?)
+- Recent Magic sets that share thematic territory — what visual and creative choices did they make?
+
+**Before fetching anything, check existing knowledge:**
+1. Read `references/sources.md` for URLs already cataloged
+2. Check the `sources/` directory for cached content from prior runs — if a cached file exists and is less than 7 days old, use it
+3. Only fetch from the web if no relevant cached or built-in content exists
+
+**Cache every fetched page locally:**
+- Convert HTML to markdown and save in a `sources/` directory
+- Add YAML frontmatter: `url` (original URL) and `fetched` (ISO date)
+- Use a slugified filename (e.g., `slavic-mythology-creatures.md`)
+- For PDFs: save as-is with a sidecar `.meta.yml`
+
+Record all URLs in `references/sources.md`.
+
+### Step 3: Establish the world's argument
 
 Write the world's argument as a single declarative sentence:
 
@@ -46,7 +69,7 @@ If the argument doesn't generate at least three of four, sharpen or broaden it.
 
 **The Strixhaven Warning:** If your argument could equally describe an existing fictional property (a magical school with rival houses = Hogwarts), you haven't made it distinctively Magic. Your world must make an argument that could only exist as a Magic plane.
 
-### Step 3: Design factions and their color mappings
+### Step 4: Design factions and their color mappings
 
 Factions are the load-bearing structure of a Magic world. Read `references/worldbuilding-framework.md` for the full faction design framework and `references/wisdom-catalog.md` for the failure stories.
 
@@ -71,7 +94,7 @@ For each faction, define:
 
 *The Gray Zone Requirement:* Between any two adjacent factions, identify a gray zone — a space where their philosophies overlap or conflict interestingly. If factions are perfectly siloed, the world feels artificial.
 
-### Step 4: Build the creature type ecology
+### Step 5: Build the creature type ecology
 
 Map creature types to colors and factions. This is where worldbuilding and gameplay intersect most directly. Consult `references/card-types.md` for the full 328-type catalog. Prefer existing creature types over invented ones — players connect with familiar types.
 
@@ -89,7 +112,7 @@ Produce a creature-type-to-color matrix (see template in `references/worldbuildi
 
 **The Lorwyn Lesson:** If your creature type ecology is tight (few types per faction), consider whether you need a joiner type — like Changeling (counts as every creature type) — to prevent tribal payoffs from being too parasitic.
 
-### Step 5: Define geography, visual identity, and tone
+### Step 6: Define geography, visual identity, and tone
 
 **Geography:** Define 3-5 major geographic regions, each associated with a faction or color. For each region: terrain, associated faction, visual palette, key landmarks (these become land card names), and inhabitants. At least one region should be contested territory — geography drives conflict.
 
@@ -114,7 +137,7 @@ The through-line motif must:
 - The relationship between hope and threat
 - The feeling a player should have while playing the set
 
-### Step 6: Create key characters
+### Step 7: Create key characters
 
 Define 5-10 named characters who anchor the world's story and serve as legendary creatures in the set. See `references/worldbuilding-framework.md` for density targets by rarity.
 
@@ -138,7 +161,7 @@ For each character:
 
 *The play pattern must match the cultural archetype:* If your character is a slow, inevitable force, their card should play as a slow, inevitable force. If they're a trickster, their card should play tricky. The disconnect between creative identity and mechanical play pattern is one of the most common character design failures.
 
-### Step 7: Assemble the world guide
+### Step 8: Assemble the world guide
 
 Compile all the above into `world_guide.md` using the output format below. Before finalizing, run the validation script:
 

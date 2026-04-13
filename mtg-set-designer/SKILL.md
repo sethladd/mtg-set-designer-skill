@@ -47,11 +47,33 @@ Accept these inputs:
 Before designing anything, establish:
 - **What is the vision?** Read the three pillars, selling sentence, and target format speed. These are your north star — every card decision gets tested against them.
 - **What mechanics are locked?** Read the primary mechanics and their rarity spreads. These are your building blocks. Backup mechanics exist in case primaries fail.
+
+### Step 2: Research current design standards
+
+Before filling the skeleton, research current Magic design standards to ensure your cards match contemporary power levels and templating.
+
+**What to research:**
+- Removal standards in recent sets — what does common removal cost now? What's the modal removal spell?
+- Creature stat lines at each mana value in recent sets — calibrate your curve to current expectations
+- Recent Limited format speeds (aggro viability, average game length) for comparable set types
+- Archetype support density in recent successful Limited formats
+
+**Before fetching anything, check existing knowledge:**
+1. Read `references/sources.md` for URLs already cataloged
+2. Check the `sources/` directory for cached content — use cached files less than 7 days old
+3. Only fetch from the web for gaps
+
+**Cache every fetched page locally:**
+- Convert HTML to markdown and save in `sources/` with YAML frontmatter (`url`, `fetched`)
+- Slugified filenames (e.g., `recent-limited-removal-costs.md`)
+- PDFs: save as-is with sidecar `.meta.yml`
+
+Record all URLs in `references/sources.md`.
 - **What archetypes are defined?** Read all 10 two-color archetypes with their strategies, speeds, key mechanics, and required commons lists. These define your skeleton's structure.
 - **What prototype cards exist?** The vision card file contains ~230 prototype cards. Use these as starting points — refine, rebalance, and complete them, don't throw them away.
 - **What creative constraints exist?** For UB: the must-include list, locked flavor, and color assignments. For original sets: the world's factions, creature types, and visual identity.
 
-### Step 2: Plan the card type portfolio
+### Step 3: Plan the card type portfolio
 
 Before filling any skeleton slots, decide which non-creature permanent types the set uses. See the card type planning table in `references/set-design-framework.md`.
 
@@ -63,7 +85,7 @@ If the set is based on a well-known IP and you say "no" to Battles (for a milita
 
 Reserve 8-15 skeleton slots for non-creature permanents.
 
-### Step 3: Fill the design skeleton — commons first
+### Step 4: Fill the design skeleton — commons first
 
 Load the design skeleton from `references/design_skeleton.json`. Walk through it slot by slot, starting with commons.
 
@@ -90,7 +112,7 @@ For each common slot:
 
 **The NWO Common Budget:** No more than ~16 commons (20% of 81) should be red-flagged as complex. See `references/new-world-order.md` for the red-flag checklist. If you're over budget, simplify or promote complex cards to uncommon.
 
-### Step 4: Fill signpost uncommons
+### Step 5: Fill signpost uncommons
 
 Design 20 gold uncommons — 2 per archetype (1 enabler + 1 payoff). These come from the vision handoff's archetype definitions. Refine the vision's sketches into complete cards with proper mana costs, stats, and rules text.
 
@@ -98,7 +120,7 @@ Design 20 gold uncommons — 2 per archetype (1 enabler + 1 payoff). These come 
 
 **For UB:** When a named character fits an archetype naturally, make them a signpost uncommon. The character's abilities should serve the archetype's strategy, not just be a flavor showcase.
 
-### Step 5: Fill remaining uncommons, rares, and mythics
+### Step 6: Fill remaining uncommons, rares, and mythics
 
 **Uncommons (~80 remaining mono-colored + ~13 colorless):**
 - Archetype depth cards — support cards for each archetype beyond the signposts
@@ -121,7 +143,7 @@ Design 20 gold uncommons — 2 per archetype (1 enabler + 1 payoff). These come 
 
 **The Constructed Seed Rule:** Pushed rares designed for Constructed should be either (a) bad in Limited (require specific Constructed synergies) or (b) at mythic rarity (appear too infrequently to warp drafts).
 
-### Step 6: Calibrate removal
+### Step 7: Calibrate removal
 
 After filling all slots, audit the removal suite. See `references/set-design-framework.md` for the full removal calibration process.
 
@@ -136,7 +158,7 @@ After filling all slots, audit the removal suite. See `references/set-design-fra
 
 **The Amonkhet Warning:** If the aggro colors (R/W) have the best removal AND the best creatures, defensive strategies have no viable answer window. Check that defensive colors (U/B) have at least one efficient answer to the format's best threats.
 
-### Step 7: Verify archetype support
+### Step 8: Verify archetype support
 
 **The Archetype Support Count:** Each archetype needs ~14-16 supporting commons + ~8-12 supporting uncommons = ~22-28 total common+uncommon cards. Count for each of the 10 archetypes.
 
@@ -146,7 +168,7 @@ After filling all slots, audit the removal suite. See `references/set-design-fra
 
 **The Enabler-Payoff Ratio:** For every mechanic requiring enablers, enablers should outnumber payoffs ~2:1 at common. If payoffs outnumber enablers, drafters will have rewards they can never trigger (Born of the Gods' Inspired problem).
 
-### Step 8: Run balance checks — heuristic pass
+### Step 9: Run balance checks — heuristic pass
 
 Run the heuristic balance checker:
 
@@ -166,7 +188,7 @@ It checks:
 
 Fix everything flagged. Run again. Do not proceed until clean or every remaining warning is documented with deliberate justification.
 
-### Step 9: Run balance checks — simulated draft
+### Step 10: Run balance checks — simulated draft
 
 Run the draft simulator:
 
@@ -185,7 +207,7 @@ Check:
 
 **Iteration limit:** Fix obvious problems and re-run once. After the second run, document remaining flags and proceed. The simulator cannot model mechanic synergies or complex board states.
 
-### Step 10: Polish
+### Step 11: Polish
 
 Final pass on the complete file:
 - **Name-to-type coherence:** Every creature is named after a being, not an action or event
@@ -203,7 +225,7 @@ Final pass on the complete file:
 - Flavor text strategy consistent with IP catalog recommendation
 - Knowledge pyramid distribution (base-tier at mythic/rare, deep cuts at uncommon/flavor)
 
-### Step 11: Produce final outputs
+### Step 12: Produce final outputs
 
 Generate these files:
 
@@ -229,7 +251,7 @@ Generate these files:
 - Open questions and known issues
 - Assumptions made
 
-### Step 12: Validate
+### Step 13: Validate
 
 Run the schema validator:
 

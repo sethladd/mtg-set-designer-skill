@@ -54,7 +54,29 @@ Write three identity statements:
 
 *The Selling Sentence Test:* If your selling sentence requires "and" ("it's about adventure AND alien invasion"), you might have competing identities. One sentence, one identity.
 
-### Step 3: Define three pillars
+### Step 3: Research comparable sets and mechanic trends
+
+Before committing to pillars or mechanics, research what recent Magic sets have done in similar design space. This prevents accidentally replicating recent sets and surfaces proven archetype patterns.
+
+**What to research:**
+- Recent Magic sets with similar themes or mechanics — what pillars did they choose? What worked?
+- Published vision design handoff documents (Rosewater publishes these) — study the structure and decisions
+- Mechanic trends in the last 3-5 sets — what's been overused? What design space is untapped?
+- Archetype patterns in comparable Limited formats — what archetype structures produced healthy drafts?
+
+**Before fetching anything, check existing knowledge:**
+1. Read `references/sources.md` for URLs already cataloged
+2. Check the `sources/` directory for cached content — use cached files less than 7 days old
+3. Only fetch from the web for gaps
+
+**Cache every fetched page locally:**
+- Convert HTML to markdown and save in `sources/` with YAML frontmatter (`url`, `fetched`)
+- Slugified filenames (e.g., `rosewater-bloomburrow-handoff.md`)
+- PDFs: save as-is with sidecar `.meta.yml`
+
+Record all URLs in `references/sources.md`.
+
+### Step 4: Define three pillars
 
 Generate pillar candidates from three sources (emotional promise, mechanical identity, creative identity) using the methodology in `references/vision-design-framework.md`. Select exactly three.
 
@@ -75,7 +97,7 @@ Run these tests from `references/wisdom-catalog.md`:
 
 **For UB:** Pillars must respect IP constraints. A pillar that requires redesigning locked flavor or ignoring must-include characters is invalid.
 
-### Step 4: Select mechanics from exploration shortlist
+### Step 5: Select mechanics from exploration shortlist
 
 Read the recommended shortlist in `exploration_doc.md`. Select 2-4 named mechanics for the set.
 
@@ -96,7 +118,7 @@ Identify 1-2 backup mechanics from the exploration doc's lower-ranked candidates
 
 **For UB:** Prioritize system translations from the IP's system translation inventory. Mechanics that ARE the IP's systems (Rad counters, The Ring Tempts You, Saga Creatures) produce better UB sets than existing mechanics re-skinned with IP flavor.
 
-### Step 5: Design ten two-color archetypes
+### Step 6: Design ten two-color archetypes
 
 Define all 10 archetypes following `references/archetypes.md`. For each:
 - **Color pair** — WU, WB, WR, WG, UB, UR, UG, BR, BG, RG
@@ -118,7 +140,7 @@ Run these checks:
 
 **The Ixalan Warning:** Ixalan's four tribes shared NOTHING with adjacent tribes — drafts were on rails. Innistrad's blue self-mill served both UB Zombies and UG Flashback — drafts were flexible. Your archetypes must form a web, not islands.
 
-### Step 6: Write the vision handoff document
+### Step 7: Write the vision handoff document
 
 Produce `vision_handoff.md` using the template in `references/vision-design-framework.md`. Required sections:
 - Set Identity (elevator pitch, selling sentence, orientation, emotional promise)
@@ -135,7 +157,7 @@ Produce `vision_handoff.md` using the template in `references/vision-design-fram
 
 **For UB:** Add sections for: IP constraints honored, color gap compensation strategy, character density plan (character-per-rarity targets), flavor text strategy.
 
-### Step 7: Generate the draftable card file
+### Step 8: Generate the draftable card file
 
 Produce `vision_cardfile.json` following the card file generation process in `references/vision-design-framework.md`.
 
@@ -155,7 +177,7 @@ Each card follows the JSON schema from `references/set_template.json`.
 
 **For UB:** Honor the must-include list — each must-include character needs a card at the appropriate rarity. Respect character density targets (20-30% of cards as named legendaries). Apply the selected flavor text strategy.
 
-### Step 8: Run audit and validate
+### Step 9: Run audit and validate
 
 Run the validation script:
 

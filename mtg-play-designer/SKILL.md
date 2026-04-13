@@ -54,7 +54,29 @@ Read the design doc to understand:
 - **Known risks** — what did Set Design flag as potential problems?
 - **Mechanics** — what are the set's named mechanics and how do they work?
 
-### Step 2: Run the automated audit
+### Step 2: Research current competitive metagame
+
+Before evaluating cards, research the current state of competitive formats so you can assess whether cards will warp real metagames.
+
+**What to research:**
+- Current Standard metagame — top decks, format-defining cards, what strategies dominate
+- Recent banned/restricted announcements — what was banned recently and why (pattern-match against this set's cards)
+- Current Pioneer/Modern staples — cards that might combo with or be obsoleted by this set's designs
+- Recent tournament results — what's winning, what's underrepresented, what the format needs
+
+**Before fetching anything, check existing knowledge:**
+1. Read `references/sources.md` for URLs already cataloged
+2. Check the `sources/` directory for cached content — use cached files less than 7 days old
+3. Only fetch from the web for gaps
+
+**Cache every fetched page locally:**
+- Convert HTML to markdown and save in `sources/` with YAML frontmatter (`url`, `fetched`)
+- Slugified filenames (e.g., `standard-metagame-april-2026.md`)
+- PDFs: save as-is with sidecar `.meta.yml`
+
+Record all URLs in `references/sources.md`.
+
+### Step 3: Run the automated audit
 
 Run the Play Design audit script:
 
@@ -75,7 +97,7 @@ This runs 9 automated checks:
 
 Review every flag. Categorize as: **fix required**, **investigate further**, or **accept with justification**.
 
-### Step 3: Manual competitive analysis
+### Step 4: Manual competitive analysis
 
 The automated audit catches patterns. Manual analysis catches context. For each card at rare and mythic:
 
@@ -121,7 +143,7 @@ For each potential combo found, evaluate against the four criteria for healthy c
 
 Combos that fail 2+ criteria should be flagged for redesign.
 
-### Step 5: Commander scaling analysis
+### Step 6: Commander scaling analysis
 
 For every card in the set, check:
 
@@ -137,7 +159,7 @@ Flag any card that becomes broken under these multipliers. For flagged cards, re
 - Add a meaningful life cost or sacrifice cost
 - Reduce the payoff to compensate for scaling
 
-### Step 6: Play-pattern evaluation
+### Step 7: Play-pattern evaluation
 
 Evaluate each card on six axes (independently from power level):
 
@@ -150,7 +172,7 @@ Evaluate each card on six axes (independently from power level):
 
 Flag any card that scores "bad" on 2+ axes, even if its power level is acceptable. Cards that are powerful AND have play-pattern problems should be redesigned, not just recosted.
 
-### Step 7: Number finalization
+### Step 8: Number finalization
 
 For every card flagged in Steps 2-6, apply the adjustment ladder (from least to most disruptive):
 
@@ -170,7 +192,7 @@ For every card flagged in Steps 2-6, apply the adjustment ladder (from least to 
 
 Update the card file with all adjustments. Document every change and the reasoning.
 
-### Step 8: Limited format verification
+### Step 9: Limited format verification
 
 Run the Set Design balance scripts on the updated card file:
 
@@ -187,7 +209,7 @@ Verify:
 
 If adjustments in Step 7 broke Limited balance, iterate. But limit to 2 passes — diminishing returns beyond that.
 
-### Step 9: Produce final outputs
+### Step 10: Produce final outputs
 
 Generate these files:
 
@@ -205,7 +227,7 @@ Generate these files:
 
 **Format:** The updated set.json maintains the same schema as the input — same fields, same structure, with modified values where Play Design adjusted numbers.
 
-### Step 10: The Post-Testing Change Warning
+### Step 11: The Post-Testing Change Warning
 
 **CRITICAL PROCESS CHECK:** After this skill runs, ANY subsequent modification to cards — even "small" stat changes, even "obvious" fixes — must be flagged for re-evaluation. The most spectacular Play Design failures in history (Oko, Nadu, Skullclamp) were all caused by post-testing changes. If the card file is modified after this skill completes, re-run at minimum the Rate Card Test and Combo Scan on the modified cards.
 

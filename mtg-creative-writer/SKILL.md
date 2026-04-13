@@ -27,7 +27,29 @@ Then consult as needed:
 
 ## The creative writing process
 
-### Step 1: Establish the naming culture
+### Step 1: Research the theme's literary and cultural traditions
+
+Before establishing a naming culture, research the real-world literary, mythological, and linguistic traditions that the set's world draws from.
+
+**What to research:**
+- Naming conventions in the relevant cultural tradition (if the world draws from Norse culture, research Old Norse naming patterns; if Japanese, research Japanese naming conventions)
+- Mythological creatures, spirits, and concepts from the relevant folklore
+- Literary references and vocabulary specific to the theme (gothic horror vocabulary, fairy tale conventions, etc.)
+- For UB sets: source material terminology, character naming patterns, canonical quotes, and the IP's distinctive voice
+
+**Before fetching anything, check existing knowledge:**
+1. Read `references/sources.md` for URLs already cataloged
+2. Check the `sources/` directory for cached content — use cached files less than 7 days old
+3. Only fetch from the web for gaps
+
+**Cache every fetched page locally:**
+- Convert HTML to markdown and save in `sources/` with YAML frontmatter (`url`, `fetched`)
+- Slugified filenames (e.g., `norse-naming-conventions.md`)
+- PDFs: save as-is with sidecar `.meta.yml`
+
+Record all URLs in `references/sources.md`.
+
+### Step 2: Establish the naming culture
 
 Before naming a single card, define the set's linguistic identity. Write a `naming_guide.md` that documents:
 
@@ -45,7 +67,7 @@ Before naming a single card, define the set's linguistic identity. Write a `nami
 4. **Source quote inventory** — Compile quotable passages for flavor text
 5. **Zero-generic test** — Every card name must be identifiable as belonging to this IP
 
-### Step 2: Name creatures (noun phrases)
+### Step 3: Name creatures (noun phrases)
 
 For every creature card:
 1. Identify what the creature IS in the world — its role, faction, species
@@ -56,14 +78,14 @@ For every creature card:
 
 **Character-rich IP sets:** Place named characters FIRST. Work through the must-include list and assign each character to their card. Use "Name, Title/Descriptor" where the descriptor captures a specific story moment.
 
-### Step 3: Name spells (verb phrases / action words)
+### Step 4: Name spells (verb phrases / action words)
 
 For every instant and sorcery:
 1. Apply the [VERB] rule: "I [card name] your creature" must work naturally
 2. Choose visceral, evocative action words from the world's vocabulary
 3. For IP sets, use IP-specific terminology for actions ("You Cannot Pass!" not "Heroic Stand")
 
-### Step 4: Name remaining card types
+### Step 5: Name remaining card types
 
 - **Equipment:** Object names (weapons, armor, tools) from the world
 - **Enchantments:** States, conditions, or ongoing effects
@@ -71,7 +93,7 @@ For every instant and sorcery:
 - **Artifacts:** Object names anchored to the world's technology/magic
 - **Sagas:** Named after specific stories or historical events
 
-### Step 5: Verify all names
+### Step 6: Verify all names
 
 Run every name through the functional hurdles:
 - [ ] [VERB] rule (instants/sorceries only)
@@ -83,7 +105,7 @@ Run every name through the functional hurdles:
 - [ ] ~35 characters or fewer
 - [ ] Not culturally offensive
 
-### Step 6: Plan the attribution strategy
+### Step 7: Plan the attribution strategy
 
 Before writing any flavor text, plan character quotes across the set:
 
@@ -93,7 +115,7 @@ Before writing any flavor text, plan character quotes across the set:
 4. **Plan narrative arc** — arrange quotes so collector-number order tells a story
 5. **Reserve narration** — identify which cards get unattributed narration instead
 
-### Step 7: Write flavor text
+### Step 8: Write flavor text
 
 For each card that will have flavor text:
 
@@ -108,7 +130,7 @@ For each card that will have flavor text:
 
 **For IP sets:** Use source material quotes where they're stronger than original writing. For literary IPs (Tolkien), direct quotes should dominate. For game/visual IPs, write original text in the IP's voice.
 
-### Step 8: Name set-specific keywords
+### Step 9: Name set-specific keywords
 
 If the set's keywords still have working names, finalize them:
 
@@ -120,7 +142,7 @@ If the set's keywords still have working names, finalize them:
 
 **Reminder text coordination:** When naming new set-specific keywords, also draft candidate reminder text for each. The final reminder text is the Editor's responsibility (`mtg-editor`), but the Creative Writer should propose initial wording that captures the mechanic clearly in one sentence. Include the draft reminder text in the `naming_guide.md` output so the Editor has a starting point.
 
-### Step 9: Run the naming audit
+### Step 10: Run the naming audit
 
 ```bash
 python scripts/naming_audit.py set.json --out naming_report.md
@@ -128,7 +150,7 @@ python scripts/naming_audit.py set.json --out naming_report.md
 
 Checks: name presence, length, uniqueness, type coherence, legendary format, flavor text coverage, flavor text length, attribution format, generic name detection.
 
-### Step 10: Produce final outputs
+### Step 11: Produce final outputs
 
 **`set.json` (named and flavored)** — The card file with `name` and `flavor_text` fields populated for every card. Same schema as input.
 
