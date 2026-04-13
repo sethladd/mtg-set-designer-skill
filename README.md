@@ -100,42 +100,46 @@ The pipeline designs for the current product format (Play Boosters replaced Draf
 
 ## Installation
 
-Clone the repo, then add it to Claude Code's project skill path. Each skill directory contains a `SKILL.md` that Claude will automatically discover.
+Claude Code discovers skills from `.claude/skills/` directories. Since this repo has skills at the project root (not in `.claude/skills/`), you need to install them into a location Claude looks.
 
-### Option 1: Use the repo directly as your working directory
+### Option 1: Install as personal skills (available in all projects)
+
+Copy each skill directory into your personal Claude skills folder:
 
 ```bash
-git clone https://github.com/sethladd/mtg_set_skill.git
+git clone https://github.com/sethladd/mtg-set-designer-skill.git
 cd mtg_set_skill
-claude
+
+# Copy each skill to your personal skills directory
+for skill in mtg-exploratory-designer mtg-worldbuilder mtg-ip-researcher \
+             mtg-vision-designer mtg-set-designer mtg-color-pie-reviewer \
+             mtg-play-designer mtg-editor mtg-creative-writer \
+             mtg-art-director mtg-product-architect mtg-set-pipeline; do
+  cp -r "$skill" ~/.claude/skills/
+done
 ```
 
-Claude Code automatically loads skills from the current project. All 12 skills will be available immediately.
+The skills are now available in every Claude Code session, regardless of which project you're in.
 
-### Option 2: Install skills into an existing project
+### Option 2: Install as project skills (available in one project)
 
-If you want to use these skills from a different project directory, add this repo's path to your Claude Code settings. Create or edit `~/.claude/settings.json`:
+If you want the skills scoped to a specific project:
 
-```json
-{
-  "skills": [
-    "/path/to/mtg_set_skill/mtg-set-pipeline",
-    "/path/to/mtg_set_skill/mtg-exploratory-designer",
-    "/path/to/mtg_set_skill/mtg-worldbuilder",
-    "/path/to/mtg_set_skill/mtg-ip-researcher",
-    "/path/to/mtg_set_skill/mtg-vision-designer",
-    "/path/to/mtg_set_skill/mtg-set-designer",
-    "/path/to/mtg_set_skill/mtg-color-pie-reviewer",
-    "/path/to/mtg_set_skill/mtg-play-designer",
-    "/path/to/mtg_set_skill/mtg-editor",
-    "/path/to/mtg_set_skill/mtg-creative-writer",
-    "/path/to/mtg_set_skill/mtg-art-director",
-    "/path/to/mtg_set_skill/mtg-product-architect"
-  ]
-}
+```bash
+cd /path/to/your/project
+git clone https://github.com/sethladd/mtg-set-designer-skill.git /tmp/mtg_set_skill
+
+# Copy each skill into this project's .claude/skills/ directory
+mkdir -p .claude/skills
+for skill in mtg-exploratory-designer mtg-worldbuilder mtg-ip-researcher \
+             mtg-vision-designer mtg-set-designer mtg-color-pie-reviewer \
+             mtg-play-designer mtg-editor mtg-creative-writer \
+             mtg-art-director mtg-product-architect mtg-set-pipeline; do
+  cp -r "/tmp/mtg_set_skill/$skill" .claude/skills/
+done
 ```
 
-Replace `/path/to/` with the actual path where you cloned the repo.
+Claude Code automatically discovers all skills in `.claude/skills/` subdirectories when you work in that project.
 
 ### Verify installation
 
