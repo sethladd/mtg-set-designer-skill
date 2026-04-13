@@ -134,24 +134,6 @@ done
 
 The skills are now available in every Claude Code session. Because they're symlinks, pulling updates to the repo automatically updates the skills.
 
-### Option 2: Install as project skills (available in one project)
-
-If you want the skills scoped to a specific project:
-
-```bash
-cd /path/to/your/project
-git clone https://github.com/sethladd/mtg-set-designer-skill.git
-
-# Symlink each skill into this project's .claude/skills/ directory
-mkdir -p .claude/skills
-for skill in mtg-exploratory-designer mtg-worldbuilder mtg-ip-researcher \
-             mtg-vision-designer mtg-set-designer mtg-color-pie-reviewer \
-             mtg-play-designer mtg-editor mtg-creative-writer \
-             mtg-art-director mtg-product-architect mtg-set-pipeline; do
-  ln -sf "$(pwd)/mtg-set-designer-skill/$skill" .claude/skills/
-done
-```
-
 Claude Code automatically discovers all skills in `.claude/skills/` subdirectories when you work in that project.
 
 ### Verify installation
