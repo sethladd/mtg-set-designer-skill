@@ -10,9 +10,23 @@ This approach works for any complex, multi-step creative or technical process: g
 
 Before writing a single skill, map the real-world process you're trying to replicate.
 
-### Step 1: Research the domain's actual workflow
+### Step 1: Clarify the user's objective
 
-Start by studying how professionals in the domain actually work. Don't invent a process — understand the real one and encode it.
+Before researching anything, ask the user clarifying questions about what they're trying to build and why. Real-world workflows have many branching paths and assumptions — the user's specific goals determine which branches matter and which can be ignored.
+
+**Questions to ask:**
+- What is the end product or deliverable? (a document, a codebase, a designed artifact, an analysis?)
+- Who is the audience for the output? (themselves, a client, a team, the public?)
+- What parts of the real-world process matter most to them? (quality? speed? completeness? a specific phase?)
+- Are there parts of the process they want to SKIP or simplify? (not every real-world role needs a skill)
+- What are their constraints? (time, expertise, tooling, scope?)
+- Do they have existing work or templates to build from?
+
+**Why this matters:** A film production pipeline has dozens of roles — the user may only care about pre-production. A software development workflow spans architecture through deployment — the user may only need the design and review phases. Asking first prevents building skills the user doesn't need and ensures the pipeline matches their actual goals.
+
+### Step 2: Research the domain's actual workflow
+
+With the user's objectives in mind, study how professionals in the domain actually work. Don't invent a process — understand the real one and encode the parts that serve the user's goals.
 
 **What to do:**
 - Research how professionals in your domain actually work (articles, interviews, conference talks, behind-the-scenes documentation)
@@ -21,9 +35,28 @@ Start by studying how professionals in the domain actually work. Don't invent a 
 - Identify where feedback loops exist (work going backward for revision)
 - Identify where the process branches (mutual exclusivity, conditional paths)
 
-### Step 2: Write the pipeline specification document
+### Step 3: Validate findings with the user
 
-Produce a comprehensive document that defines every role in the pipeline, what it does, what it takes as input, and what it produces.
+After researching the real-world workflow, present the findings to the user BEFORE writing the specification. The research will surface roles, handoff points, and branching paths that the user may not have anticipated — and some that they may not want.
+
+**What to present:**
+- The roles you identified and what each one does
+- The proposed pipeline sequence (which role feeds which)
+- Any branch points or mutual exclusivity (e.g., two different tracks depending on input type)
+- Feedback loops you found (where work goes backward for revision)
+- Your recommendation on which roles to include vs. skip, given the user's stated objectives
+
+**What to ask:**
+- "Does this set of roles cover what you need, or are any missing?"
+- "Are any of these roles unnecessary for your use case?"
+- "The real-world process has [branch/feedback loop] — do you need this, or can we simplify?"
+- "I found that [role X] and [role Y] are sometimes combined in practice — should we keep them separate or merge them?"
+
+**Why this matters:** The research will reveal the FULL complexity of the real-world process. The user's objectives (from Step 1) determine how much of that complexity to encode. A pipeline that replicates 100% of a professional workflow is impressive but potentially unwieldy. A pipeline that encodes the 60% the user actually needs is useful.
+
+### Step 4: Write the pipeline specification document
+
+With the user's validated objectives and the research findings aligned, produce the specification document — a comprehensive document that defines every role in the pipeline, what it does, what it takes as input, and what it produces.
 
 **What this document must contain for each role:**
 - Real-world equivalent (who does this job in the actual industry?)
@@ -40,7 +73,7 @@ Produce a comprehensive document that defines every role in the pipeline, what i
 
 This document is your source of truth for the entire build. Every skill will be audited against it.
 
-### Step 3: Write the skill development checklist
+### Step 5: Write the skill development checklist
 
 Produce a per-skill checklist specifying what research to do, what wisdom to discover, and what the deliverable must contain.
 
