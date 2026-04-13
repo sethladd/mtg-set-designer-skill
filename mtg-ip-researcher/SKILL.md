@@ -80,15 +80,15 @@ Record all URLs in `references/sources.md`.
 
 Produce five catalogs following the templates in `references/ip-research-framework.md`:
 
-**Character catalog:** Major characters, minor but iconic characters, antagonists, supporting cast. For each: name, IP role, proposed MTG color(s) with philosophy-based reasoning, iconic abilities/traits, visual description, story importance, suggested card version count and rarity, mechanical hook.
+**Character catalog:** Major characters, minor but iconic characters, antagonists, supporting cast. For each: name, IP role, proposed MTG color(s) with philosophy-based reasoning, iconic abilities/traits, visual description, story importance, tier rating. Do NOT suggest card rarities, version counts, or mechanical hooks — those are Vision Design and Set Design decisions.
 
-**Faction catalog:** Organizations, races, species, political groups. For each: description, color alignment (philosophy-based — see the mapping guide in `references/ip-research-framework.md`), key members, mechanical archetype potential, creature types, visual identity.
+**Faction catalog:** Organizations, races, species, political groups. For each: description, color alignment (philosophy-based — see the mapping guide in `references/ip-research-framework.md`), key members, visual identity, tier rating. Do NOT suggest MTG creature types or mechanical archetypes — those are Vision Design decisions.
 
-**Location catalog:** Iconic places that could become lands or appear in art. For each: description, associated characters, visual identity, card type suggestion (legendary land, basic land art, or spell setting), tier rating.
+**Location catalog:** Iconic places. For each: description, associated characters, visual identity, tier rating. Do NOT suggest card types — whether a location becomes a land, a spell setting, or card art is a Set Design decision.
 
-**Item catalog:** Weapons, artifacts, technology, magical objects. For each: description, owner/origin, card type suggestion (Equipment, Artifact, Enchantment), mechanical effect suggestion, tier rating.
+**Item catalog:** Weapons, artifacts, technology, magical objects. For each: description, owner/origin, what it does in the IP, tier rating. Do NOT suggest card types or mechanical effects — those are Set Design decisions.
 
-**Story beat catalog:** Iconic moments that could become Sagas, sorceries, or instants. For each: description, participants, emotional weight, card type suggestion, tier rating.
+**Story beat catalog:** Iconic moments. For each: description, participants, emotional weight, tier rating. Do NOT suggest card types — whether a moment becomes a Saga, instant, or sorcery is a Set Design decision.
 
 **Critical guardrails:**
 
@@ -96,7 +96,7 @@ Produce five catalogs following the templates in `references/ip-research-framewo
 
 *Philosophy-based color mapping:* Map through values, not abilities or aesthetics. A fire-using character who values freedom is red because of freedom, not fire. Consult the color mapping guide in `references/ip-research-framework.md`.
 
-*The Version Cap Rule:* Tier 1 characters get 2-3 card versions maximum. Tier 2 gets 1 version. Tier 3 gets 1 at uncommon. Tier 4 gets flavor text / spell art only. Never give a single character more than 3 cards.
+*The Version Cap Guidance:* Note in the catalog how many distinct story moments each Tier 1 character has — downstream designers will use this to decide version count. Do NOT prescribe how many cards each character gets; that's a Set Design decision informed by the overall set structure.
 
 ### Step 5: Color pie analysis
 
@@ -122,8 +122,9 @@ For each must-include:
 - Name
 - Catalog (character / faction / location / item / story beat)
 - Proposed color(s)
-- Suggested rarity
 - Why it's must-include (what happens if it's missing)
+
+Do NOT suggest rarities for must-includes — that's a Set Design decision based on the overall set structure.
 
 Apply the Riot Test: "If this element were absent from the final set, would the IP's fanbase notice and complain?" Only elements that pass this test belong on the must-include list.
 
@@ -142,7 +143,7 @@ Capture:
 
 If the IP is a game or has interactive systems, catalog translatable systems. See the system translation inventory template in `references/ip-research-framework.md`.
 
-List every distinctive system the IP has, propose a candidate MTG translation for each, and flag the 2-3 most iconic for priority development. Downstream designers have a complexity budget of ~3 new mechanics at common — don't overload them.
+List every distinctive system the IP has, describe how it works in the source material, and flag the 2-3 most iconic systems that fans would expect to see represented. Do NOT propose specific MTG mechanical translations — that's Exploratory Design and Vision Design's job. The researcher's role is to catalog WHAT systems exist and WHY fans care about them, not to design HOW they become mechanics.
 
 ### Step 9: Candidate reprint identification
 
@@ -199,12 +200,10 @@ Produce two files:
 **Tier:** [5/4/3/2/1]
 **Knowledge pyramid:** [bottom / middle / top]
 **Proposed color(s):** [colors + philosophy-based reasoning]
-**Iconic abilities/traits:** [what they're known for]
+**Iconic abilities/traits:** [what they're known for in the IP]
 **Visual description:** [appearance]
 **Story importance:** [why they matter]
-**Card version(s):** [how many, at which story moments]
-**Suggested rarity:** [mythic / rare / uncommon]
-**Mechanical hook:** [what the card should feel like]
+**Key story moments:** [distinct moments that could represent different versions]
 
 [Repeat for all characters]
 
@@ -214,8 +213,6 @@ Produce two files:
 **Description:** [what this group is]
 **Color alignment:** [colors + reasoning]
 **Key members:** [characters]
-**Mechanical archetype potential:** [Limited strategy]
-**Creature types:** [MTG types that fit]
 **Visual identity:** [signature look]
 
 [Repeat for all factions]
@@ -227,7 +224,6 @@ Produce two files:
 **Tier:** [5/4/3/2/1]
 **Associated characters:** [who is here]
 **Visual identity:** [appearance]
-**Card type suggestion:** [land / spell setting]
 
 [Repeat for all locations]
 
@@ -237,8 +233,7 @@ Produce two files:
 **Description:** [what it is]
 **Tier:** [5/4/3/2/1]
 **Owner/origin:** [who uses it]
-**Card type suggestion:** [Equipment / Artifact / Enchantment]
-**Mechanical effect suggestion:** [what it should do]
+**What it does in the IP:** [its function or power in the source material]
 
 [Repeat for all items]
 
@@ -249,7 +244,6 @@ Produce two files:
 **Tier:** [5/4/3/2/1]
 **Participants:** [characters involved]
 **Emotional weight:** [why it matters]
-**Card type suggestion:** [Saga / Instant / Sorcery]
 
 [Repeat for all story beats]
 
@@ -268,7 +262,7 @@ Produce two files:
 
 ## Must-Include List
 
-[30-50 elements with name, catalog, proposed color, suggested rarity, and why]
+[30-50 elements with name, catalog, proposed color, and why it's must-include]
 
 ## Naming Conventions
 
@@ -276,9 +270,9 @@ Produce two files:
 
 ## System Translation Inventory
 
-| Source System | MTG Translation Candidate | Priority |
-|--------------|--------------------------|----------|
-| [system] | [translation] | [essential / optional] |
+| Source System | How It Works in the IP | Fan Importance | Priority |
+|--------------|------------------------|----------------|----------|
+| [system] | [description] | [essential to fans / nice-to-have] | [iconic / secondary] |
 
 ## Candidate Reprints
 
