@@ -104,22 +104,23 @@ Claude Code discovers skills from `.claude/skills/` directories. Since this repo
 
 ### Option 1: Install as personal skills (available in all projects)
 
-Copy each skill directory into your personal Claude skills folder:
+Symlink each skill directory into your personal Claude skills folder:
 
 ```bash
 git clone https://github.com/sethladd/mtg-set-designer-skill.git
-cd mtg_set_skill
+cd mtg-set-designer-skill
 
-# Copy each skill to your personal skills directory
+# Symlink each skill to your personal skills directory
+mkdir -p ~/.claude/skills
 for skill in mtg-exploratory-designer mtg-worldbuilder mtg-ip-researcher \
              mtg-vision-designer mtg-set-designer mtg-color-pie-reviewer \
              mtg-play-designer mtg-editor mtg-creative-writer \
              mtg-art-director mtg-product-architect mtg-set-pipeline; do
-  cp -r "$skill" ~/.claude/skills/
+  ln -sf "$(pwd)/$skill" ~/.claude/skills/
 done
 ```
 
-The skills are now available in every Claude Code session, regardless of which project you're in.
+The skills are now available in every Claude Code session. Because they're symlinks, pulling updates to the repo automatically updates the skills.
 
 ### Option 2: Install as project skills (available in one project)
 
@@ -127,15 +128,15 @@ If you want the skills scoped to a specific project:
 
 ```bash
 cd /path/to/your/project
-git clone https://github.com/sethladd/mtg-set-designer-skill.git /tmp/mtg_set_skill
+git clone https://github.com/sethladd/mtg-set-designer-skill.git
 
-# Copy each skill into this project's .claude/skills/ directory
+# Symlink each skill into this project's .claude/skills/ directory
 mkdir -p .claude/skills
 for skill in mtg-exploratory-designer mtg-worldbuilder mtg-ip-researcher \
              mtg-vision-designer mtg-set-designer mtg-color-pie-reviewer \
              mtg-play-designer mtg-editor mtg-creative-writer \
              mtg-art-director mtg-product-architect mtg-set-pipeline; do
-  cp -r "/tmp/mtg_set_skill/$skill" .claude/skills/
+  ln -sf "$(pwd)/mtg-set-designer-skill/$skill" .claude/skills/
 done
 ```
 
