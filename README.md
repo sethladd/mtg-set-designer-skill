@@ -102,6 +102,18 @@ The pipeline designs for the current product format (Play Boosters replaced Draf
 
 Claude Code discovers skills from `.claude/skills/` directories. Since this repo has skills at the project root (not in `.claude/skills/`), you need to install them into a location Claude looks.
 
+### Quick install (recommended)
+
+Use the included install script to symlink all skills into any project:
+
+```bash
+git clone https://github.com/sethladd/mtg-set-designer-skill.git
+cd mtg-set-designer-skill
+./install.sh /path/to/your/project
+```
+
+This creates `.claude/skills/` in the target directory and symlinks every skill into it. Since they're symlinks, `git pull` on this repo automatically updates the skills.
+
 ### Option 1: Install as personal skills (available in all projects)
 
 Symlink each skill directory into your personal Claude skills folder:
