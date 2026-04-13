@@ -26,24 +26,29 @@ Before exploring, establish:
 - **What's the emotional promise?** Every set promises a feeling. "You're an explorer in a dangerous world" (Zendikar). "You're surviving a haunted world" (Innistrad). "You're navigating guild politics" (Ravnica). The mechanics must deliver this feeling.
 - **What existing Magic territory overlaps?** Check whether previous sets have already mined this space. If the theme is "graveyard matters," acknowledge Innistrad, Odyssey, and Amonkhet exist — then find what *they didn't do*.
 
-### Step 2: Research the theme and prior art
+### Step 2: Research the concept and prior art
 
-Before generating any mechanics, research the theme's design space. This is not optional — the quality of the exploration is bounded by the quality of the research.
+Before generating any mechanics, research the user's concept deeply. This is not optional — the quality of the exploration is bounded by the quality of the research. You need to understand the concept itself AND how it has been explored mechanically.
 
-**Web research targets:**
+**Research the concept itself:**
+- Search for the concept, theme, or IP directly — build genuine understanding of the subject matter. If the theme is "deep-sea horror," research deep-sea creatures, ocean mythology, pressure physics, bioluminescence, and the real-world unknowns that make the deep ocean terrifying. If it's "feudal Japan meets cyberpunk," research both feudal Japanese culture and cyberpunk conventions.
+- For Universes Beyond IPs: research the IP's lore, characters, factions, signature abilities, iconic moments, and fan expectations. You cannot design mechanics for an IP you don't understand.
+- Look for the **unexpected angles** — the aspects of the concept that aren't obvious but could inspire unique mechanics. The deep ocean isn't just "water and fish" — it's crushing pressure, total darkness, chemosynthesis, and creatures that make their own light.
+
+**Research the mechanical design space:**
 - Search for "Rosewater [your theme] Magic set design" — find any articles where WotC designers discuss this design space
-- Search for "[your theme] game mechanics" — how have other games explored this space?
+- Search for "[your theme] game mechanics" — how have other games (board games, video games, RPGs) explored this space mechanically?
 - Search for "MTG [overlapping sets] design retrospective" — if prior Magic sets share territory, find what worked and what failed
 - Search for "[your theme] tropes and conventions" — what do audiences expect from this theme? (These expectations are your resonance opportunities)
 - If this is a Universes Beyond IP, search for "[IP name] game adaptations" and "[IP name] key mechanics abilities powers"
 
 **For each useful source found:**
-- Extract specific mechanical ideas, failure stories, or design principles
+- Extract specific ideas, failure stories, design principles, or concept details
 - Record the full URL in a working list — these will go into `sources.md` when the exploration is complete
 
 **Produce `sources.md`** alongside the exploration document, recording every URL that informed your research. Format: `- [Title](URL) — what was extracted or learned`.
 
-This research step prevents two common failures: (1) reinventing mechanics that have already been tried and failed, and (2) missing obvious mechanical territory that domain experts have already identified.
+This research step prevents three common failures: (1) designing mechanics for a concept you only superficially understand, (2) reinventing mechanics that have already been tried and failed, and (3) missing obvious mechanical territory that domain experts have already identified.
 
 ### Step 3: Generate candidate mechanics (8-15)
 
