@@ -1,6 +1,6 @@
 # The Design Skeleton
 
-The design skeleton is the slot-by-slot blueprint for a Magic set. Mark Rosewater introduced it in his "Nuts & Bolts" series — article #13 (2021) covered it for Draft Boosters, and **#16 (2024) updated it for Play Boosters**. The skill's `assets/design_skeleton.json` contains the Play Booster version.
+The design skeleton is the slot-by-slot blueprint for a Magic set. Mark Rosewater introduced it in his "Nuts & Bolts" series — article #13 (2021) covered it for Draft Boosters, and **#16 (2024) updated it for Play Boosters**. The skill's `references/design_skeleton.json` contains the Play Booster version.
 
 ## What the skeleton is
 
@@ -63,7 +63,7 @@ Each color gets ~16–18 mono-color uncommons. On top of those, there are **20 m
 
 When Phase 5 (Card File) begins:
 
-1. **Load the skeleton** from `assets/design_skeleton.json`.
+1. **Load the skeleton** from `references/design_skeleton.json`.
 2. **Walk through commons color by color.** For each slot (CW01, CW02, ...), design a card that fits the slot's mana value, type, and notes. The notes tell you what *role* the card fills — your job is to express that role through the set's theme, mechanics, and flavor.
 3. **Respect the keyword guidelines.** Each color section includes a `keywords` field listing roughly how many creatures should have each evergreen keyword. For example, white gets 2–3 flyers at common. This is a guideline, not a law — but if you deviate significantly, document why.
 4. **Fill uncommons the same way**, paying special attention to the 20 multicolor signpost slots. These are the cards from your archetype grid (Phase 4) — the skeleton just reserves space for them.
@@ -101,4 +101,4 @@ When you deviate, note it. The balance checker will catch structural anomalies e
 
 ## The CSV backup
 
-`assets/design_skeleton_2021.csv` contains the community-maintained "Bones" spreadsheet (by Wobbles) based on Nuts & Bolts #13. It uses the older Draft Booster counts (101 commons, 80 uncommons) and is kept as historical reference. **Always use `design_skeleton.json` for new sets** — it has the current Play Booster numbers.
+`references/design_skeleton_2021.csv` contains the community-maintained "Bones" spreadsheet (by Wobbles) based on Nuts & Bolts #13. It uses the older Draft Booster counts (101 commons, 80 uncommons) and is kept as historical reference. **Always use `design_skeleton.json` for new sets** — it has the current Play Booster numbers.

@@ -147,7 +147,7 @@ Target counts: ~81 commons, ~100 uncommons, ~30-40 rares, ~10-15 mythics. Follow
 3. Remaining uncommons — archetype depth, mechanic showcases, build-arounds
 4. Draft-critical rares/mythics — bombs, flagship cards, pillar showcases
 
-Each card follows the JSON schema from `assets/set_template.json`.
+Each card follows the JSON schema from `references/set_template.json`.
 
 *The Common Stamp Test:* Pull 5 random commons from the file. Can you identify which set they're from? If they could be from any generic set, the vision isn't reaching common rarity.
 
@@ -175,7 +175,7 @@ Produce two files:
 See the complete template in `references/vision-design-framework.md`.
 
 ### `vision_cardfile.json`
-A JSON object following the schema from `assets/set_template.json`, containing:
+A JSON object following the schema from `references/set_template.json`, containing:
 - `set_code`, `set_name`, `set_size_target`, `booster_format`, `pillars`
 - `mechanics` array with full mechanic definitions
 - `archetypes` object with all 10 two-color archetypes

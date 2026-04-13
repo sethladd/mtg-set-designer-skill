@@ -65,7 +65,7 @@ Reserve 8-15 skeleton slots for non-creature permanents.
 
 ### Step 3: Fill the design skeleton — commons first
 
-Load the design skeleton from `assets/design_skeleton.json`. Walk through it slot by slot, starting with commons.
+Load the design skeleton from `references/design_skeleton.json`. Walk through it slot by slot, starting with commons.
 
 **The Skeleton Completeness Test:** Every slot must have a card. Every card must fit its slot's prescribed mana value, type, and role. Mismatches here are the #1 source of curve problems and archetype gaps.
 
@@ -207,7 +207,7 @@ Final pass on the complete file:
 
 Generate these files:
 
-**`set.json`** — The complete card file following the schema from `assets/set_template.json`:
+**`set.json`** — The complete card file following the schema from `references/set_template.json`:
 - `set_code`, `set_name`, `set_size_target`, `booster_format`, `pillars`
 - `mechanics` array with full mechanic definitions
 - `archetypes` object with all 10 two-color archetypes
@@ -283,7 +283,7 @@ If `play_design_report.md` flags cards at **medium risk** (card needs redesign):
 ## Output format
 
 ### `set.json`
-A JSON object following the schema from `assets/set_template.json`, containing the complete set with all ~261 cards.
+A JSON object following the schema from `references/set_template.json`, containing the complete set with all ~261 cards.
 
 ### `balance_report.md`
 Heuristic and simulated draft results with analysis.

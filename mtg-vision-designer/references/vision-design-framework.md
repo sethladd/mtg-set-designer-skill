@@ -311,7 +311,7 @@ The `vision_cardfile.json` is a **prototype draft environment** — not a finish
 
 ### Card schema
 
-Each card follows the format in `assets/set_template.json`:
+Each card follows the format in `references/set_template.json`:
 ```json
 {
   "id": "SET-001",
