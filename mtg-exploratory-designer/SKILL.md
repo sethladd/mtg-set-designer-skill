@@ -26,7 +26,26 @@ Before exploring, establish:
 - **What's the emotional promise?** Every set promises a feeling. "You're an explorer in a dangerous world" (Zendikar). "You're surviving a haunted world" (Innistrad). "You're navigating guild politics" (Ravnica). The mechanics must deliver this feeling.
 - **What existing Magic territory overlaps?** Check whether previous sets have already mined this space. If the theme is "graveyard matters," acknowledge Innistrad, Odyssey, and Amonkhet exist — then find what *they didn't do*.
 
-### Step 2: Generate candidate mechanics (8-15)
+### Step 2: Research the theme and prior art
+
+Before generating any mechanics, research the theme's design space. This is not optional — the quality of the exploration is bounded by the quality of the research.
+
+**Web research targets:**
+- Search for "Rosewater [your theme] Magic set design" — find any articles where WotC designers discuss this design space
+- Search for "[your theme] game mechanics" — how have other games explored this space?
+- Search for "MTG [overlapping sets] design retrospective" — if prior Magic sets share territory, find what worked and what failed
+- Search for "[your theme] tropes and conventions" — what do audiences expect from this theme? (These expectations are your resonance opportunities)
+- If this is a Universes Beyond IP, search for "[IP name] game adaptations" and "[IP name] key mechanics abilities powers"
+
+**For each useful source found:**
+- Extract specific mechanical ideas, failure stories, or design principles
+- Record the full URL in a working list — these will go into `sources.md` when the exploration is complete
+
+**Produce `sources.md`** alongside the exploration document, recording every URL that informed your research. Format: `- [Title](URL) — what was extracted or learned`.
+
+This research step prevents two common failures: (1) reinventing mechanics that have already been tried and failed, and (2) missing obvious mechanical territory that domain experts have already identified.
+
+### Step 3: Generate candidate mechanics (8-15)
 
 For each candidate, brainstorm from two directions simultaneously:
 
@@ -41,7 +60,7 @@ For each candidate, write a paragraph that includes:
 - **Which set pillar it serves** (or could serve)
 - **Flavor justification** (why this mechanic belongs in this world)
 
-### Step 3: Evaluate every candidate
+### Step 4: Evaluate every candidate
 
 This is where the wisdom lives. For each mechanic, run it through every evaluation lens below. Read `references/evaluation-framework.md` for the detailed rubrics, and `references/failure-catalog.md` to check each candidate against historical failure patterns.
 
@@ -103,7 +122,7 @@ Read `references/failure-catalog.md` and explicitly check: does this candidate m
 
 This is the "pre-mortem" — instead of asking "what could go wrong?" after designing 200 cards, ask it now with 0 cards committed.
 
-### Step 4: Rank and recommend
+### Step 5: Rank and recommend
 
 After evaluating all candidates, produce a ranked list from strongest to weakest. Then select a **shortlist of 3-5 recommended directions** for Vision Design.
 
@@ -112,13 +131,18 @@ The shortlist should include:
 - At least one mechanic that's the "exciting new thing" (novel, resonant, potentially the set's identity)
 - At least one backup that's fundamentally different from the top choices (so Vision Design has a pivot option if the primary mechanics fail)
 
-### Step 5: Document dead ends
+### Step 6: Document dead ends
 
 Equally important: document which directions you explored and rejected, with clear reasoning. "We tried a pressure-based resource but it was functionally identical to Energy and had the same pressure-valve problem" is valuable — it prevents Vision Design from re-exploring dead space.
 
 ## Output format
 
-Produce `exploration_doc.md` with this structure:
+Produce two files:
+
+1. **`exploration_doc.md`** — the exploration document (structure below)
+2. **`sources.md`** — every URL consulted during the research step, organized by category
+
+`exploration_doc.md` structure:
 
 ```markdown
 # Exploratory Design: [Theme/Concept]
