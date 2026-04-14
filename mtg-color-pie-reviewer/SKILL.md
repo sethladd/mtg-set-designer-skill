@@ -13,6 +13,14 @@ The color pie is Magic's most important design invariant. It's not a style guide
 
 When you review a card, you're not just checking "does blue get this effect?" You're asking: "Does this card preserve the structural tension that makes color choice matter?"
 
+## Before you begin
+
+Every path in this document — `references/...`, `scripts/...`, and everything below — is **relative to this skill's own root directory**, not to the project or working directory you are reviewing cards for.
+
+The skill's root directory is the directory that contains this `SKILL.md` file. If you do not know where the skill is installed, locate the `SKILL.md` you are currently reading and resolve all paths from there. Do not search the project's working directory for `references/` or `scripts/` — those folders belong to the skill, not to the project under review.
+
+If a relative path does not resolve, the fix is always to locate this `SKILL.md`'s containing directory and prefix paths with it, not to conclude the file is missing.
+
 ## The Council's rating scale
 
 Rate every card on a 1-4 scale:
@@ -34,7 +42,7 @@ These are the load-bearing walls. A card that removes one of these weaknesses is
 - **Green:** No counterspells, no non-combat direct damage to players, no creature theft
 - **Black:** No enchantment destruction (sacrifice-based tertiary access is the ceiling), no unconditional artifact removal
 
-Read `references/mechanical-color-pie.md` for the full primary/secondary/tertiary assignments. But always apply the *reasoning* above, not just the list — the list tells you what colors normally do; the weaknesses tell you what they must never do.
+Read `references/mechanical-color-pie.md` (relative to this skill's root — see "Before you begin") for the full primary/secondary/tertiary assignments. But always apply the *reasoning* above, not just the list — the list tells you what colors normally do; the weaknesses tell you what they must never do.
 
 ## The break/bend spectrum
 
@@ -109,7 +117,7 @@ Accept any of: a complete `set.json` file, a partial card list, or individual ca
 
 ### Process
 
-1. **Read the reference material.** Before reviewing any cards, read `references/mechanical-color-pie.md` for the canonical assignments. You don't need to memorize it — use it as a lookup during review.
+1. **Read the reference material.** Before reviewing any cards, read `references/mechanical-color-pie.md` (in this skill's own directory) for the canonical assignments. You don't need to memorize it — use it as a lookup during review.
 
 2. **Review every card.** For each card:
    - Identify every distinct effect in the rules text
@@ -120,7 +128,7 @@ Accept any of: a complete `set.json` file, a partial card list, or individual ca
    - Assign a rating (1-4)
    - For ratings 3-4: write a specific recommended fix
 
-3. **Run the automated check.** Execute `scripts/color_pie_review.py` against the card file. This catches the mechanical pattern matches. Then layer your judgment on top — the script catches obvious violations but can't evaluate context, set themes, or philosophical nuance.
+3. **Run the automated check.** Execute `scripts/color_pie_review.py` (resolved from this skill's own directory) against the card file — e.g. `python <skill-root>/scripts/color_pie_review.py <set_file>`, where `<skill-root>` is the directory containing this `SKILL.md`. This catches the mechanical pattern matches. Then layer your judgment on top — the script catches obvious violations but can't evaluate context, set themes, or philosophical nuance.
 
 4. **Produce the report.** Output `color_pie_review.md` organized by severity:
    - Section 1: Breaks (rating 4) — must change before the set can proceed
@@ -197,6 +205,8 @@ If the review produces ANY cards rated **3 (significant bend)** or **4 (break)**
 | 4 (Break) | **Send back to Set Designer** — this card MUST change before proceeding |
 
 ## Reference files
+
+Paths below are relative to this skill's own root directory (the directory containing this `SKILL.md`). They do NOT live in the project or working directory you are reviewing.
 
 - `references/mechanical-color-pie.md` — The canonical primary/secondary/tertiary assignments for every major effect. **Read this before every review.** It's organized by effect category (removal, card draw, counterspells, etc.) with the color assignments and the reasoning behind each.
 - `references/wisdom-catalog.md` — Extended failure stories, counterintuitive insights, evolved thinking, and named heuristics. Read this when you need deeper context on a specific judgment call.
