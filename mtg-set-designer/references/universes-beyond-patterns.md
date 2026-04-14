@@ -137,6 +137,27 @@ The LotR design team explicitly described a **knowledge pyramid** for distributi
 
 **Rule: Every card in the set should fall somewhere on this pyramid.** Even common cards that are "generic" creatures should use IP-specific names, creature types, and flavor text. A common 2/2 in a LotR set isn't "Gondorian Soldier" — it's "Guard of the Citadel" with flavor text from The Return of the King.
 
+### Deep-cut budget (explicit card-count allocation)
+
+Fans' most emotional reactions to an IP set come not from the obvious must-includes — those are expected — but from the deep cuts: the obscure-but-beloved characters, locations, items, and moments that signal "the designers actually *know* this IP." Superfans screenshot these cards and share them; casual fans don't notice their absence but dedicated fans notice their presence. Budget deep cuts explicitly, not as leftovers after the must-includes are placed.
+
+**Target allocation for a standard ~250–280 card IP set:**
+
+| Pyramid tier | Share of set | Card count (at 261 cards) | Typical placement |
+|-------------|--------------|----------------------------|-------------------|
+| Bottom (universally known) | 15–25% | ~40–65 cards | Mythic, rare, premium treatments |
+| Middle (fan-recognized) | 55–70% | ~145–185 cards | Rare, uncommon, common |
+| **Top (deep cuts)** | **15–25%** | **~40–65 cards** | Uncommon, common, flavor-text cameos, art Easter eggs, card-name references |
+
+**Rules for budgeting deep cuts:**
+
+1. **Floor: 15% of the set must be deep cuts.** If your set has fewer than ~15% of cards that reward expert-level IP knowledge, rebalance before finalizing. A set that only represents the top ~50 most famous elements will feel shallow to fans, regardless of how well those elements are executed.
+2. **Count every expression of a deep cut.** A deep cut can be a full card (uncommon/common), a flavor-text callout on an otherwise mid-tier card, a background character in art, or a card-name reference ("Bill Ferny's Pony"). All three count toward the deep-cut budget — you do not need to spend a full card slot on every deep cut.
+3. **Spread deep cuts across the pyramid's placement layers.** Aim for roughly 40% of deep cuts as standalone cards (at uncommon/common), 40% as flavor-text references on other cards, and 20% as art/name cameos. This prevents the "trivia dump" failure mode where deep cuts feel crammed into a single rarity.
+4. **Deep cuts live at uncommon and common, not rare.** Rare and mythic slots belong to Tier 5 (mandatory) elements. Using a rare slot for a deep cut is almost always a mistake — deep cuts at rare are invisible to casual players (who won't draft them) and feel overcosted to fans (who'd rather see that rare used on a Tier 4–5 character). The "Bill the Pony" precedent: uncommon. Deep-cut Equipment and locations: uncommon. Deep-cut flavor-text cameos: any rarity.
+5. **Research the deep-cut layer *more* than the obvious layer.** Must-includes identify themselves — everyone on the team already knows Gandalf belongs in a LotR set. Deep cuts require deliberate research: community wiki pages for minor characters, fan polls of "most wanted obscure picks," showrunner/author interview mentions, behind-the-scenes material. Expect to spend more research time per deep cut than per must-include; the payoff per slot is higher.
+6. **Do not cut the deep-cut budget when space is tight.** The temptation during Phase 4 (set design) is to drop Tier 2–3 elements to make room for more Tier 5 versions ("another Gandalf"). Resist this. A third Gandalf card adds less fan value than the only Bill Ferny card in the set.
+
 **The zero-generic-card standard:** In Tales of Middle-earth, the design team stated that *every single card* had an identifiable root in the books or movies. No card existed purely as a mechanical filler. This is the standard for IP adaptation: if a card couldn't be identified as belonging to this IP, it shouldn't be in the set.
 
 ## Lesson 8: Source-specific game mechanics deserve direct translation
@@ -169,4 +190,5 @@ Before finishing Phase 5 for an IP-based set, verify:
 - [ ] Iconic items are Equipment cards, iconic vehicles are Vehicle cards
 - [ ] Character transformations use double-faced cards
 - [ ] The knowledge pyramid is respected: base-tier at mythic/rare, deep cuts at uncommon/flavor text
+- [ ] The deep-cut budget is explicitly met: **≥15% of the set (≥~40 cards in a 261-card set) represents Top-tier deep cuts**, counted across standalone cards, flavor-text callouts, and art/name cameos
 - [ ] Common cards reference the IP through names, creature types, and flavor text — no "generic filler"

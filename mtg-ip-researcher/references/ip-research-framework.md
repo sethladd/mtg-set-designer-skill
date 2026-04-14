@@ -72,6 +72,16 @@ The knowledge pyramid determines how IP references are distributed across rariti
 
 From LotR: every single card had an identifiable root in the source material. No card existed purely as mechanical filler. Even common creatures used IP-specific names, creature types, and flavor text. A common 2/2 soldier isn't "Gondorian Soldier" — it's "Guard of the Citadel" with Tolkien flavor text.
 
+### Deep-cut budget
+
+Deep cuts (Tier 2–3 elements in the 5-tier system, Top-tier in the knowledge pyramid) must be budgeted explicitly, not treated as leftovers.
+
+- **Minimum: 15% of the set must represent deep cuts.** In a 261-card set that is ~40 cards worth of deep-cut representation. Target 15–25%.
+- **What counts toward the budget:** standalone cards at uncommon/common (~40% of the budget), flavor-text callouts on otherwise mid-tier cards (~40%), and art/card-name cameos (~20%). A deep cut does not have to consume a full card slot.
+- **Where deep cuts live:** uncommon and common. Almost never rare or mythic — those slots belong to Tier 5 mandatories. Deep cuts at rare are invisible to casual players and feel overcosted to fans.
+- **Research intensity:** expect to spend *more* research time per deep cut than per must-include. Must-includes identify themselves; deep cuts require wiki diving, fan-poll review, and interview/behind-the-scenes research.
+- **Protection during cuts:** when Phase 4 (set design) needs to trim cards, do not raid the deep-cut budget to make room for another version of a Tier 5 character. A third protagonist card adds less fan value than the only deep-cut card in the set.
+
 ---
 
 ## Color Pie Mapping Guide
