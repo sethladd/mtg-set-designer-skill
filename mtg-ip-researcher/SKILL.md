@@ -98,6 +98,60 @@ Produce five catalogs following the templates in `references/ip-research-framewo
 
 *The Version Cap Guidance:* Note in the catalog how many distinct story moments each Tier 1 character has — downstream designers will use this to decide version count. Do NOT prescribe how many cards each character gets; that's a Set Design decision informed by the overall set structure.
 
+### Step 4.5: Build the deep-cut roster (mandatory for full sets)
+
+The main character/faction/location/item catalogs in Step 4 are about **prioritization** — which ~50 elements are sacred cows. That target is correct for signaling importance, but it is NOT enough source material to name a full set. A Play Booster set has ~261 cards; roughly 150–200 of those will be creatures or other named entities. If the catalog only has 50 names, downstream set designers will default to generic names like "Village Guard" or "Forest Hunter" to fill the gap — which is the single most common failure mode in Universes Beyond sets.
+
+Produce `deep_cut_roster.md` alongside the main catalog. This is a **supply document**, not a priority document. Its job is to give Set Design a large pool of legitimate, IP-authentic names to draw from.
+
+**Target size:** 200+ entries for a full premier set; 150+ for Commander decks; 80+ for smaller products.
+
+**What to include:**
+- Every named character from Step 4 (copy them in) — the roster is a superset of the catalog
+- Minor named characters: NPCs, one-scene characters, characters mentioned but not shown, supporting cast, named soldiers/retainers/crew
+- Named units, squads, companies, regiments, ships, mounts (e.g., "Rohirrim Scout," "Storm Guard Sergeant," "Seventh Infantry Captain")
+- Named monsters, beasts, and creatures specific to the IP
+- Named magical items, weapons, vehicles, and artifacts (even minor ones)
+- Named locations at the building/street/small-region level, not just the iconic ones
+- Characters named only in supplementary material (appendices, companion books, encyclopedias, developer interviews, wiki-documented cut content that made it into lore)
+
+**Research obligation:** This requires a distinct, more exhaustive research pass than Step 3. Target the IP's full wiki character index, "list of minor characters" pages, appendices, companion books, and codex/guide material. Budget 5–10 additional searches focused purely on name harvesting. If the wiki has a "characters by chapter" or "characters by episode" page, scrape it. If the IP has an official encyclopedia or visual guide, mine it. Depth matters more than commentary here — a one-line entry is fine.
+
+**Roster entry format** (compact, one per entry, grouped by category):
+
+```markdown
+### Characters (minor/deep-cut)
+
+- **Gríma Wormtongue** — W/B — advisor to Théoden, corrupted by Saruman
+- **Háma** — W — captain of Théoden's guard, dies at Helm's Deep
+- **Gamling** — W — elder Rohirrim captain, veteran warrior
+- [... 100+ more]
+
+### Named Units and Ranks
+- **Rider of Rohan** — W — generic Rohirrim cavalryman (acceptable for multiple prints)
+- **Ranger of Ithilien** — W/G — Faramir's scouts
+- [...]
+
+### Named Creatures and Monsters
+- **Mûmak** — R — war-elephants of Harad
+- **Fell Beast** — B — Nazgûl mounts
+- [...]
+```
+
+Each entry needs: **name — color(s) — one-line identifier**. Tier is optional here (default tier 1–2, since these are the long tail).
+
+**Nameless-archetype allowlist.** Some IPs genuinely have faceless masses where generic names are correct: Stormtroopers in Star Wars, Orc grunts in LotR, Chaos Cultists in 40K. Produce an explicit list of archetypes where generic/anonymous naming is authentic to the IP. Set Design will treat this as the *only* permitted use of generic creature names.
+
+```markdown
+### Nameless-Archetype Allowlist
+Generic names are permitted ONLY for these IP-authentic faceless archetypes:
+- Uruk-hai Warrior (Saruman's army grunts)
+- Orc Raider (Mordor infantry, unnamed)
+- Corsair of Umbar (pirate grunts)
+```
+
+Downstream set designers are required to pull creature names from the roster or this allowlist. Any generic name on a creature card that is not on the allowlist is a defect.
+
 ### Step 5: Color pie analysis
 
 Map every catalog entry to WUBRG. Compute the distribution. Read `references/wisdom-catalog.md` for the Green Audit heuristic — green is always underrepresented.
@@ -169,10 +223,12 @@ Compile `ip_constraints.md` using the template in `references/ip-research-framew
 Run the validation script:
 
 ```bash
-python scripts/ip_catalog_audit.py ip_catalog.md ip_constraints.md
+python scripts/ip_catalog_audit.py ip_catalog.md ip_constraints.md deep_cut_roster.md
 ```
 
-Address any errors or warnings. The audit checks for structural completeness, catalog coverage, color distribution, must-include list size, and constraint document completeness.
+Address any errors or warnings. The audit checks for structural completeness, catalog coverage, color distribution, must-include list size, constraint document completeness, and — for full sets — that the deep-cut roster reaches the 200+ entry target.
+
+**Roster size gate:** If `deep_cut_roster.md` is under the target for the product format (200+ full set / 150+ Commander / 80+ small product), the audit emits an error. Do another research pass rather than hand off under-supplied. Downstream set designers will generate generic names to fill gaps if the roster is thin — this is unrecoverable once cards are in the file.
 
 *The Creature Grid Check:* Before finalizing, fill out a 5×3 grid (5 colors × 3 sizes: small/medium/large). For each cell, name an IP creature that fits. Empty cells are creature grid gaps that downstream designers must solve.
 
@@ -180,7 +236,7 @@ Address any errors or warnings. The audit checks for structural completeness, ca
 
 ## Output format
 
-Produce two files:
+Produce three files (`ip_catalog.md`, `ip_constraints.md`, and `deep_cut_roster.md`). The roster is non-optional for any full-set product:
 
 ### `ip_catalog.md`
 

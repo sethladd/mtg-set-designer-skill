@@ -51,6 +51,156 @@ REMOVAL_PATTERNS = [
     r"sacrifices? a creature",
 ]
 
+# Generic-fantasy name heuristic for UB roster check. These word stems appear in
+# fantasy-generic creature names that leak into UB sets when a designer fills a
+# slot without a real IP roster. This list is a signal, not a verdict: the
+# authoritative check is whether the name exists in the IP roster, not whether
+# it contains one of these words. (A legitimate IP character named "Ranger" is
+# fine if they appear in ip_catalog.md or deep_cut_roster.md.)
+GENERIC_FANTASY_TOKENS = {
+    "guard", "guardian", "scout", "hunter", "warrior", "soldier", "knight",
+    "ranger", "champion", "warden", "sentinel", "defender", "protector",
+    "cleric", "mage", "wizard", "sorcerer", "priest", "priestess", "acolyte",
+    "villager", "peasant", "farmer", "merchant", "traveler", "wanderer",
+    "apprentice", "initiate", "novice", "recruit", "captain", "commander",
+    "archer", "bowman", "swordsman", "spearman", "cavalry", "rider",
+    "beast", "wolf", "bear", "drake", "serpent", "spider", "elemental",
+}
+
+GEOGRAPHIC_GENERIC_TOKENS = {
+    "forest", "plains", "mountain", "island", "swamp", "valley", "hill",
+    "village", "town", "river", "lake", "sea", "ocean", "wood", "woods",
+    "field", "meadow", "cavern", "cave", "desert", "tundra", "grove",
+}
+
+
+def parse_roster_names(roster_path: Path) -> set[str]:
+    """Extract candidate names from an IP catalog or deep-cut roster markdown.
+
+    Handles two documented formats:
+    1. Catalog entries that open a subsection with `### Name` headers.
+    2. Deep-cut roster bullet entries shaped `- **Name** — color — description`.
+
+    Returns a lowercase set for case-insensitive comparison. Also extracts any
+    names inside an explicit 'Nameless-Archetype Allowlist' block so generic-looking
+    names documented as IP-authentic don't trigger warnings.
+    """
+    if not roster_path.exists():
+        return set()
+    text = roster_path.read_text()
+    names: set[str] = set()
+
+    # Bold-bulleted entries: - **Name** — ...
+    for match in re.finditer(r"^\s*-\s*\*\*([^*]+?)\*\*", text, re.MULTILINE):
+        names.add(match.group(1).strip().lower())
+
+    # H3/H4 headers: ### Name
+    for match in re.finditer(r"^#{2,4}\s+([^\n#][^\n]*)$", text, re.MULTILINE):
+        header = match.group(1).strip()
+        # Skip section headers that are categories, not names.
+        lowered = header.lower()
+        if lowered in {
+            "characters", "factions", "locations", "items", "story beats",
+            "character catalog", "faction catalog", "location catalog",
+            "item catalog", "story beat catalog", "scope", "tone assessment",
+            "color pie distribution", "must-include list", "naming conventions",
+            "system translation inventory", "candidate reprints",
+            "nameless-archetype allowlist", "named units and ranks",
+            "named creatures and monsters", "characters (minor/deep-cut)",
+        } or "catalog" in lowered or "list" in lowered:
+            continue
+        names.add(lowered)
+
+    return names
+
+
+def parse_nameless_allowlist(roster_path: Path) -> set[str]:
+    """Extract the explicit nameless-archetype allowlist block (archetypes the
+    IP genuinely supports as faceless masses, e.g. 'Stormtrooper'). Returns a
+    lowercase set of allowed generic archetype names."""
+    if not roster_path.exists():
+        return set()
+    text = roster_path.read_text()
+    m = re.search(
+        r"#{2,4}\s*Nameless[- ]Archetype Allowlist\s*\n(.*?)(?=\n#{1,4}\s|\Z)",
+        text,
+        re.IGNORECASE | re.DOTALL,
+    )
+    if not m:
+        return set()
+    block = m.group(1)
+    allowlist: set[str] = set()
+    for line in block.splitlines():
+        bm = re.match(r"\s*-\s*\*?\*?([^*(—\-–]+?)\*?\*?\s*(?:\(|—|–|$)", line)
+        if bm:
+            candidate = bm.group(1).strip().lower()
+            if candidate and len(candidate) < 60:
+                allowlist.add(candidate)
+    return allowlist
+
+
+def looks_generic_fantasy(name: str) -> bool:
+    """Heuristic: does this card name read as fantasy-generic (not IP-specific)?
+    Used only to produce a more specific warning message — the authoritative
+    check is roster membership."""
+    tokens = re.findall(r"[A-Za-z]+", name.lower())
+    if not tokens:
+        return False
+    if any(t in GENERIC_FANTASY_TOKENS for t in tokens):
+        if any(t in GEOGRAPHIC_GENERIC_TOKENS for t in tokens):
+            return True
+        # Also generic if it's short and dominated by fantasy tokens.
+        if len(tokens) <= 3 and sum(1 for t in tokens if t in GENERIC_FANTASY_TOKENS) >= 1:
+            # But exempt single-word tokens that might be specific IP nouns.
+            if len(tokens) == 1:
+                return False
+            return True
+    return False
+
+
+def check_ub_names(
+    cards: list[dict],
+    roster_names: set[str],
+    allowlist: set[str],
+) -> tuple[list[str], list[str]]:
+    """Return (warnings, info_lines) for UB creature-name validation.
+    A creature passes if its lowercase name (or its pre-comma portion for
+    'Name, Title' style) is in roster_names OR in allowlist.
+    """
+    warnings: list[str] = []
+    details: list[str] = []
+    missing = 0
+    allowlisted = 0
+    matched = 0
+    for c in cards:
+        if not is_creature(c):
+            continue
+        name = (c.get("name") or "").strip()
+        if not name:
+            warnings.append("Creature with empty name field")
+            continue
+        lname = name.lower()
+        # UB sets often use "Name, Title" format — match the pre-comma portion.
+        primary = lname.split(",", 1)[0].strip()
+        if lname in roster_names or primary in roster_names:
+            matched += 1
+            continue
+        if lname in allowlist or primary in allowlist:
+            allowlisted += 1
+            continue
+        # Name did not match; emit a defect warning.
+        missing += 1
+        flag = " [reads as generic fantasy]" if looks_generic_fantasy(name) else ""
+        details.append(f"- {name} (rarity: {rarity(c)}, color: {primary_color(c)}){flag}")
+    if missing:
+        warnings.append(
+            f"UB roster check: {missing} creature(s) have names that do not appear in "
+            f"the IP catalog, deep-cut roster, or nameless-archetype allowlist. "
+            f"(matched={matched}, allowlisted={allowlisted})"
+        )
+    return warnings, details
+
+
 # Color pie check: very rough regex-based flags for potential violations.
 # These are *warnings*, not errors — the tool cannot tell a bend from a break.
 COLOR_PIE_ALARMS = {
@@ -150,10 +300,15 @@ def creature_curve(cards: list[dict], color: str) -> dict[int, int]:
     return dict(curve)
 
 
-def check_set(set_data: dict) -> str:
+def check_set(
+    set_data: dict,
+    roster_names: set[str] | None = None,
+    allowlist: set[str] | None = None,
+) -> str:
     cards = set_data.get("cards", [])
     archetypes = set_data.get("archetypes", {})
     mechanics = set_data.get("mechanics", [])
+    ub_mode = roster_names is not None
 
     out: list[str] = []
     out.append(f"# Balance Report: {set_data.get('set_name', 'Unnamed Set')}")
@@ -377,6 +532,29 @@ def check_set(set_data: dict) -> str:
         out.append("No type-line inconsistencies detected.")
     out.append("")
 
+    # --- UB roster name check (UB mode only) ---
+    if ub_mode:
+        out.append("## UB creature-name roster check")
+        out.append(
+            f"Roster entries loaded: {len(roster_names or [])}  |  "
+            f"Nameless-archetype allowlist entries: {len(allowlist or [])}"
+        )
+        ub_warnings, ub_details = check_ub_names(cards, roster_names or set(), allowlist or set())
+        if ub_warnings:
+            for w in ub_warnings:
+                out.append(f"- {w}")
+            if ub_details:
+                out.append("")
+                out.append("**Unmatched creature names:**")
+                for d in ub_details[:50]:
+                    out.append(d)
+                if len(ub_details) > 50:
+                    out.append(f"- ...and {len(ub_details) - 50} more.")
+            warnings.extend(ub_warnings)
+        else:
+            out.append("All creature names resolve to the IP roster or the nameless-archetype allowlist.")
+        out.append("")
+
     # --- Summary ---
     out.append("## Summary")
     if warnings:
@@ -393,10 +571,43 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("set_path", type=Path)
     ap.add_argument("--out", type=Path, default=None)
+    ap.add_argument(
+        "--ip-catalog",
+        type=Path,
+        default=None,
+        help="Path to ip_catalog.md (enables UB mode; also pass --ip-roster).",
+    )
+    ap.add_argument(
+        "--ip-roster",
+        type=Path,
+        default=None,
+        help="Path to deep_cut_roster.md (enables UB mode; also pass --ip-catalog).",
+    )
     args = ap.parse_args()
 
     set_data = load_set(args.set_path)
-    report = check_set(set_data)
+
+    roster_names: set[str] | None = None
+    allowlist: set[str] | None = None
+    if args.ip_catalog or args.ip_roster:
+        roster_names = set()
+        allowlist = set()
+        for p in (args.ip_catalog, args.ip_roster):
+            if p is None:
+                continue
+            if not p.exists():
+                print(f"warning: {p} not found; skipping", file=sys.stderr)
+                continue
+            roster_names |= parse_roster_names(p)
+            allowlist |= parse_nameless_allowlist(p)
+        if not roster_names:
+            print(
+                "warning: UB mode requested but no roster names parsed from the "
+                "provided files; check that the files use the documented formats.",
+                file=sys.stderr,
+            )
+
+    report = check_set(set_data, roster_names=roster_names, allowlist=allowlist)
 
     if args.out:
         args.out.write_text(report)

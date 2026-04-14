@@ -42,7 +42,7 @@ Then read these shared references as needed during card design:
 Accept these inputs:
 - `vision_handoff.md` from mtg-vision-designer (pillars, mechanics, archetypes, tone, prototype cards)
 - `vision_cardfile.json` from mtg-vision-designer (prototype card file ~230 cards)
-- **EITHER** `world_guide.md` from mtg-worldbuilder (original Magic set) **OR** `ip_catalog.md` + `ip_constraints.md` from mtg-ip-researcher (Universes Beyond set)
+- **EITHER** `world_guide.md` from mtg-worldbuilder (original Magic set) **OR** `ip_catalog.md` + `ip_constraints.md` + `deep_cut_roster.md` from mtg-ip-researcher (Universes Beyond set). The deep-cut roster is mandatory for UB full sets — without it, creature slots cannot be bound to IP-authentic names and the set will drift toward generic fantasy names.
 
 Before designing anything, establish:
 - **What is the vision?** Read the three pillars, selling sentence, and target format speed. These are your north star — every card decision gets tested against them.
@@ -85,6 +85,41 @@ If the set is based on a well-known IP and you say "no" to Battles (for a milita
 
 Reserve 8-15 skeleton slots for non-creature permanents.
 
+### Step 3.5: Bind the IP roster (Universes Beyond sets only)
+
+**Skip this step for original Magic sets. For UB sets, this step is a hard gate — do not begin Step 4 until it is complete.**
+
+The single most common failure mode in Universes Beyond sets is generic creature names: "Village Guard," "Forest Hunter," "Plains Scout." These leak in when set designers reach the fill step without a concrete list of IP-authentic names to pull from, and default to fantasy-generic names to keep the curve moving. The fix is structural: bind every creature slot to a roster entry *before* designing rules text, not *after*.
+
+**Load the three IP documents:**
+1. `ip_catalog.md` — tier 3–5 characters, factions, locations, items
+2. `deep_cut_roster.md` — the long tail of ~200+ minor named entities, plus the nameless-archetype allowlist
+3. `ip_constraints.md` — locked flavor, must-include list
+
+**Build a name assignment table.** Before filling the skeleton, walk every creature slot in the skeleton and assign it a roster entry as a *planned name*. Use this order:
+
+1. **Must-includes first.** Every element on the ip_constraints.md must-include list must be assigned a slot. If a must-include is a character, that slot's name is locked. If a must-include is a faction/location/item, it gets a slot but may not be a creature.
+2. **Catalog tier 3–5 next.** Spend these on uncommons and rares where they're most visible.
+3. **Deep-cut roster for the long tail.** Minor named characters and named units/ranks fill common slots. A "Rohirrim Scout" or "Captain Beregond" in the roster is the correct name for a 2/2 common white soldier, not "Plains Guardian."
+4. **Nameless-archetype allowlist for faceless masses.** Generic names are permitted ONLY for archetypes explicitly listed in the roster's nameless-archetype allowlist (e.g., "Uruk-hai Warrior," "Stormtrooper"). Any generic name not on this allowlist is a defect.
+
+Produce `name_assignments.json` — a mapping from skeleton slot ID to planned roster name and color/type constraints. Example:
+
+```json
+{
+  "W-C-01": {"name": "Háma", "color": "W", "roster_source": "deep_cut", "type_hint": "Human Soldier"},
+  "W-C-02": {"name": "Gamling", "color": "W", "roster_source": "deep_cut", "type_hint": "Human Soldier"},
+  "W-C-12": {"name": "Rider of Rohan", "color": "W", "roster_source": "nameless_allowlist", "type_hint": "Human Knight"}
+}
+```
+
+**Coverage gate:** If the roster does not supply enough color-appropriate names to cover every creature slot, do NOT proceed. Either (a) flag this back to the IP researcher to extend the roster, or (b) expand the nameless-archetype allowlist for specific faceless archetypes that the IP genuinely supports. Filling generic names is not an option.
+
+**Sanity checks before leaving this step:**
+- Every creature slot in the skeleton has a planned roster name.
+- No two creature slots share a name unless they represent distinct story moments (versioning for tier-5 characters only).
+- Color distribution of assigned names roughly matches the skeleton's color distribution. Mismatches here indicate color-pie gaps the IP researcher flagged — solve them with multicolor gold cards or by reassigning name colors within the catalog's documented flexibility.
+
 ### Step 4: Fill the design skeleton — commons first
 
 Load the design skeleton from `references/design_skeleton.json`. Walk through it slot by slot, starting with commons.
@@ -93,12 +128,13 @@ Load the design skeleton from `references/design_skeleton.json`. Walk through it
 
 For each common slot:
 1. Read the slot's mana value, type, and role notes
-2. Check which archetypes this card's color participates in
-3. Check the vision handoff's "commons needed" list for those archetypes
-4. Design a card that fills the structural role AND expresses the set's theme
-5. Verify against the color pie
-6. If using a set mechanic, use the exact mechanic name from the handoff
-7. Track NWO complexity — flag the card if it has 2+ red-flag markers
+2. **For UB sets:** look up the planned roster name for this slot from `name_assignments.json` (see Step 3.5). The card's `name` field is locked before rules text is written. Generic names are permitted only when the slot is explicitly tagged `roster_source: nameless_allowlist`.
+3. Check which archetypes this card's color participates in
+4. Check the vision handoff's "commons needed" list for those archetypes
+5. Design a card that fills the structural role AND expresses the set's theme — for UB, the character/entity's traits in the source material must inform the rules text
+6. Verify against the color pie
+7. If using a set mechanic, use the exact mechanic name from the handoff
+8. Track NWO complexity — flag the card if it has 2+ red-flag markers
 
 **Per-color common targets:**
 - White: ~15 (~11 creatures, ~4 noncreatures) — 2 removal slots
@@ -173,7 +209,11 @@ After filling all slots, audit the removal suite. See `references/set-design-fra
 Run the heuristic balance checker:
 
 ```bash
+# Original Magic set
 python scripts/balance_check.py set.json
+
+# Universes Beyond set — pass the IP roster files for name validation
+python scripts/balance_check.py set.json --ip-catalog ip_catalog.md --ip-roster deep_cut_roster.md
 ```
 
 It checks:
@@ -185,6 +225,7 @@ It checks:
 - Color pie violations (flagged for review, not auto-corrected)
 - Type-line consistency (Equipment has Equip, Vehicle has Crew, Aura has Enchant)
 - NWO red-flag ratio
+- **UB mode only:** Every creature's `name` appears in the IP catalog, the deep-cut roster, or the nameless-archetype allowlist. Generic fantasy names (e.g., "Forest Guardian," "Village Scout") trigger a defect warning with the offending slot IDs.
 
 Fix everything flagged. Run again. Do not proceed until clean or every remaining warning is documented with deliberate justification.
 
@@ -219,7 +260,7 @@ Final pass on the complete file:
 - **Keyword tagging:** `keywords` array uses exact mechanic name casing
 
 **For UB — additional polish checks:**
-- Zero generic names (every card identifiable as belonging to this IP)
+- **Zero generic names** (every creature card's `name` traces to `ip_catalog.md`, `deep_cut_roster.md`, or the nameless-archetype allowlist — this is enforced by Step 3.5 and verified by `balance_check.py` in UB mode; the polish pass is the last human sanity check, not the first line of defense)
 - Character density at 20-30% of the set
 - "Name, Title/Descriptor" format for all named characters
 - Flavor text strategy consistent with IP catalog recommendation
