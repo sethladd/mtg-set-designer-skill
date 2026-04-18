@@ -26,6 +26,7 @@ SKILLS=(
   mtg-art-director
   mtg-product-architect
   mtg-set-pipeline
+  mtg_card_maker
 )
 
 if [[ $# -ne 1 ]]; then
