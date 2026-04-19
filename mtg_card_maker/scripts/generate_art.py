@@ -445,9 +445,9 @@ def main() -> None:
                     help="Directory to save generated PNGs (default: ./art). "
                          "Each card gets a subdirectory with its variants, "
                          "e.g. ./art/joe_grunt/joe_grunt_1.png.")
-    ap.add_argument("--variants", type=int, default=3,
+    ap.add_argument("--variants", type=int, default=2,
                     help="Number of variants to generate per card "
-                         "(default: 3). Nano Banana sometimes produces "
+                         "(default: 2). Nano Banana sometimes produces "
                          "weird compositions; generating multiple gives "
                          "the human a choice. The JSON's art_image field "
                          "defaults to variant 1; hand-edit to pick "
@@ -474,9 +474,9 @@ def main() -> None:
                          "Alternatives: gemini-3-pro-image-preview (Nano Banana Pro, "
                          "higher quality / slower / pricier), gemini-2.5-flash-image "
                          "(original Nano Banana)")
-    ap.add_argument("--image-size", default="2K",
+    ap.add_argument("--image-size", default="1K",
                     choices=["512", "1K", "2K", "4K"],
-                    help="Gemini output resolution before cropping (default: 2K)")
+                    help="Gemini output resolution before cropping (default: 1K)")
     ap.add_argument("--update-json", action="store_true",
                     help="Write art_image paths back into the input JSON")
     ap.add_argument("--out-json",
@@ -570,26 +570,26 @@ def main() -> None:
     # for the post-pass that points art_image at a real variant file.
     promptable_cards = [c for c in cards if build_prompt(c)]
 
-    # Find cards that still need at least one variant generated.
-    cards_needing_work: list[dict] = []
-    for c in promptable_cards:
-        for key in variant_keys:
-            if not _variant_path(art_dir, c, key).is_file() or args.force:
-                cards_needing_work.append(c)
-                break
-
-    if args.limit:
-        cards_needing_work = cards_needing_work[: args.limit]
-
-    # Expand each card into (card, variant_key) tasks, skipping variants
-    # that already exist on disk (unless --force).
+    # Expand each card into (card, variant_key) tasks. Variants whose PNG
+    # already exists on disk are announced and skipped (unless --force).
     to_generate: list[tuple[dict, str]] = []
-    for c in cards_needing_work:
+    cards_with_work: list[dict] = []
+    seen_with_work: set[int] = set()
+    for c in promptable_cards:
+        name = c.get("name") or "card"
         for key in variant_keys:
             out_path = _variant_path(art_dir, c, key)
             if out_path.is_file() and not args.force:
+                print(f"  [skip] {name} {key} — already on disk: {out_path}")
                 continue
+            if id(c) not in seen_with_work:
+                seen_with_work.add(id(c))
+                cards_with_work.append(c)
             to_generate.append((c, key))
+
+    if args.limit:
+        kept_ids = {id(c) for c in cards_with_work[: args.limit]}
+        to_generate = [(c, k) for (c, k) in to_generate if id(c) in kept_ids]
 
     if not to_generate:
         print("No cards need art generation (use --force to regenerate).")
@@ -679,6 +679,7 @@ def main() -> None:
 
     if concurrency == 1:
         print(f"Generating {total} image(s) with {args.model} "
+              f"at {args.image_size} "
               f"({variant_count} variant(s) per card)...")
         for i, task in enumerate(to_generate, 1):
             card, variant_key = task
@@ -698,6 +699,7 @@ def main() -> None:
                 failures.append((f"{name} {variant_key}", str(e)))
     else:
         print(f"Generating {total} image(s) with {args.model} "
+              f"at {args.image_size} "
               f"({variant_count} variant(s) per card, "
               f"concurrency={concurrency})...")
         done = 0

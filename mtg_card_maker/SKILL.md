@@ -91,11 +91,11 @@ python scripts/generate_art.py set.json --update-json
 Useful flags:
 
 - `--art-dir ./art` — root directory for generated PNGs (default `./art`). Each card gets its own subdirectory; see "Variants" below.
-- `--variants N` — number of variants to generate per card (default `3`). See "Variants" below. Ignored when `--variant-styles` is set.
+- `--variants N` — number of variants to generate per card (default `2`). See "Variants" below. Ignored when `--variant-styles` is set.
 - `--variant-styles PATH` — JSON file of per-variant artistic-medium overrides (e.g. oil / watercolor / digital realism). The file's length determines the number of variants per card, and each variant's `style_anchor` replaces the set's canonical anchor for that one generation. See "Styled variants" below. A starter file lives at `scripts/variant_styles.example.json`.
 - `--model gemini-3-pro-image-preview` — Nano Banana Pro, higher quality (slower and more expensive); good for mythics and rares
 - `--model gemini-2.5-flash-image` — original Nano Banana (previous generation)
-- `--image-size 1K` / `4K` — output resolution before cropping (default `2K`; `512` also supported)
+- `--image-size 2K` / `4K` — output resolution before cropping (default `1K`; `512` also supported)
 - `--concurrency N` — number of images to generate in parallel (default `4`). See "Parallelism" below.
 - `--retries N` — retry attempts per card on transient errors (default `3`). See "Retries" below.
 - `--filter-rarity mythic` / `--filter-color R` — generate only a slice
@@ -107,7 +107,7 @@ The script skips variants whose PNG already exists on disk, so repeat runs only 
 
 #### Variants
 
-By default `generate_art.py` generates **three variants per card** so the human can pick the best one. Nano Banana output is stochastic and sometimes weird (a character loses a hand, the camera is in the floor, the wrong subject is centred); having three options makes that recoverable without a regenerate step.
+By default `generate_art.py` generates **two variants per card** so the human can pick the better one. Nano Banana output is stochastic and sometimes weird (a character loses a hand, the camera is in the floor, the wrong subject is centred); having a second option makes that recoverable without a regenerate step.
 
 Disk layout is always per-card-subdirectory, regardless of `--variants` value:
 
@@ -127,7 +127,7 @@ Disk layout is always per-card-subdirectory, regardless of `--variants` value:
 
 **Default `art_image`:** with `--update-json`, the script sets each card's `art_image` to the **lowest-numbered variant whose PNG actually exists**. So variant 1 is the default, but if variant 1 was safety-blocked and only variants 2 and 3 succeeded, the pointer automatically falls through to variant 2. If you've already hand-picked a variant and the file still exists, your choice is preserved on rerun — the script never clobbers a valid manual pick.
 
-**Cost:** each variant is a separate API call, so generating 3 variants × 273 cards at Nano Banana 2 2K is ~3× the single-variant cost. Dial `--variants 1` for quick drafts, `--variants 3` for production, `--variants 5` if you really want options.
+**Cost:** each variant is a separate API call, so generating 2 variants × 273 cards at Nano Banana 2 1K is ~2× the single-variant cost. Dial `--variants 1` for quick drafts, `--variants 3` for more options, `--variants 5` if you really want options.
 
 **Failure handling:** if variant 2 fails but 1 and 3 succeed, the card still has art — the post-pass finds the lowest existing variant. Rerunning the command picks up only the failed variant (skip-existing works per-variant).
 
