@@ -18,3 +18,23 @@
 
 - andrewgioia/mana project (SVG mana and tap symbols):
   https://github.com/andrewgioia/mana
+
+## Art Generation (Gemini Nano Banana)
+
+- Gemini API — Nano Banana image generation (model IDs, aspect ratios, image_config options, multimodal response parts):
+  https://ai.google.dev/gemini-api/docs/image-generation
+
+- google-genai Python SDK (client.models.generate_content, types.GenerateContentConfig, types.ImageConfig, part.inline_data):
+  https://github.com/googleapis/python-genai
+
+- Google AI Studio — API key provisioning:
+  https://aistudio.google.com/app/apikey
+
+- Vertex AI — Generate and edit images overview (context on Imagen → Nano Banana migration):
+  https://docs.cloud.google.com/vertex-ai/generative-ai/docs/image/overview
+
+## Card Art Box Geometry
+
+- M15+ frame art window is 53 × 39 mm (aspect ratio ≈ 1.359:1). Nano
+  Banana's closest landscape option is 4:3 (1.333:1); the difference is
+  trimmed top/bottom in `scripts/generate_art.py:crop_to_art_box`.

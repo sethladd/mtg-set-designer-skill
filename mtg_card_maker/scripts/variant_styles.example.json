@@ -1,0 +1,14 @@
+[
+  {
+    "name": "oil",
+    "style_anchor": "Magic: The Gathering card art, oil painting on canvas with visible impasto brushwork, classical chiaroscuro, warm varnished palette, 4:3 landscape aspect ratio, cinematic composition"
+  },
+  {
+    "name": "watercolor",
+    "style_anchor": "Magic: The Gathering card art, watercolor and ink illustration with soft wet-into-wet washes, loose linework, luminous negative space, 4:3 landscape aspect ratio, cinematic composition"
+  },
+  {
+    "name": "digital",
+    "style_anchor": "Magic: The Gathering card art, digital realism with crisp rendering, cinematic volumetric lighting, photoreal textures and materials, 4:3 landscape aspect ratio, cinematic composition"
+  }
+]

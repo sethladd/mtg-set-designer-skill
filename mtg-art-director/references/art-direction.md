@@ -1,8 +1,10 @@
 # Art Direction
 
-Every card in the set needs an **art description** — a structured prompt that can be used to either find existing artwork (via image search and cropping) or generate an image using an AI image generator. The art description is the bridge between game design and visual identity.
+Every card in the set needs an **art description** — a structured prompt that drives a text-to-image LLM to produce the card's art. The art description is the bridge between game design and visual identity.
 
-This reference covers the official WotC art brief format, what makes MTG art work at card size, and how to write descriptions that produce usable results.
+**Primary target: text-to-image LLM generation.** Secondary: image search or handoff to a human illustrator. Every field is written for a diffusion model that renders literally, has no cross-card memory, cannot ask clarifying questions, and needs every material, light source, and compositional choice specified explicitly.
+
+This reference covers the official WotC art brief format (for historical reference), what makes MTG art work at card size, and how to write descriptions that produce usable LLM-generated results.
 
 ## The WotC art brief format
 
@@ -18,34 +20,37 @@ The standard fields are:
 - **Focus** — the single most important visual element (e.g., "The glowing sword," "The warrior's face as she realizes what she's done"). This is what the viewer's eye should land on first.
 - **Mood** — a short evocative phrase capturing the emotional tone (e.g., "Eerie calm before the storm," "Triumphant but costly," "You're in deeper trouble than you first realized")
 
-## Adapting the format for this skill
+## Adapting the format for LLM generation
 
-For set design purposes, the art description on each card doesn't need to be as long as a professional art brief. But it needs to contain enough information to either:
-
-1. **Guide an image search** — someone looking for existing art to proxy the card needs to know what to search for
-2. **Prompt an AI image generator** — the description should work as an image generation prompt with minimal editing
+Unlike a human illustrator, a text-to-image LLM cannot read between the lines. It needs more specification, not less. Each card's art description must be rich enough to produce a usable image in **one generation pass** — if the description leaves materials, lighting, or composition ambiguous, the generator will fill those gaps randomly and the result will be inconsistent across the set.
 
 Each card in `set.json` gets an `art_description` field structured as:
 
 ```json
 {
   "art_description": {
-    "scene": "A massive serpent coils around a sunken temple, its scales glowing with bioluminescent patterns. Schools of fish scatter in terror as one enormous eye regards the viewer.",
-    "focus": "The serpent's glowing eye",
-    "mood": "Ancient, patient menace",
-    "palette": "Deep blues and teals with bioluminescent cyan and green accents",
-    "frame": "Wide shot from below, looking up at the serpent's mass"
+    "scene": "A towering reef-guardian serpent — its armored skull wrapped in coral plates and mother-of-pearl scales the length of a forearm — coils through the flooded colonnade of a sunken Tidecaller temple, mid-uncoiling toward the viewer as schools of lantern-fish scatter in panic through shafts of cyan bioluminescent light falling from cracked ceiling stones. Its left eye — a vertical amber slit ringed in veined gold — fixes directly on the camera. Basalt columns slick with white barnacles and threaded with glowing blue kelp frame the scene; silt drifts across the temple floor where a single bronze ceremonial trident lies half-buried, embers of disturbed phosphorescence trailing its length. Backlit from above-right by the bioluminescent shafts, the serpent's face in deep cold shadow with rim-light catching the scale ridges of its jaw.",
+    "focus": "The serpent's amber eye",
+    "mood": "Ancient, patient, you have already been seen",
+    "palette": "Deep indigo, drowned-teal, cyan bioluminescence, pearl-white, veined gold",
+    "frame": "Wide shot, low-angle worm's-eye from the temple floor, serpent's coils cropped at upper frame edge to suggest mass continuing beyond view",
+    "style_anchor": "Magic: The Gathering card art, painterly digital illustration in the style of Seb McKinnon, atmospheric chiaroscuro, 4:3 landscape aspect ratio, cinematic composition",
+    "negative_prompt": "no text, no watermarks, no card borders, no UI elements, no signatures, no frames, no captions, no extra fingers, no distorted faces, no modern clothing, no photography, no 3d render, no low-detail backgrounds, no surface water, not above water"
   }
 }
 ```
 
 The fields:
 
-- **scene** — 1–3 sentences describing what's in the image. This is the core prompt. It should describe a specific moment, not a generic concept. "A warrior fights a dragon" is weak. "A wounded knight drives her lance into the underbelly of a rearing dragon, both silhouetted against a burning city" is strong.
-- **focus** — the primary visual element the eye should land on. Keep it to one thing. If you can't pick one focus, the composition is too busy.
-- **mood** — 2–5 words capturing the emotional register. This guides color choices, lighting, and atmosphere.
-- **palette** — the dominant colors. This helps maintain visual consistency across the set and ensures the art feels right for the card's color identity. A red card shouldn't have predominantly blue art unless there's a deliberate reason.
-- **frame** — the camera angle and shot type (close-up, medium shot, wide shot, bird's eye, worm's eye, etc.). Variety in framing across the set prevents visual monotony.
+- **scene** — 60–140 words. The core description. It must name specific materials, lighting direction, and environmental features. "A warrior fights a dragon" is useless to an LLM. "A wounded Tidecaller knight, half her lacquered-copper scalemail shattered down the left flank, drives her whale-bone lance up into the soft underbelly of a rearing Salt-Drake, both silhouetted against the burning terraces of Veth-Kalor, ash falling like snow, firelight underlighting the dragon's gullet" tells the model everything it needs.
+- **focus** — the single visual element where the eye lands. 3-8 words, no "and." LLMs use this to decide what to render sharpest.
+- **mood** — 2–8 words capturing emotional register. Evocative shorthand ("you're in deeper trouble than you first realized") beats dry descriptors ("dark and scary").
+- **palette** — 3-5 specific color names with modifiers. A red card shouldn't have predominantly blue art unless deliberate. LLMs treat "amber" and "orange" as distinct — pick precisely.
+- **frame** — shot type + camera angle + what's cropped. Variety across the set prevents visual monotony.
+- **style_anchor** — a set-wide style phrase repeated verbatim on every card. This is the primary mechanism for cross-card visual cohesion when generations are produced independently.
+- **negative_prompt** — explicit exclusions. LLMs fail predictably (text artifacts, extra fingers, modern anachronisms); the negative prompt short-circuits these.
+
+The image generator (`mtg_card_maker/scripts/generate_art.py`) flattens these fields into the final prompt string at generation time — do not hand-write a `prompt` field into `set.json`.
 
 ## What makes good MTG art
 

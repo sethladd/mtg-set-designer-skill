@@ -6,8 +6,10 @@ Usage:
     python art_direction_audit.py path/to/set.json [--out art_direction_report.md]
 
 Checks:
-  1. Completeness — every card has an art_description with all 5 fields
-  2. Field quality — scene length, focus brevity, mood word count, palette colors, frame specificity
+  1. Completeness — every card has an art_description with all 7 fields
+     (scene, focus, mood, palette, frame, style_anchor, negative_prompt)
+  2. Field quality — scene length (60-140 words), focus brevity, mood word count,
+     palette colors, frame specificity, style_anchor presence, negative_prompt baseline
   3. Mechanical readability — keywords cross-referenced with required visual cues
   4. Color identity alignment — palette colors vs. card color identity
   5. Scene specificity — flags generic/vague descriptions
@@ -15,6 +17,9 @@ Checks:
   7. Visual diversity — flags near-duplicate scenes across the set
   8. Frame variety — flags overuse of the same framing type
   9. UB consistency — checks canonical character references (if applicable)
+ 10. LLM-readiness — scenes must contain lighting, material, and atmospheric cues
+     required for single-pass LLM image generation
+ 11. Style-anchor consistency — every card's style_anchor must match the set baseline
 """
 
 from __future__ import annotations
@@ -29,12 +34,51 @@ from pathlib import Path
 
 # --- Constants ---
 
-ART_FIELDS = ("scene", "focus", "mood", "palette", "frame")
+ART_FIELDS = (
+    "scene", "focus", "mood", "palette", "frame",
+    "style_anchor", "negative_prompt",
+)
 
-SCENE_MIN_WORDS = 15
+SCENE_MIN_WORDS = 60
+SCENE_MAX_WORDS = 140
 FOCUS_MAX_WORDS = 8
 MOOD_MIN_WORDS = 2
-MOOD_MAX_WORDS = 5
+MOOD_MAX_WORDS = 8
+PALETTE_MIN_COLORS = 3
+STYLE_ANCHOR_MIN_WORDS = 6
+
+# Cues that a scene contains LLM-usable lighting direction
+LIGHTING_CUES = [
+    "lit", "light from", "backlit", "rim-light", "rim light", "underlit",
+    "under-lit", "uplit", "up-lit", "sidelit", "side-lit", "overhead",
+    "above-left", "above-right", "below-left", "below-right", "from above",
+    "from below", "from behind", "from the left", "from the right", "shadow",
+    "shaft of", "shafts of", "glow", "illuminat", "silhouett", "highlight",
+    "sunlight", "moonlight", "firelight", "torchlight", "cast light",
+    "spotlight", "dappled", "golden hour", "cold light", "warm light",
+]
+
+# Cues that a scene contains material/texture specificity
+MATERIAL_CUES = [
+    "lacquered", "polished", "rusted", "tarnished", "woven", "braided",
+    "stitched", "forged", "hammered", "etched", "carved", "scaled",
+    "feathered", "plated", "chainmail", "scalemail", "leather", "silk",
+    "linen", "wool", "canvas", "bone", "bronze", "iron", "steel", "copper",
+    "gold", "silver", "obsidian", "marble", "basalt", "granite", "slate",
+    "sandstone", "coral", "mother-of-pearl", "nacre", "pearl", "jade",
+    "onyx", "amber", "crystal", "glass", "ceramic", "lacquer", "velvet",
+    "brocade", "damask", "felt", "hide", "fur", "chitin", "barnacle",
+    "moss", "lichen", "bark", "wicker", "wattle", "thatch",
+]
+
+# Cues that a scene implies a before/after micro-story
+ATMOSPHERIC_CUES = [
+    "drifting", "falling", "still", "mid-", "already", "just", "after",
+    "before", "about to", "on the verge", "half-", "partially", "trailing",
+    "smoking", "smoldering", "fresh", "recent", "newly", "cracking",
+    "crumbling", "collapsed", "toppled", "broken", "ash", "dust", "embers",
+    "sparks", "steam", "smoke", "rain still", "settling", "rising",
+]
 
 # Mechanical readability: keyword -> words that should appear in the scene or focus
 MECHANIC_VISUAL_CUES: dict[str, list[str]] = {
@@ -169,7 +213,7 @@ def classify_frame(frame: str) -> str | None:
 # --- Checks ---
 
 def check_completeness(cards: list[dict]) -> list[str]:
-    """Check 1: Every card has art_description with all 5 fields."""
+    """Check 1: Every card has art_description with all 7 fields."""
     flags: list[str] = []
     for c in cards:
         name = c.get("name", c.get("id", "???"))
@@ -198,12 +242,21 @@ def check_field_quality(cards: list[dict]) -> list[str]:
         mood = ad.get("mood", "")
         palette = ad.get("palette", "")
         frame = ad.get("frame", "")
+        style_anchor = ad.get("style_anchor", "")
+        negative_prompt = ad.get("negative_prompt", "")
 
-        if scene and word_count(scene) < SCENE_MIN_WORDS:
-            flags.append(
-                f"SCENE-SHORT: {name} scene is {word_count(scene)} words "
-                f"(minimum {SCENE_MIN_WORDS})"
-            )
+        if scene:
+            wc = word_count(scene)
+            if wc < SCENE_MIN_WORDS:
+                flags.append(
+                    f"SCENE-SHORT: {name} scene is {wc} words "
+                    f"(minimum {SCENE_MIN_WORDS} — LLM generators need rich detail)"
+                )
+            elif wc > SCENE_MAX_WORDS:
+                flags.append(
+                    f"SCENE-LONG: {name} scene is {wc} words "
+                    f"(maximum {SCENE_MAX_WORDS} — past this LLMs start dropping detail)"
+                )
         if focus and word_count(focus) > FOCUS_MAX_WORDS:
             flags.append(
                 f"FOCUS-LONG: {name} focus is {word_count(focus)} words "
@@ -216,6 +269,16 @@ def check_field_quality(cards: list[dict]) -> list[str]:
                     f"MOOD-LENGTH: {name} mood is {wc} words "
                     f"(expected {MOOD_MIN_WORDS}-{MOOD_MAX_WORDS})"
                 )
+        if palette:
+            # Count distinct color tokens (comma-separated or "and"-separated)
+            color_tokens = [
+                t.strip() for t in re.split(r",|\band\b|;", palette) if t.strip()
+            ]
+            if len(color_tokens) < PALETTE_MIN_COLORS:
+                flags.append(
+                    f"PALETTE-THIN: {name} palette has {len(color_tokens)} colors "
+                    f"(minimum {PALETTE_MIN_COLORS} for LLM-usable specificity)"
+                )
         if frame and not any(
             p in frame.lower()
             for patterns in FRAME_TYPES.values()
@@ -225,6 +288,21 @@ def check_field_quality(cards: list[dict]) -> list[str]:
                 f"FRAME-VAGUE: {name} frame '{frame}' doesn't specify "
                 f"a recognizable shot type or angle"
             )
+        if style_anchor and word_count(style_anchor) < STYLE_ANCHOR_MIN_WORDS:
+            flags.append(
+                f"STYLE-ANCHOR-WEAK: {name} style_anchor is only "
+                f"{word_count(style_anchor)} words (minimum {STYLE_ANCHOR_MIN_WORDS} "
+                f"— must specify medium, style reference, and aspect ratio)"
+            )
+        if negative_prompt:
+            neg_lower = negative_prompt.lower()
+            required_neg = ["no text", "no watermark"]
+            missing = [r for r in required_neg if r not in neg_lower]
+            if missing:
+                flags.append(
+                    f"NEGATIVE-PROMPT-INCOMPLETE: {name} negative_prompt missing "
+                    f"baseline exclusions: {', '.join(missing)}"
+                )
     return flags
 
 
@@ -423,6 +501,83 @@ def check_frame_variety(cards: list[dict]) -> list[str]:
     return flags
 
 
+def check_llm_readiness(cards: list[dict]) -> list[str]:
+    """Check 10: Scenes must contain lighting, material, and atmospheric cues
+    required for single-pass LLM image generation."""
+    flags: list[str] = []
+    for c in cards:
+        name = c.get("name", c.get("id", "???"))
+        ad = c.get("art_description", {})
+        if not isinstance(ad, dict):
+            continue
+
+        scene = (ad.get("scene") or "").lower()
+        if not scene:
+            continue
+
+        if not any(cue in scene for cue in LIGHTING_CUES):
+            flags.append(
+                f"LLM-NO-LIGHTING: {name} scene lacks lighting direction "
+                f"(need cues like 'backlit', 'rim-light', 'shafts of', 'cast from above-left')"
+            )
+        mat_hits = sum(1 for cue in MATERIAL_CUES if cue in scene)
+        if mat_hits < 2:
+            flags.append(
+                f"LLM-THIN-MATERIALS: {name} scene names {mat_hits} specific "
+                f"materials (minimum 2 — LLMs render precise materials well but "
+                f"guess badly at 'armor' or 'robes')"
+            )
+        if not any(cue in scene for cue in ATMOSPHERIC_CUES):
+            flags.append(
+                f"LLM-STATIC-SCENE: {name} scene has no before/after atmospheric "
+                f"cue (need 'mid-', 'drifting', 'already', 'still falling', "
+                f"'half-', etc. — tells the LLM the moment is mid-event)"
+            )
+    return flags
+
+
+def check_style_anchor_consistency(cards: list[dict]) -> list[str]:
+    """Check 11: Every card's style_anchor must match the set baseline.
+    The repeated anchor is the primary mechanism for cross-card visual cohesion."""
+    flags: list[str] = []
+    anchors: Counter[str] = Counter()
+    by_anchor: dict[str, list[str]] = defaultdict(list)
+
+    for c in cards:
+        name = c.get("name", c.get("id", "???"))
+        ad = c.get("art_description", {})
+        if not isinstance(ad, dict):
+            continue
+        anchor = (ad.get("style_anchor") or "").strip()
+        if not anchor:
+            continue
+        normalized = re.sub(r"\s+", " ", anchor.lower())
+        anchors[normalized] += 1
+        by_anchor[normalized].append(name)
+
+    if not anchors:
+        return flags
+
+    # The most-common anchor is the baseline; anything else is drift
+    baseline, baseline_count = anchors.most_common(1)[0]
+    total = sum(anchors.values())
+    if baseline_count < total:
+        drifted = total - baseline_count
+        flags.append(
+            f"STYLE-ANCHOR-DRIFT: {drifted}/{total} cards use a style_anchor "
+            f"different from the set baseline (cohesion requires all cards to "
+            f"share one anchor)"
+        )
+        # Report up to 5 drifted cards
+        for anchor_text, count in anchors.most_common()[1:]:
+            sample = by_anchor[anchor_text][:3]
+            flags.append(
+                f"STYLE-ANCHOR-VARIANT: '{anchor_text[:60]}...' used by "
+                f"{count} card(s) including {', '.join(sample)}"
+            )
+    return flags
+
+
 def check_ub_consistency(cards: list[dict], is_ub: bool) -> list[str]:
     """Check 9: UB sets should reference canonical visual descriptions."""
     if not is_ub:
@@ -475,6 +630,8 @@ def audit_set(set_data: dict, is_ub: bool = False) -> str:
         ("Focus Singularity", check_focus_singularity(cards)),
         ("Visual Diversity", check_visual_diversity(cards)),
         ("Frame Variety", check_frame_variety(cards)),
+        ("LLM Readiness", check_llm_readiness(cards)),
+        ("Style Anchor Consistency", check_style_anchor_consistency(cards)),
         ("UB Consistency", check_ub_consistency(cards, is_ub)),
     ]
 

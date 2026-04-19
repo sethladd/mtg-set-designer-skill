@@ -83,36 +83,58 @@ The concept is the bridge between a card's mechanics and its place in the world.
 
 ### WotC Official Format (for reference)
 
-The standard fields used when commissioning from human illustrators:
+The standard fields used when WotC commissions from human illustrators:
 - **Setting** — The plane and general location
 - **Color** — The card's color identity and associated mood
 - **Action** — A detailed narrative description of what's happening (longest field)
 - **Focus** — The single most important visual element
 - **Mood** — Short evocative phrase for emotional tone
 
+The WotC format assumes a human artist who can ask clarifying questions, research the world on their own, and apply professional compositional instincts. **Our pipeline's primary target is a text-to-image LLM**, which has none of these affordances. The format below is adapted accordingly.
+
 ### Pipeline JSON Format (what we produce)
 
-Each card in `set.json` gets an `art_description` object:
+Each card in `set.json` gets an `art_description` object optimized for LLM image generation:
 
 ```json
 {
   "art_description": {
-    "scene": "1-3 sentences describing the specific moment depicted",
-    "focus": "The single primary visual element (one noun phrase)",
-    "mood": "2-5 words capturing emotional register",
-    "palette": "Dominant colors, linked to set palette and color identity",
-    "frame": "Camera angle and shot type"
+    "scene": "60-140 word LLM-optimized rich description of the specific moment",
+    "focus": "The single primary visual element (one noun phrase, 3-8 words)",
+    "mood": "2-8 words capturing emotional register — evocative shorthand preferred",
+    "palette": "3-5 specific colors with modifiers, aligned to color identity",
+    "frame": "Shot type + camera angle + composition directive",
+    "style_anchor": "Consistent style phrase used across every card in the set",
+    "negative_prompt": "What the model must NOT produce"
   }
 }
 ```
 
+The first five fields are the art-direction intent. The last two are the generation-layer specifications that turn intent into a reliable LLM prompt. **All seven fields are required.** The image generator (`mtg_card_maker/scripts/generate_art.py`) flattens these into the final model prompt at generation time — that script's `_compose_body` is the canonical assembler, so do not write a pre-flattened `prompt` field into `set.json`.
+
 **Field-by-field guidance:**
 
-- **scene**: Describe a SPECIFIC MOMENT, not a generic concept. Include the subject, the environment, and the action. Reference world-specific elements (named locations, faction aesthetics, unique materials). 15-50 words.
-- **focus**: ONE thing. The viewer's eye lands here first. Keep to a short noun phrase (3-8 words). Never use "and" in the focus.
-- **mood**: The emotional temperature. This guides lighting, color saturation, and atmospheric effects. 2-5 words.
-- **palette**: Name 2-4 specific colors. These must align with the card's color identity (at least 60% by visual weight) and work within the set palette. Use specific color names ("warm amber and burnt sienna" not "orange").
-- **frame**: Specify shot type (close-up, medium, wide, extreme wide) AND camera angle (eye level, low angle, high angle, bird's eye, worm's eye, Dutch angle). Vary across the set.
+- **scene**: 60-140 words. Describe a SPECIFIC MOMENT, *thick with observable detail that an image model can render*. Vague text yields vague images. Every scene must contain seven required elements in roughly this order (subject-first ordering works best for diffusion models):
+
+  1. **Subject specifics** — pose, expression, posture, clothing/equipment, distinguishing physical detail (scars, feathers, armor patterns, scale texture) that make this being or object singular rather than a generic token
+  2. **Action verb in the present participle** — what is happening *right now*, mid-motion when possible. LLMs lock onto gerunds and present-tense clauses. Not "a knight fights a dragon" but "the knight driving her lance into the dragon's shoulder-plate, mid-twist to avoid the jaws"
+  3. **Environment with concrete features** — the specific location with at least two named or described features (the toppled obelisk, the canal-gate's iron teeth, the salt pans cracking underfoot). Reference world-guide locations by name when available
+  4. **Lighting direction, source, and quality** — specify where the light comes from and what it does to the subject. "Backlit by the red dwarf star low on the horizon, face in deep shadow, rim-light on the left cheekbone, ember glow under-lighting her chin." Never write "well-lit," "dramatic," or "atmospheric" unqualified — LLMs ignore these
+  5. **Materials and textures (at least two, named precisely)** — not "armor" but "lacquered bamboo lamellar laced with blood-red silk." Not "robes" but "sea-silk stained with tide-gold dye." Not "stone" but "wet basalt veined with fossilized coral." LLMs excel at materials; give them exact nouns
+  6. **Atmospheric detail implying before/after** — one element that creates a micro-story: drifting embers from an already-collapsed roof, rain still falling from a passing storm, footprints in ash, a banner mid-fall. This tells the LLM the scene is mid-event, not a static pose
+  7. **World anchor** — at least one proper noun, faction name, species name, or world-specific term from the world guide or ip_catalog. "A swamp" is not anchored; "the Mirefen's tidal swamp, at the edge of Veth-Kalor's fish-scale quarter" is
+
+- **focus**: 3-8 words, ONE noun phrase. The viewer's eye lands here first. Never use "and." The focus is NOT a summary of the scene — it is the single point of highest contrast. LLMs use this to decide what to render sharpest.
+
+- **mood**: 2-8 words. Prefer WotC-style evocative shorthand ("you're in deeper trouble than you first realized," "placid, pretty, and frightening") over dry descriptors ("dark and scary"). Mood drives lighting saturation, color temperature, and atmospheric density in the generation.
+
+- **palette**: 3-5 specific color names with descriptive modifiers. "Bruise-purple, bone-white, smoke-grey with cold blue rim-highlights" — not "purple, white, and grey." Must align with card color identity (at least 60% by visual weight) and work within the set palette. LLMs treat color names literally; "amber" and "orange" produce different results.
+
+- **frame**: Shot type (close-up, medium, wide, extreme wide) + camera angle (eye level, low, high, bird's eye, worm's eye, Dutch) + what is cropped or included at the frame edge. Example: "Medium shot, low angle from the temple floor, dragon's wings cropped at frame edge to suggest scale beyond the image." Vary across the set.
+
+- **style_anchor**: The same phrase on every card in the set. Ensures visual cohesion across the 200+ generations. Template: `"Magic: The Gathering card art, painterly digital illustration in the style of [reference artist or set style keyword], 4:3 landscape aspect ratio, cinematic composition"`. Pick the reference style during Set Visual Identity (Step 3) and never vary it.
+
+- **negative_prompt**: Standard exclusions every generation should reject. Baseline: `"no text, no watermarks, no card borders, no UI elements, no signatures, no frames, no captions, no extra fingers, no distorted faces, no modern clothing, no photography, no 3d render, no low detail backgrounds"`. Add card-specific exclusions as needed (e.g., a flying creature's negative_prompt should include "not standing on ground").
 
 ---
 
