@@ -1,6 +1,6 @@
 ---
 name: mtg-card-renderer
-description: Render Magic&#58; The Gathering card descriptions as realistic card images (PNG). Use this skill whenever the user wants to generate, render, visualize, or create images of MTG cards — whether from JSON card data (like the output of mtg-set-designer), a card list, or even a single card description. Also trigger when the user says things like "show me what this card looks like", "make card images", "render my set", "generate card art", "create card mockups", "print proxies", or "I want to see the cards". Works entirely locally using Python/Pillow with no external API keys. Produces individual PNG files plus optional contact sheets showing multiple cards in a grid.
+description: Render Magic&#58; The Gathering card descriptions as realistic card images (PNG). Use this skill whenever the user wants to generate, render, visualize, or create images of MTG cards — whether from JSON card data (like the output of mtg-set-designer), a card list, or even a single card description. Also trigger when the user says things like "show me what this card looks like", "make card images", "render my set", "generate card art", "create card mockups", "print proxies", or "I want to see the cards". Works entirely locally using Python/Pillow with no external API keys. Produces individual PNG files at exact MTG card dimensions.
 ---
 
 # MTG Card Renderer

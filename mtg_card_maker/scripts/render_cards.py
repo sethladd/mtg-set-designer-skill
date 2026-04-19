@@ -15,7 +15,6 @@ Usage:
 
 import argparse
 import json
-import math
 import os
 import re
 import sys
@@ -983,23 +982,6 @@ def render_card(card: dict, dpi: int = 300) -> Image.Image:
 
 
 # ---------------------------------------------------------------------------
-# Contact sheet
-# ---------------------------------------------------------------------------
-
-def make_contact_sheet(images, columns=5, padding=12, bg_color=(30, 30, 30)):
-    if not images:
-        return Image.new("RGB", (100, 100), bg_color)
-    cw, ch = images[0].size
-    rows = math.ceil(len(images) / columns)
-    sheet = Image.new("RGB", (columns * cw + (columns + 1) * padding,
-                              rows * ch + (rows + 1) * padding), bg_color)
-    for i, im in enumerate(images):
-        col, row = i % columns, i // columns
-        sheet.paste(im, (padding + col * (cw + padding), padding + row * (ch + padding)))
-    return sheet
-
-
-# ---------------------------------------------------------------------------
 # I/O
 # ---------------------------------------------------------------------------
 
@@ -1036,8 +1018,6 @@ def main():
     parser.add_argument("--dpi", type=int, default=300,
                         help="Target DPI (300 = standard print, 600 = high-res). "
                              "At 300 DPI output is 744×1039 px = exact MTG card size.")
-    parser.add_argument("--contact-sheet", action="store_true", help="Generate a contact sheet grid")
-    parser.add_argument("--columns", type=int, default=5, help="Columns in contact sheet")
     parser.add_argument("--filter-rarity", help="Only render cards of this rarity")
     parser.add_argument("--filter-color", help="Only render cards of this color (W/U/B/R/G)")
 
@@ -1095,25 +1075,18 @@ def main():
         return
 
     print(f"Rendering {len(cards)} card(s)...")
-    rendered = []
+    saved = 0
     for i, card in enumerate(cards):
         img = render_card(card, dpi=dpi)
         safe_name = re.sub(r'[^\w\-]', '_', card.get("name", f"card_{i}").lower().strip())
         safe_name = re.sub(r'_+', '_', safe_name).strip('_')
         out_path = os.path.join(args.output_dir, f"{safe_name}.png")
         _save_png_with_dpi(img, out_path, dpi)
-        rendered.append(img)
+        saved += 1
         if (i + 1) % 20 == 0:
             print(f"  {i + 1}/{len(cards)} done...")
 
-    print(f"Saved {len(rendered)} card image(s) to {args.output_dir}/")
-
-    if args.contact_sheet and rendered:
-        sheet = make_contact_sheet(rendered, columns=args.columns,
-                                   padding=max(4, _mm2px(1.0, dpi)))
-        sheet_path = os.path.join(args.output_dir, "_contact_sheet.png")
-        _save_png_with_dpi(sheet, sheet_path, dpi)
-        print(f"Contact sheet saved to {sheet_path}")
+    print(f"Saved {saved} card image(s) to {args.output_dir}/")
 
 
 if __name__ == "__main__":
