@@ -37,7 +37,7 @@
     {
       "id": "EXM-001",
       "name": "Ember Stoker",
-      "mana_cost": "1R",
+      "mana_cost": "{1}{R}",
       "cmc": 2,
       "color": ["R"],
       "type": "Creature",

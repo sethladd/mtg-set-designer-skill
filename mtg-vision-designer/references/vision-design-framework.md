@@ -316,7 +316,7 @@ Each card follows the format in `references/set_template.json`:
 {
   "id": "SET-001",
   "name": "Card Name",
-  "mana_cost": "1W",
+  "mana_cost": "{1}{W}",
   "cmc": 2,
   "color": ["W"],
   "type": "Creature",

@@ -170,7 +170,7 @@ Review the audit report. Fix any flagged issues:
      "colors": ["W", "B"],
      "commander": {
        "name": "Commander Name",
-       "mana_cost": "2WB",
+       "mana_cost": "{2}{W}{B}",
        "type": "Legendary Creature — Human Cleric",
        "ability_summary": "What makes this commander exciting"
      },

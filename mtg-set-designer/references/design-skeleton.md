@@ -78,7 +78,7 @@ Example:
 {
   "id": "CW01",
   "name": "Watchfire Sentinel",
-  "mana_cost": "W",
+  "mana_cost": "{W}",
   "cmc": 1,
   "color": ["W"],
   "type": "Creature",
