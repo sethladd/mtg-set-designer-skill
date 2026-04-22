@@ -165,11 +165,196 @@ Two pillars produce thin sets that feel like they're about one thing. Four or mo
 
 ---
 
+---
+
+## Wisdom from the Mechanics Catalog (2024–2025 era)
+
+### 1. Ward replaced Hexproof as the protection default
+
+Hexproof is still officially evergreen, but since Strixhaven (2021) Wizards has used Ward almost everywhere Hexproof would have appeared. Reason: Hexproof is feels-bad for opponents (no removal works, ever) while Ward gates interaction behind a cost without forbidding it. Default to Ward for any "this shouldn't be easy to kill" effect. Reach for Hexproof only when the design specifically wants the strongest possible protection (almost never at common).
+
+**How to apply:** When sketching a creature that needs durability, write Ward {N} or Ward — pay-cost. Reserve Hexproof for niche cases and document why.
+
+### 2. Prowess fell off evergreen with Foundations (Nov 2024)
+
+Prowess was an evergreen keyword for years; it's now deciduous. This shifts what "spell-matters at common" looks like — you can no longer assume Prowess will be background texture. If your set's pillars need spell-matters identity, choose Prowess intentionally and put it in 1–2 archetypes.
+
+**How to apply:** Don't rely on Prowess being "always there." Either pick it as one of your set's deciduous mechanics, or design spell-matters payoffs that don't depend on it.
+
+### 3. Tribal became Kindred in 2024
+
+The card type "Tribal" was renamed "Kindred." This is largely cosmetic but affects card-text references and search. If your set has noncreature cards that need creature types (e.g., a Sorcery — Goblin), use the Kindred type.
+
+**How to apply:** Use "Kindred [Type]" in card type lines for noncreature spells with creature types. Update any older card-text references that use "Tribal."
+
+### 4. Predefined artifact tokens are now Magic's universal palette
+
+Treasure, Food, Clue, Blood, Map, Powerstone — these are evergreen-or-near-evergreen tokens with stable text. Reusing them is cheaper than inventing a new "Coin" or "Gem" token because players already know the rules. Reserve novel token types for genuinely new mechanics.
+
+**How to apply:** When you'd reach for "create a token that does X," check whether an existing predefined token already covers it. Treasure for ramp/fix. Food for life/sac fodder. Clue for card draw. Map for explore. Blood for loot. Powerstone for colorless ramp.
+
+### 5. Recent design has burned through many "alt-cost from hand" variants
+
+Plot (OTJ), Impending (DSK), and Suspend before them all answer "pay something now, get the spell later." If your vision wants this play pattern, lean into a *combinatorial* difference (different exile zone, different counter type, different reveal mechanic) — or pick a different design space entirely. Re-treading Plot or Suspend so soon will feel derivative.
+
+**How to apply:** Before specifying a "pay now, cast later" mechanic, list how it differs from Plot, Impending, Suspend, Foretell, Adventure. If it's just "Suspend with a different counter," reconsider.
+
+### 6. "Cast face-down 2/2" got a major upgrade with Disguise/Cloak
+
+Morph existed for 20 years. MKM's Disguise/Cloak rebuilt it with built-in Ward {2}, which fixed Morph's classic Limited problem (cheap removal made face-downs feel terrible). If your set wants face-down play, default to the Disguise/Cloak template, not the original Morph template.
+
+**How to apply:** When designing face-down creature mechanics, copy the Disguise/Cloak baseline (face-down 2/2, Ward {2}). Document why you'd deviate.
+
+### 7. Recent state-of-design lessons from Rosewater (2025)
+
+Three concrete lessons from the 2025 State of Design retrospective:
+
+- **Recontextualize, don't replicate.** Duskmourn was criticized as "too on the nose" with horror references. Top-down sets should *reinterpret* their genre, not directly transcribe its tropes.
+- **Downstream support matters.** Bloomburrow's Otter and Vehicle decks lacked follow-up support in later sets, frustrating players who built into them. If your vision will spawn a sub-archetype, plan for whether subsequent sets can reinforce it.
+- **Three-color complexity is hard.** Tarkir: Dragonstorm fought constant tension between tight mana (causes color-screw) and loose mana (causes excessive splashing). Three-color sets need explicit mana-fixing strategy in the vision document.
+
+**How to apply:** Add a "Recontextualization check" to top-down vision work, a "Downstream support assumed" note to any pillar that creates sub-archetypes, and a "Mana strategy" subsection to any vision that goes beyond two-color archetypes.
+
+---
+
+## Wisdom from the Color Pie reference
+
+### 8. Treasure-in-blue is the canonical "blue ramp" mistake
+
+When designing a mechanic that produces resources, blue is almost never the right home. Ixalan put Treasure tokens in blue and Rosewater publicly called it a mistake — blue does not ramp. Treasure is red and black. Mana acceleration in green. Blue's resource trick is *cost reduction*, not adding mana to your pool.
+
+**Why:** Color pie identity is preserved by *what each color cannot do*, not just by what it can. Blue ramp erodes blue's "perfection through patience" identity by giving it the burst-mana feel of red/black.
+
+**How to apply:** When sketching a new mechanic that produces mana or mana-equivalent resources, default to red/black/green homes. If the vision document needs blue to feel resource-rich, reach for cost reduction, scry/surveil density, or counter-spell tempo — not mana production.
+
+### 9. Three-primary mechanics usually map to clans, not colors
+
+If a new mechanic feels equally at home in three colors, it's probably a multicolor (clan/wedge) mechanic, not a mono-color one. Tarkir Dragonstorm 2025 uses this pattern explicitly: Endure for Abzan, Mobilize for Mardu, etc.
+
+**Why:** A mechanic with no single primary doesn't constrain card design and dilutes color identity. Promoting it to a faction/clan mechanic gives it a structural home.
+
+**How to apply:** When you find yourself writing a mechanic with three "P" entries, ask: should this be a clan mechanic instead? If yes, your set may be a wedge/clan set rather than a two-color-pair set, which is a major vision-level decision worth surfacing.
+
+### 10. Bends are vision design's currency; breaks are debt
+
+A bend is when a card stretches the color pie deliberately ("white draws cards, but only when a creature enters"). A break is when it violates the pie outright ("red destroys an enchantment"). Vision design can authorize bends — they're the texture that makes a set feel distinct. Vision design should never authorize breaks unless the entire set is built around the break.
+
+**Why:** Bends produce flavor; breaks produce balance and review chaos downstream. The Council of Colors will catch breaks in review and force changes — it's cheaper to design within the pie at vision time.
+
+**How to apply:** When a mechanic flirts with a break, document it in "What We Tried and Cut" with the specific reason. If the vision really does need the break (e.g., a set built around "red learns magic"), call it out in the handoff so Set Design and the Council aren't surprised.
+
+---
+
+## Wisdom from the Templating reference
+
+### 11. Use current templating from the start
+
+Two big templating shifts landed in 2024: "enters the battlefield" became "enters" (Bloomburrow), and self-reference moved from CARDNAME to zone-based ("this creature," "this spell," "this card") (Foundations). Vision-time prototype text written in pre-2024 template costs Set Design and the Editor real time to translate before they can evaluate the design.
+
+**Why:** When prototype card text uses old templating, downstream readers spend cognitive cycles deciding "is this a deliberate quirk or just stale phrasing?" That noise hides genuine design issues.
+
+**How to apply:** Always write `When this creature enters, ...` not `When CARDNAME enters the battlefield, ...`. Always use `this card` for graveyard/hand references. Always include "another" on ETB self-targeting (the Hostage Taker trap) and "you control" where you mean yours. Distinguish replacement effects (`if X would Y, instead Z`) from triggers (`whenever X, Z`) — confusing them is the most common templating bug in prototype text.
+
+---
+
+## Wisdom from the Rate and Cost reference
+
+### 12. Common removal must punch above its old weight
+
+In the Play Booster era (2024+), ~41% of packs contain two or more rares. That changes the answer math: if commons can't kill rare-level threats, the format devolves into "whoever opened more bombs wins." Rosewater confirmed common red burn now reaches 6 damage (up from the old 5-damage ceiling) precisely because of this pressure.
+
+**Why:** Pre-Play-Booster, commons could safely under-cost their answers because rares were rare. Post-Play-Booster, the answer side has to keep pace with the threat side or Limited stops being skill-driven.
+
+**How to apply:** When sketching common removal, default to slightly higher efficiency than pre-2024 norms. {1}{B} kill spells with light conditions are more acceptable now than they were in 2018. If common removal can't credibly answer your set's signature mythic threat, the format will feel rare-warped.
+
+### 13. Mechanic as-fan at common is the teach-rate
+
+A new named mechanic needs to *appear* often enough to teach itself in the first few games. Concrete target: 8–12 commons should feature a primary set mechanic (≥1.0 per pack as-fan), 4–8 commons for a secondary mechanic. Below 4 commons, the mechanic feels under-supported and players forget it exists.
+
+**Why:** In Limited, the play experience comes from commons. A mechanic that only appears at uncommon and above is invisible to most drafters. Vision Design is responsible for ensuring the planned common count for each mechanic actually hits the as-fan target.
+
+**How to apply:** When defining each mechanic in the handoff, write its planned `rarity_spread` with the common count first. Apply the formula: needed_commons ≈ (target_as_fan × 81 / 7), rounded up. For a primary mechanic targeting ~1.0 per pack, that's ~12 commons.
+
+### 14. The vanilla curve is the floor for evaluating prototype cards
+
+A creature's total stats should be roughly twice its mana value (2-cost = 4 stats; 3-cost = 6 stats; 4-cost = 7–8 stats). Every keyword, every ETB ability, every triggered ability comes off this baseline at roughly the cost of one stat.
+
+**Why:** Without an internalized rate, prototype cards drift either too strong (every creature has bonus abilities at curve) or too weak (every creature is a vanilla and the set has no memorable cards). The curve is what makes "above curve = build-around" and "below curve = fair body" legible.
+
+**How to apply:** When sketching a creature, write the vanilla version first ("a 3/3 for 3"), then add features one at a time, subtracting one stat per added keyword/ETB. If the result still looks above curve, push to higher rarity or add a real downside.
+
+---
+
+## Wisdom from the Modern Case Studies
+
+### 15. Typal sets need cross-tribe pivots, not islands (Bloomburrow lesson)
+
+The Lorwyn-vs-Ixalan distinction is now sharper post-Bloomburrow. Lorwyn made tribal *type-referential* (Changeling, "Elves you control"). Ixalan made tribal *subtype-locked* (Pirates didn't help Dinosaurs). Bloomburrow added a third rule: even with type-referential payoffs, drafters need *cross-tribal common cards* so they can pivot in mid-draft without losing early picks.
+
+**Why:** Without pivots, the "what tribe am I?" question gets locked at pick 1. With pivots, it stays open through several picks, which is what makes draft feel like a game of reading signals.
+
+**How to apply:** For a typal set, design at least 30–40% of commons to be *playable in two adjacent tribes*. A green creature usable in both Squirrels and Otters keeps draft flexible. If most of your commons fit only one tribe, the format is on rails.
+
+### 16. When the genre's been done, differentiate by sub-genre (Duskmourn lesson)
+
+Innistrad already did horror; Duskmourn did *modern* horror — different period, different references, different mood. The differentiation has to be specific enough that pillars can name what the set is *not*. "Horror set" is meaningless for a fourth horror set; "haunted-house slasher with atmospheric dread, not gothic literature" is a useful constraint.
+
+**Why:** A pillar that doesn't differentiate is a generic pillar; it could fit any set in the genre. Specificity creates design space.
+
+**How to apply:** When entering an occupied genre, write each pillar in a form that contrasts with the previous occupant. "This is horror, but unlike Innistrad..." → "the suspense is what you don't see, not the monster reveal." That contrast then drives mechanic choice (Manifest Dread, enchantments-for-mood) that wouldn't have been chosen otherwise.
+
+### 17. Don't transcribe the genre — interpret it (Duskmourn lesson)
+
+Top-down sets fail when they replicate genre tropes too literally. Duskmourn was criticized as "too on the nose" — cards felt like direct adaptations of horror-film moments rather than designs that *captured the feeling*.
+
+**Why:** Direct replication makes the cards feel like fan service rather than design. Players appreciate the *feeling* of a horror movie more than they appreciate a card called "Chainsaw Guy."
+
+**How to apply:** For each top-down card concept, ask: am I copying a specific scene, or am I capturing the *play pattern* that makes that scene work? "A creature you can't see clearly until it acts" (Manifest Dread) captures slasher dread better than "a card called The Stalker that costs {3}{B}."
+
+### 18. UB mechanics must be IP-system translations, not re-skins (Final Fantasy lesson)
+
+Final Fantasy's Job Select, Tiered, and Saga Creatures are inseparable from the IP — they couldn't exist outside FF. That's why the set worked. By contrast, early UB products that re-used existing Magic mechanics with new art felt hollow. The system-translation pattern is now the bar for major UB releases.
+
+**Why:** Players who love an IP love its *systems* (the job system, the spell-tier system, the summon system). Translating those systems into card mechanics is what makes a UB set feel like the IP, not just look like it.
+
+**How to apply:** For UB sets, list the IP's interactive systems first (in `ip_catalog.md`'s system translation inventory) and choose 2–3 of them as the basis for your primary mechanics. Reserve existing Magic mechanics as backups for less iconic systems.
+
+### 19. When the IP is too big for one set, use precons for breadth (Final Fantasy lesson)
+
+Final Fantasy contained sixteen separate franchise entries. Wizards solved the breadth problem by making the main set serve the *constellation* (no unified plane, characters from all entries) and making Commander precons serve *individual fan bases* (one precon per major entry, with that entry's iconic commanders).
+
+**Why:** Forcing a 16-entry IP into one ~280-card set would have shortchanged every entry. Separating breadth (main set) from depth (precons) lets each product serve its audience.
+
+**How to apply:** When the input IP is too big for one set, write a "product split" section in the vision handoff: what does the main set carry, and what gets pushed to Commander precons or supplementary products? This is technically `mtg-product-architect` territory, but vision design needs to flag the constraint.
+
+---
+
+## Wisdom for using canonical references
+
+### 20. Check the Storm Scale before reusing an old mechanic
+
+Mark Rosewater's Storm Scale rates every named mechanic from 1 (very likely to return) to 10 (very unlikely). A mechanic at Storm Scale 8+ has been judged unlikely to return for *reasons* — usually rules complexity, parasitism, or unfun play patterns. If your vision wants a returning mechanic, look up its Storm Scale rating before committing.
+
+**Why:** A high-Storm-Scale mechanic has design baggage that's already been litigated. Bringing it back as your primary mechanic re-opens problems Wizards already decided weren't worth solving in the standard pipeline. Modern Horizons-style sets can take Storm-Scale-7 risks; standard-legal sets generally shouldn't.
+
+**How to apply:** Before listing a returning mechanic in your handoff, look up its Storm Scale via the community-aggregated index (URL in `sources.md`) or Rosewater's per-set Storm Scale articles. If it's 7+, document why your set can carry the baggage; if it's 8+, strongly reconsider unless your set is explicitly a depth-over-accessibility product.
+
+### 21. The Comprehensive Rules are the tiebreaker, not the daily reference
+
+When in doubt about a rules edge case while writing prototype card text, defer to the live Comprehensive Rules at `magic.wizards.com/en/rules` (or the Yawgatog hyperlinked mirror). Don't memorize them; *know they exist* and check them when something feels rules-uncertain.
+
+**Why:** Vision design isn't templating — but vision-time card text that violates a rules invariant (e.g., writing a triggered ability that should have been a replacement effect) creates downstream cost. Knowing the Comprehensive Rules exist as a tiebreaker prevents bad rules assumptions from getting baked into the handoff.
+
+**How to apply:** When writing prototype card text that uses an unfamiliar rules pattern (a new zone, an unusual timing, a state-tracking requirement), check the relevant Comprehensive Rules section or use Yawgatog's keyword search before finalizing. If the templating reference (`templating.md`) doesn't cover it, escalate to the rules document.
+
+---
+
 ## Sources
 
 - Mark Rosewater's "Lessons Learned" columns (Parts 1-6+)
-- Mark Rosewater's "State of Design" columns (2014-2024)
-- Vision Design Handoff Documents: Bloomburrow (Parts 1-3), Kamigawa: Neon Dynasty (Parts 1-2), Wilds of Eldraine, Aetherdrift, Strixhaven, Original Zendikar
+- Mark Rosewater's "State of Design" columns (2014-2025)
+- Vision Design Handoff Documents: Bloomburrow (Parts 1-3), Kamigawa: Neon Dynasty (Parts 1-2), Wilds of Eldraine, Aetherdrift, Strixhaven, Original Zendikar, Duskmourn
+- Per-set mechanics articles for MKM, OTJ, BLB, DSK, MH3, FDN, DFT, TDM, FIN (see `references/sources.md` for URLs)
 - "Vision Design, Set Design, and Play Design" (Rosewater, 2017)
 - Drive to Work podcast: Top-Down vs. Bottom-Up, Vision Design episodes
 - Avacyn Restored and Born of the Gods design retrospectives
