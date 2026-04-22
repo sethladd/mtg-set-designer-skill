@@ -25,7 +25,8 @@ Then read these shared references as needed during card design:
 - `references/balance-heuristics.md` — Numerical targets the balance scripts check against
 - `references/design-skeleton.md` — Play Booster era slot structure (81C/100U/60R/20M)
 - `references/archetypes.md` — Ten two-color archetype framework, signpost design
-- `references/mechanics.md` — Keyword/ability word/named mechanic types, parasitism
+- `references/mechanics.md` — Keyword/ability word/named mechanic types, parasitism (the *theory*)
+- `references/mechanics-catalog.md` — Inventory of current evergreens (with reminder text), deciduous keywords, and 2024–2025 set mechanics (the *catalog*)
 - `references/new-world-order.md` — Complexity at common, red-flag rules
 - `references/rarity-structure.md` — Rarity jobs, per-color distribution targets
 - `references/color-pie.md` — Color pie reference, bending vs breaking
@@ -361,7 +362,8 @@ Narrative document explaining the design decisions.
 - `references/balance-heuristics.md` — Numerical targets: vanilla baselines, removal density, mana curves, win-rate bands, format speed bands.
 - `references/design-skeleton.md` — Play Booster era skeleton structure and how to use it.
 - `references/archetypes.md` — Ten two-color framework, signpost design, archetype support rule of thumb.
-- `references/mechanics.md` — Mechanic types, parasitism, complexity budget, evergreen list.
+- `references/mechanics.md` — Mechanic types, parasitism, complexity budget, evergreen list (the theory of choosing mechanics).
+- `references/mechanics-catalog.md` — Working inventory: evergreen keyword abilities and actions with reminder text, deciduous keywords, every named mechanic from 2024–2025 premier sets (MKM, OTJ, BLB, DSK, FDN, DFT, TDM, FIN), and static concepts (MDFCs, Sagas, Battles, Vehicles, predefined tokens, counters). **Consult while designing card text to use current reminder text and avoid re-treading recent design space.**
 - `references/new-world-order.md` — Complexity at common, red-flag checklist, lenticular design.
 - `references/rarity-structure.md` — What each rarity is for, rarity counts, the role of mythic.
 - `references/color-pie.md` — Mechanical color pie, bending vs. breaking.

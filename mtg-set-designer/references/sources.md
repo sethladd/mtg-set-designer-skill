@@ -70,3 +70,29 @@ Web references consulted during the creation of the mtg-set-designer skill.
 - [Lucky Paper: Set Cubes](https://luckypaper.co/articles/set-cubes-and-more/) — Constructed seeds in Limited, pushed rares
 - [Rosewater: State of Design 2023](https://magic.wizards.com/en/news/making-magic/state-of-design-2023) — Modern set design philosophy retrospective
 - [MTG Wiki: Erik Lauer](https://mtg.fandom.com/wiki/Erik_Lauer) — Architect of modern Set Design process
+
+## Mechanics Catalog Sources
+
+Used in the production of `references/mechanics-catalog.md`. (This catalog is duplicated from `mtg-vision-designer` per the project's self-contained-skill rule; sources are recorded in both skills.)
+
+### Evergreen and deciduous keyword references
+
+- [List of Magic: The Gathering keywords (Wikipedia)](https://en.wikipedia.org/wiki/List_of_Magic:_The_Gathering_keywords) — Cross-checked the list of evergreen keyword abilities and keyword actions, plus rough reminder text.
+- [All About Evergreen Abilities (Draftsim)](https://draftsim.com/mtg-evergreen/) — Confirmed the current evergreen keyword set; Protection's demote/return arc; Ward's preference over Hexproof.
+- [Looking Back at 2024's Returning Magic Keywords (Commander's Herald)](https://commandersherald.com/looking-back-at-2024s-returning-magic-keywords/) — Confirmed Prowess's demote from evergreen to deciduous around Foundations.
+
+### Per-set mechanics articles (official Wizards "Mechanics" features)
+
+- [Murders at Karlov Manor Mechanics](https://magic.wizards.com/en/news/feature/murders-at-karlov-manor-mechanics) — Disguise, Cloak, Suspect, Collect Evidence, Cases, Investigate.
+- [Outlaws of Thunder Junction Mechanics](https://magic.wizards.com/en/news/feature/outlaws-of-thunder-junction-mechanics) — Outlaw, Committed a Crime, Spree, Plot, Saddle, Mount.
+- [Bloomburrow Mechanics](https://magic.wizards.com/en/news/feature/bloomburrow-mechanics) — Offspring, Gift, Valiant, Forage, Expend, Pawprints.
+- [Duskmourn: House of Horror Mechanics](https://magic.wizards.com/en/news/feature/duskmourn-house-of-horror-mechanics) — Rooms, Manifest Dread, Eerie, Survival, Impending.
+- [Modern Horizons 3 Release Notes](https://magic.wizards.com/en/news/feature/modern-horizons-3-release-notes) — Energy return, Kindred (formerly Tribal), MDFC-to-planeswalker variants.
+- [Aetherdrift Mechanics](https://magic.wizards.com/en/news/feature/aetherdrift-mechanics) — Start Your Engines, Speed, Exhaust, Saddle (returning), Crew, Pilot.
+- [Tarkir: Dragonstorm Mechanics](https://magic.wizards.com/en/news/feature/tarkir-dragonstorm-mechanics) — Endure, Flurry, Renew, Mobilize, Harmonize, Behold, Twobrid mana, Omens.
+- [Magic: The Gathering—FINAL FANTASY Mechanics](https://magic.wizards.com/en/news/feature/final-fantasy-mechanics) — Job Select, Tiered, Saga Creatures, returning Adventures and Landcycling.
+- [Magic: The Gathering Foundations Mechanics](https://magic.wizards.com/en/news/feature/foundations-mechanics) — Foundations leans on revisited deciduous mechanics (Cycling, Flashback, Flash, Kicker, Threshold).
+
+### State-of-design retrospective
+
+- [State of Design 2025 (Rosewater)](https://magic.wizards.com/en/news/making-magic/state-of-design-2025) — Rosewater's 2024–2025 design retrospective; sourced the year's full mechanic-by-set inventory and design lessons (recontextualization, downstream mechanic support, three-color complexity).
