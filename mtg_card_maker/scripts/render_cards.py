@@ -270,6 +270,36 @@ def _get_font(name: str, size: int) -> ImageFont.FreeTypeFont:
     return _font_cache[key]
 
 
+def _fit_font_to_width(
+    font_name: str,
+    text: str,
+    max_w: int,
+    base_pt: float,
+    dpi: int,
+    min_pt: float = 4.5,
+) -> tuple[ImageFont.FreeTypeFont, int]:
+    """Return (font, size_px) for `text` shrunk to fit within `max_w` pixels.
+
+    Starts at `base_pt` and steps down by 0.25 pt until the rendered width
+    is ≤ `max_w` or `min_pt` is reached. Real MTG cards do the same thing —
+    the title font shrinks substantially for long names ("Borborygmos
+    Enraged," "Our Market Research Shows That Players Like Really Long
+    Card Names...") and Beleren is legible down to ~4.5 pt at print DPI.
+    """
+    pt = float(base_pt)
+    while pt > min_pt:
+        size_px = _pt2px(pt, dpi)
+        font = _get_font(font_name, size_px)
+        bbox = font.getbbox(text)
+        text_w = bbox[2] - bbox[0]
+        if text_w <= max_w:
+            return font, size_px
+        pt -= 0.25
+    # Floor: return the smallest size even if it still overflows.
+    size_px = _pt2px(min_pt, dpi)
+    return _get_font(font_name, size_px), size_px
+
+
 # ---------------------------------------------------------------------------
 # Mana symbol rendering
 # ---------------------------------------------------------------------------
@@ -900,12 +930,27 @@ def render_card(card: dict, dpi: int = 300) -> Image.Image:
     # =====================================================================
     draw = ImageDraw.Draw(img)
 
-    # Card name — vertically centred in title bar, always black
-    name_y = tb_y0 + (tb_h - _pt2px(F["title"], dpi)) // 2
-    draw.text((cx0 + px(1.2), name_y), name, fill=(0, 0, 0), font=f_title)
-
-    # Mana cost symbols
+    # Mana cost symbols — measured first so the title knows how much space it has
     mana_symbols = _parse_mana_cost(mana_cost)
+    mana_total_w = 0
+    if mana_symbols:
+        mana_total_w = (len(mana_symbols) * mana_sym
+                        + max(0, len(mana_symbols) - 1) * mana_gap)
+
+    # Card name — fit font to the horizontal space left of the mana cost.
+    name_left = cx0 + px(1.2)
+    if mana_symbols:
+        # Mana cost is right-aligned at (cx1 - px(0.8)) and extends left by
+        # mana_total_w. Reserve px(1.0) of breathing room between title and cost.
+        name_right = cx1 - px(0.8) - mana_total_w - px(1.0)
+    else:
+        name_right = cx1 - px(0.8)
+    name_max_w = max(px(1.0), name_right - name_left)
+    f_title_fitted, name_size_px = _fit_font_to_width(
+        "Beleren-Bold.ttf", name, name_max_w, F["title"], dpi)
+    name_y = tb_y0 + (tb_h - name_size_px) // 2
+    draw.text((name_left, name_y), name, fill=(0, 0, 0), font=f_title_fitted)
+
     if mana_symbols:
         sym_y = tb_y0 + (tb_h - mana_sym) // 2
         _draw_mana_cost(img, mana_symbols, cx1 - px(0.8), sym_y,
